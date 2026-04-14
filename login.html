@@ -7,85 +7,108 @@
     <link rel="icon" href="assets/iconMyTeX.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #111111;
-            --text-primary: #e6e3dd;
-            --text-secondary: #908d88;
+        *,*::before,*::after{box-sizing:border-box;margin:0}
+        :root{
+            --navy:#1a2d3d;--teal:#2bb5a0;--teal2:#239e8c;--teal-dim:rgba(43,181,160,.1);
+            --bg:#eef3f8;--surface:#fff;--surface2:#f4f8fb;
+            --border:#d4dde8;--border2:#c2cfdb;
+            --text:#1a2d3d;--text2:#4a6278;--muted:#7a95ab;
+            --radius:18px;--shadow:0 2px 16px rgba(26,45,61,.1);--shadow-md:0 6px 32px rgba(26,45,61,.13);
         }
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            font-family: 'DM Sans', sans-serif;
-            text-align: center;
-        }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        .brand-icon {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .brand-icon img {
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-        }
-        .brand-name {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-        h1 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin: 0 0 12px 0;
-            letter-spacing: -0.02em;
-        }
-        p {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            margin: 0;
-            font-weight: 400;
+        body{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+        a{text-decoration:none;color:inherit}
+        img{display:block;max-width:100%}
+        h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter-spacing:-.02em;color:var(--text)}
+
+        /* HEADER */
+        .site-header{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.2)}
+        .wrap{width:min(1160px,calc(100% - 40px));margin:auto;position:relative}
+        .header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:58px}
+        .brand{display:flex;align-items:center;gap:11px;flex-shrink:0;text-decoration:none}
+        .brand-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .brand-icon img{width:24px;height:24px;object-fit:contain}
+        .brand-text .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;letter-spacing:-.02em;display:block}
+        .brand-text .tagline{font-size:.72rem;color:rgba(255,255,255,.42);font-weight:500;display:block;margin-top:1px}
+        .site-nav{display:flex;align-items:center;gap:1px}
+        .site-nav a{padding:7px 13px;border-radius:8px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.58);transition:color .18s,background .18s;white-space:nowrap}
+        .site-nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+        .nav-dl{padding:8px 18px !important;background:var(--teal) !important;color:var(--navy) !important;border-radius:9px !important;font-weight:700 !important;font-size:.88rem !important;margin-left:8px;display:inline-flex !important;align-items:center;gap:6px;transition:background .18s,transform .15s !important}
+        .nav-dl:hover{background:var(--teal2) !important;transform:translateY(-1px)}
+
+        /* MAIN CONTENT */
+        .main-content{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 20px}
+        .auth-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:48px 52px;box-shadow:var(--shadow-md);text-align:center;max-width:460px;width:100%;position:relative;overflow:hidden}
+        .auth-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal2))}
+        .auth-icon{width:56px;height:56px;border-radius:50%;background:var(--teal-dim);border:1px solid rgba(43,181,160,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+        .auth-icon svg{width:28px;height:28px;color:var(--teal2)}
+        .auth-card h1{font-size:1.8rem;font-weight:800;margin-bottom:10px}
+        .auth-card p{font-size:1rem;color:var(--text2);line-height:1.65;margin:0}
+        .auth-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:999px;background:var(--teal-dim);border:1px solid rgba(43,181,160,.25);font-size:.78rem;font-weight:700;color:var(--teal2);text-transform:uppercase;letter-spacing:.06em;margin-top:24px}
+        .auth-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block}
+
+        /* FOOTER */
+        .site-footer{border-top:1px solid rgba(255,255,255,.07);padding:28px 0;background:var(--navy)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+        .footer-bottom p{font-size:.83rem;color:rgba(255,255,255,.28)}
+        .footer-bottom a{color:rgba(255,255,255,.48);font-weight:600;transition:color .18s}
+        .footer-bottom a:hover{color:var(--teal)}
+        .footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:var(--teal)}
+        .footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
+
+        @media(max-width:640px){
+            .site-nav a:not(.nav-dl){display:none}
+            .auth-card{padding:36px 28px}
+            .auth-card h1{font-size:1.5rem}
+            .footer-bottom{flex-direction:column;text-align:center}
         }
     </style>
 </head>
 <body>
 
-    <div class="brand">
-        <div class="brand-icon">
-            <img src="assets/iconMyTeX.png" alt="MyTeX Logo">
+<header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="index.html">
+        <div class="brand-icon"><img src="assets/iconMyTeX.png" alt="MyTeX"></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+    </a>
+    <nav class="site-nav">
+        <a href="index.html">Giới thiệu</a>
+        <a href="index.html#modules">Phân hệ</a>
+        <a href="user-guide.html">Hướng dẫn</a>
+        <a href="privacy.html">Bảo mật</a>
+        <a class="nav-dl" href="index.html#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải về</a>
+    </nav>
+</div></header>
+
+<main class="main-content">
+    <div class="auth-card">
+        <div class="auth-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+            </svg>
         </div>
-        <div class="brand-name">MyTeX</div>
+        <h1>Xác thực thành công</h1>
+        <p>Bạn có thể đóng cửa sổ này và quay lại ứng dụng MyTeX.</p>
+        <span class="auth-badge">Đã kết nối</span>
     </div>
+</main>
 
-    <h1>Sign in complete</h1>
-    <p>You can now close this window.</p>
+<footer class="site-footer"><div class="wrap">
+    <div class="footer-bottom">
+        <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span></p>
+        <span class="footer-badge">Desktop · Windows · macOS · Linux</span>
+    </div>
+</div></footer>
 
-    <script>
-        window.onload = function() {
-            // Trigger the native app protocol so the browser shows the "Open MyTeX?" dialog
-            setTimeout(function() {
-                window.location.href = "mytex://auth-complete";
-            }, 300);
-        };
-    </script>
+<script src="config.js"></script>
+<script>
+    window.onload = function() {
+        setTimeout(function() {
+            window.location.href = "mytex://auth-complete";
+        }, 300);
+    };
+</script>
 
 </body>
 </html>
