@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyTeX — Nền tảng desktop cho quy trình ra đề, TeX và Google Form</title>
+<meta name="description" content="MyTeX là nền tảng desktop giúp chuẩn hóa dữ liệu TeX, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận, tích hợp AI và phát hành bài kiểm tra qua Google Form trong một quy trình thống nhất.">
+<link rel="icon" href="iconMyTeX.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#1a2d3d;--teal:#2bb5a0;--teal2:#239e8c;--teal-dim:rgba(43,181,160,.1);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.1);
+  --bg:#eef3f8;--surface:#fff;--surface2:#f4f8fb;--surface3:#e8eef5;
+  --border:#d4dde8;--border2:#c2cfdb;
+  --text:#1a2d3d;--text2:#4a6278;--muted:#7a95ab;
+  --radius:18px;--shadow:0 2px 16px rgba(26,45,61,.1);--shadow-md:0 6px 32px rgba(26,45,61,.13);
+  --w:min(1160px,calc(100% - 40px));
+}
+body{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+p{color:var(--text2);line-height:1.75}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter-spacing:-.02em;color:var(--text)}
+code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2);border:1px solid var(--border);color:var(--teal2);font-family:'Fira Code','Courier New',monospace}
+.wrap{width:var(--w);margin:auto;position:relative}
+.pill{display:inline-flex;padding:5px 13px;border-radius:999px;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.25);width:max-content}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:11px;font-weight:700;font-size:.92rem;transition:all .18s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.btn-primary{background:var(--teal);color:var(--navy);box-shadow:0 4px 16px rgba(43,181,160,.28)}
+.btn-primary:hover{background:var(--teal2);transform:translateY(-2px)}
+.btn-secondary{background:var(--surface);color:var(--text);border:1px solid var(--border);box-shadow:var(--shadow)}
+.btn-secondary:hover{border-color:var(--teal);color:var(--teal2);background:var(--teal-dim)}
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.2)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:58px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0;text-decoration:none}
+.brand-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand-icon img{width:24px;height:24px;object-fit:contain}
+.brand-text .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;letter-spacing:-.02em;display:block}
+.brand-text .tagline{font-size:.72rem;color:rgba(255,255,255,.42);font-weight:500;display:block;margin-top:1px}
+.site-nav{display:flex;align-items:center;gap:1px}
+.site-nav a{padding:7px 13px;border-radius:8px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.58);transition:color .18s,background .18s;white-space:nowrap}
+.site-nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.site-nav a.active{color:var(--teal);background:rgba(43,181,160,.14)}
+.nav-dl{padding:8px 18px !important;background:var(--teal) !important;color:var(--navy) !important;border-radius:9px !important;font-weight:700 !important;font-size:.88rem !important;margin-left:8px;display:inline-flex !important;align-items:center;gap:6px;transition:background .18s,transform .15s !important}
+.nav-dl:hover{background:var(--teal2) !important;transform:translateY(-1px)}
+/* FOOTER */
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:52px 0 36px;background:var(--navy)}
+.footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px}
+.footer-brand .brand{margin-bottom:14px}
+.footer-brand>p{font-size:.87rem;max-width:30ch;color:rgba(255,255,255,.38);line-height:1.65}
+.footer-col h4{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.28);margin-bottom:14px}
+.footer-col a{display:block;font-size:.9rem;color:rgba(255,255,255,.52);font-weight:500;padding:3px 0;transition:color .18s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:.83rem;color:rgba(255,255,255,.28)}
+.footer-bottom a{color:rgba(255,255,255,.48);font-weight:600;transition:color .18s}
+.footer-bottom a:hover{color:var(--teal)}
+.footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:var(--teal)}
+.footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.hero{padding:64px 0 52px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:999px;background:var(--teal-dim);border:1px solid rgba(43,181,160,.25);font-size:.75rem;font-weight:700;color:var(--teal2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:22px}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.2rem,3.8vw,3.5rem);font-weight:800;margin-bottom:18px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--teal2)}
+.hero-desc{font-size:1.02rem;max-width:50ch;margin-bottom:30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-slideshow{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);background:var(--surface);border:1px solid var(--border);position:relative}
+.slides-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.slide-item{min-width:100%;position:relative}
+.slide-item img{width:100%;display:block}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(26,45,61,.72));color:#fff;font-size:.86rem;font-weight:600;display:flex;align-items:center;gap:7px}
+.slide-caption::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.slideshow-dots{display:flex;justify-content:center;gap:6px;padding:9px 0 5px;background:var(--surface)}
+.slideshow-dots button{width:6px;height:6px;border-radius:50%;border:none;background:var(--border2);cursor:pointer;padding:0;transition:background .2s,transform .2s}
+.slideshow-dots button.active{background:var(--teal);transform:scale(1.4)}
+.slideshow-nav{position:absolute;top:calc(50% - 14px);transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 10px;pointer-events:none;z-index:2}
+.slideshow-nav button{pointer-events:all;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.85);color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .18s}
+.slideshow-nav button:hover{background:#fff}
+.stats-section{padding:0 0 52px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal2));opacity:0;transition:opacity .25s}
+.stat-card:hover::after{opacity:1}
+.stat-value{font-family:'Bricolage Grotesque',sans-serif;font-size:2.1rem;font-weight:800;color:var(--teal2);line-height:1;margin-bottom:7px;display:block}
+.stat-label{font-size:.87rem;color:var(--text2)}
+.section-head{display:grid;gap:10px;max-width:60ch;margin-bottom:36px}
+.section-head h2{font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:800}
+.section-head p{font-size:.97rem;max-width:54ch}
+.modules-section{padding:0 0 60px}
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mod-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s}
+.mod-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border2)}
+.mod-badge{display:inline-flex;padding:4px 11px;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.mod-badge.g{background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.25)}
+.mod-badge.o{background:var(--amber-dim);color:#b45309;border:1px solid rgba(245,158,11,.3)}
+.mod-card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+.mod-card p{font-size:.88rem}
+.download-section{padding:0 0 60px}
+.dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.dl-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.dl-card h3 .icon{width:34px;height:34px;border-radius:9px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dl-card>p{font-size:.91rem;margin-bottom:16px}
+.dl-links{list-style:none;padding:0;display:grid;gap:7px}
+.dl-links li a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);font-size:.9rem;font-weight:600;color:var(--text2);transition:all .18s}
+.dl-links li a:hover{background:var(--teal-dim);border-color:rgba(43,181,160,.35);color:var(--teal2)}
+.dl-links li a .os{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--teal2);min-width:64px}
+.dl-links li a .meta{display:grid;gap:2px}
+.dl-links li a .title{color:var(--text);font-weight:700}
+.dl-links li a .desc{font-size:.82rem;font-weight:500;line-height:1.45;color:var(--muted)}
+.dl-links li a .arrow{margin-left:auto;opacity:.4;transition:opacity .18s,transform .18s;color:var(--teal2)}
+.dl-links li a:hover .arrow{opacity:1;transform:translateX(3px)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 0 60px}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.info-card h3{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.info-card h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.info-card>p{font-size:.91rem;margin-bottom:14px}
+.contact-list{list-style:none;padding:0;display:grid;gap:8px}
+.contact-list li{font-size:.91rem}
+.contact-list li a{color:var(--teal2);font-weight:600}
+.contact-list li a:hover{text-decoration:underline}
+.tip-list{list-style:none;padding:0;display:grid;gap:8px}
+.tip-list li{display:flex;align-items:flex-start;gap:9px;font-size:.9rem}
+.tip-list li::before{content:'✓';color:var(--teal2);font-weight:800;flex-shrink:0;margin-top:2px}
+.tip-list li a{color:var(--teal2);font-weight:600}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:32px}.stats-grid{grid-template-columns:1fr 1fr}.modules-grid{grid-template-columns:1fr 1fr}.dl-grid,.contact-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.hero{padding:44px 0 36px}.stats-grid,.modules-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-icon"><img class="js-icon" src="iconMyTeX.ico" alt="MyTeX"></div>
+      <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Giới thiệu</a>
+      <a href="index.html#modules">Phân hệ</a>
+      <a href="user-guide.html">Hướng dẫn</a>
+      <a href="privacy.html">Bảo mật</a>
+      <a class="nav-dl" href="#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải về</a>
+    </nav>
+  </div></header>
+<main>
+<section class="hero"><div class="wrap"><div class="hero-grid">
+  <div>
+    <div class="hero-eyebrow">MyTeX Desktop Suite</div>
+    <h1>Nền tảng desktop chuẩn hóa<br><em>toàn bộ quy trình ra đề</em></h1>
+    <p class="hero-desc">MyTeX hỗ trợ tổ chuyên môn, trung tâm đào tạo và nhóm biên soạn đi trọn quy trình từ chuẩn hóa nguồn <code>.tex</code>, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận đến phát hành bài kiểm tra, chấm bài và phản hồi kết quả trong một môi trường làm việc thống nhất.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải bản phát hành</a>
+      <a class="btn btn-secondary" href="user-guide.html">Xem tài liệu</a>
+    </div>
+  </div>
+  <div class="hero-slideshow" id="heroSlideshow">
+    <div class="slideshow-nav">
+      <button onclick="slideshowMove(-1)" aria-label="Trước">&#8249;</button>
+      <button onclick="slideshowMove(1)" aria-label="Sau">&#8250;</button>
+    </div>
+    <div class="slides-track" id="slidesTrack">
+      <div class="slide-item"><img src="assets/screenshots/tong-quan.png" alt="Tổng quan"><div class="slide-caption">Tổng quan — trung tâm điều phối cấu hình và tích hợp</div></div>
+      <div class="slide-item"><img src="assets/screenshots/xu-ly-tex.png" alt="Xử lý TeX"><div class="slide-caption">Xử lý TeX — chuẩn hóa nguồn đề và xây ngân hàng câu hỏi</div></div>
+      <div class="slide-item"><img src="assets/screenshots/tao-de-thi.png" alt="Tạo đề thi"><div class="slide-caption">Tạo đề thi — thiết lập ma trận và sinh nhiều mã đề</div></div>
+      <div class="slide-item"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><div class="slide-caption">Soạn đề AI — chuyển ảnh sang TeX hoặc biên soạn theo chủ đề</div></div>
+      <div class="slide-item"><img src="assets/screenshots/soan-thao-ai.png" alt="Soạn thảo AI"><div class="slide-caption">Soạn thảo AI — biên tập LaTeX từ ảnh và nội dung bổ sung</div></div>
+      <div class="slide-item"><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><div class="slide-caption">Trợ lý AI — hỗ trợ thao tác trong phạm vi MyTeX</div></div>
+      <div class="slide-item"><img src="assets/screenshots/google-form.png" alt="Google Form"><div class="slide-caption">Google Form — chuẩn bị và phát hành bài kiểm tra</div></div>
+      <div class="slide-item"><img src="assets/screenshots/google-cham-bai.png" alt="Google Form chấm bài"><div class="slide-caption">Chấm bài — tổng hợp kết quả và gửi phản hồi</div></div>
+    </div>
+    <div class="slideshow-dots" id="slideshowDots"></div>
+  </div>
+</div></div></section>
+
+<section class="stats-section"><div class="wrap"><div class="stats-grid">
+  <div class="stat-card"><span class="stat-value">7</span><p class="stat-label">phân hệ chuyên trách, liên thông dữ liệu</p></div>
+  <div class="stat-card"><span class="stat-value">4</span><p class="stat-label">nhóm câu hỏi: Trắc nghiệm, Đúng/Sai, Ngắn, Tự luận</p></div>
+  <div class="stat-card"><span class="stat-value">3</span><p class="stat-label">nền tảng triển khai: Windows, macOS, Linux</p></div>
+  <div class="stat-card"><span class="stat-value" style="font-size:1.2rem;padding-top:5px">AI + Google</span><p class="stat-label">Gemini, Google Form, Email và Zalo tích hợp</p></div>
+</div></div></section>
+
+<section id="modules" class="modules-section"><div class="wrap">
+  <div class="section-head"><span class="pill">Năng lực cốt lõi</span><h2>Một nền tảng duy nhất cho toàn bộ quy trình xây dựng và vận hành đề thi</h2><p>MyTeX được tổ chức theo các phân hệ rõ vai trò, giúp người dùng mới dễ tiếp cận trong khi dữ liệu vẫn được quản lý thống nhất từ đầu đến cuối quy trình.</p></div>
+  <div class="modules-grid">
+    <article class="mod-card"><span class="mod-badge g">Tổng quan</span><h3>Bảng điều phối hệ thống</h3><p>Theo dõi trạng thái các tích hợp, mở nhanh quy trình cần dùng và kiểm soát cấu hình vận hành trước khi làm việc với dữ liệu thật.</p></article>
+    <article class="mod-card"><span class="mod-badge o">Xử lý TeX</span><h3>Chuẩn hóa dữ liệu nguồn</h3><p>Đọc nguồn <code>.tex</code>, lọc câu hỏi, rà soát lỗi và đưa nội dung vào ngân hàng dùng chung với cấu trúc nhất quán.</p></article>
+    <article class="mod-card"><span class="mod-badge g">Tạo đề thi</span><h3>Sinh đề theo ma trận</h3><p>Thiết lập quy tắc phân bổ câu hỏi, kiểm tra khả năng đáp ứng của ngân hàng và xuất bộ đề sẵn sàng phát hành.</p></article>
+    <article class="mod-card"><span class="mod-badge o">Soạn đề AI</span><h3>Biên soạn và chuyển đổi bằng AI</h3><p>Sử dụng Gemini để chuyển ảnh sang TeX, gợi ý câu hỏi mới hoặc xây nội dung theo chủ đề, mục tiêu và mức độ mong muốn.</p></article>
+    <article class="mod-card"><span class="mod-badge g">Soạn thảo AI</span><h3>Biên tập LaTeX nhanh hơn</h3><p>Kết hợp hình ảnh và nội dung nhập thêm để tạo LaTeX, đồng thời xem trước HTML ngay trong ứng dụng nhằm rút ngắn vòng lặp chỉnh sửa.</p></article>
+    <article class="mod-card"><span class="mod-badge o">Google Form + Trợ lý AI</span><h3>Phát hành, chấm bài và hỗ trợ sử dụng</h3><p>Tạo form, xử lý kết quả, gửi phản hồi và cung cấp trợ lý AI để giải đáp thao tác trong phạm vi nghiệp vụ của MyTeX.</p></article>
+  </div>
+</div></section>
+
+<section id="download" class="download-section"><div class="wrap">
+  <div class="section-head"><span class="pill">Tải về &amp; Tài liệu</span><h2>Sẵn sàng công bố, sẵn sàng triển khai cho người dùng cuối</h2><p>Người dùng có thể tải bản phát hành mới nhất, đọc tài liệu vận hành và tra cứu chính sách bảo mật ngay trên cùng một trang.</p></div>
+  <div class="dl-grid">
+    <article class="dl-card">
+      <h3><span class="icon">⬇</span>Bản phát hành</h3>
+      <p>Liên kết tải luôn trỏ tới bản phát hành mới nhất trên GitHub Releases. Mỗi gói tương ứng với một hệ điều hành hoặc kiến trúc máy cụ thể.</p>
+      <ul class="dl-links">
+        <li><a id="dl-windows" href="#"><span class="os">Windows</span><span class="meta"><span class="title">Bản Windows x64 (.zip)</span><span class="desc">Dành cho máy Windows 64-bit, phù hợp với phần lớn môi trường văn phòng, trường học và đơn vị vận hành phổ thông.</span></span><span class="arrow">→</span></a></li>
+        <li><a id="dl-macos-arm64" href="#"><span class="os">macOS</span><span class="meta"><span class="title">Bản macOS Apple Silicon (.tar.gz)</span><span class="desc">Dành cho các thiết bị Mac sử dụng chip M-series như M1, M2, M3 hoặc các thế hệ mới hơn.</span></span><span class="arrow">→</span></a></li>
+        <li><a id="dl-macos-intel" href="#"><span class="os">macOS</span><span class="meta"><span class="title">Bản macOS Intel (.tar.gz)</span><span class="desc">Dành cho các máy Mac chạy chip Intel, phù hợp khi thiết bị chưa chuyển sang kiến trúc Apple Silicon.</span></span><span class="arrow">→</span></a></li>
+        <li><a id="dl-linux" href="#"><span class="os">Linux</span><span class="meta"><span class="title">Bản Linux x64 (.tar.gz)</span><span class="desc">Dành cho hệ điều hành Linux 64-bit, thích hợp cho môi trường kỹ thuật hoặc triển khai nội bộ có quản trị riêng.</span></span><span class="arrow">→</span></a></li>
+      </ul>
+    </article>
+    <article class="dl-card">
+      <h3><span class="icon">📖</span>Tài liệu và hỗ trợ</h3>
+      <p>Website đi kèm handbook, chính sách bảo mật và kênh phát hành chính thức để hỗ trợ triển khai và bàn giao.</p>
+      <ul class="dl-links">
+        <li><a href="user-guide.html"><span class="os">Guide</span><span class="meta"><span class="title">Hướng dẫn sử dụng</span><span class="desc">Tổng hợp quy trình thiết lập, thao tác theo từng phân hệ và các lưu ý khi vận hành thực tế.</span></span><span class="arrow">→</span></a></li>
+        <li><a href="privacy.html"><span class="os">Privacy</span><span class="meta"><span class="title">Chính sách bảo mật</span><span class="desc">Làm rõ phạm vi dữ liệu, trách nhiệm xử lý và các nguyên tắc bảo vệ thông tin khi sử dụng MyTeX.</span></span><span class="arrow">→</span></a></li>
+        <li><a href="https://github.com/mytexvn" target="_blank" rel="noopener"><span class="os">GitHub</span><span class="meta"><span class="title">Kênh phát hành chính thức</span><span class="desc">Theo dõi bản phát hành mới, kho mã nguồn công khai và các cập nhật liên quan tới hệ sinh thái MyTeX.</span></span><span class="arrow">→</span></a></li>
+      </ul>
+    </article>
+  </div>
+</div></section>
+
+<div class="contact-grid wrap">
+  <article class="info-card"><h3><span class="dot"></span>Liên hệ và hỗ trợ triển khai</h3>
+    <p>Nếu cần trao đổi về cài đặt, hướng dẫn sử dụng hoặc phương án triển khai, người dùng có thể liên hệ trực tiếp qua các kênh chính thức dưới đây.</p>
+    <ul class="contact-list">
+      <li><strong class="js-author"></strong></li>
+      <li>Email: <a class="js-email" href="#"></a></li>
+      <li>Facebook: <a class="js-facebook" href="#" target="_blank" rel="noopener"></a></li>
+      <li>GitHub: <a href="https://github.com/mytexvn" target="_blank" rel="noopener">github.com/mytexvn</a></li>
+    </ul>
+  </article>
+  <article class="info-card"><h3><span class="dot"></span>Gợi ý bắt đầu nhanh</h3>
+    <p>Người dùng mới có thể tiếp cận MyTeX theo một lộ trình ngắn gọn để giảm rủi ro khi đưa vào quy trình chính thức.</p>
+    <ul class="tip-list">
+      <li>Đọc <a href="user-guide.html">hướng dẫn sử dụng</a> trước khi thao tác với dữ liệu thật hoặc cấu hình tích hợp.</li>
+      <li>Kiểm tra trạng thái Google, Gemini, Email và Zalo từ phân hệ <code>Tổng quan</code>.</li>
+      <li>Dùng <code>Trợ lý AI</code> ngay trong app khi cần tra cứu thao tác hoặc quy trình.</li>
+      <li>Thử trước trên bộ dữ liệu nhỏ trước khi áp dụng cho kỳ kiểm tra chính thức.</li>
+    </ul>
+  </article>
+</div>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <div class="brand-icon"><img class="js-icon" src="iconMyTeX.ico" alt="MyTeX"></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+      </a>
+      <p>Nền tảng desktop hỗ trợ xử lý TeX, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận và vận hành bài kiểm tra với AI cùng Google Form.</p>
+    </div>
+    <div class="footer-col"><h4>Sản phẩm</h4>
+      <a href="index.html">Giới thiệu</a>
+      <a href="index.html#modules">Phân hệ</a>
+      <a href="index.html#download">Tải về</a>
+    </div>
+    <div class="footer-col"><h4>Tài liệu</h4>
+      <a href="user-guide.html">Hướng dẫn sử dụng</a>
+      <a href="privacy.html">Chính sách bảo mật</a>
+    </div>
+    <div class="footer-col"><h4>Liên hệ</h4>
+      <a class="js-email" href="#">—</a>
+      <a class="js-facebook" href="#" target="_blank" rel="noopener">—</a>
+      <a href="https://github.com/mytexvn" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · <a class="js-email" href="#">—</a></p>
+    <span class="footer-badge">Desktop · Windows · macOS · Linux</span>
+  </div>
+</div></footer>
+<script src="config.js"></script>
+<script>
+(function(){
+  var track=document.getElementById('slidesTrack'),dots=document.getElementById('slideshowDots');
+  if(!track)return;
+  var items=track.querySelectorAll('.slide-item'),n=items.length,cur=0,timer;
+  items.forEach(function(_,i){
+    var b=document.createElement('button');
+    if(i===0)b.classList.add('active');
+    b.onclick=function(){goTo(i);reset();};
+    dots.appendChild(b);
+  });
+  function goTo(i){cur=(i+n)%n;track.style.transform='translateX(-'+cur*100+'%)';
+    dots.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===cur);});}
+  function reset(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1);},3400);}
+  window.slideshowMove=function(d){goTo(cur+d);reset();};
+  var box=document.getElementById('heroSlideshow');
+  box.addEventListener('mouseenter',function(){clearInterval(timer);});
+  box.addEventListener('mouseleave',reset);
+  reset();
+})();
+</script>
+</body>
+</html>

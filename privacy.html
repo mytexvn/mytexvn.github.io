@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chính sách bảo mật — MyTeX</title>
+<meta name="description" content="Chính sách bảo mật và quyền riêng tư áp dụng cho website và ứng dụng MyTeX.">
+<link rel="icon" href="iconMyTeX.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#1a2d3d;--teal:#2bb5a0;--teal2:#239e8c;--teal-dim:rgba(43,181,160,.1);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.1);
+  --bg:#eef3f8;--surface:#fff;--surface2:#f4f8fb;--surface3:#e8eef5;
+  --border:#d4dde8;--border2:#c2cfdb;
+  --text:#1a2d3d;--text2:#4a6278;--muted:#7a95ab;
+  --radius:18px;--shadow:0 2px 16px rgba(26,45,61,.1);--shadow-md:0 6px 32px rgba(26,45,61,.13);
+  --w:min(1160px,calc(100% - 40px));
+}
+body{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+p{color:var(--text2);line-height:1.75}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter-spacing:-.02em;color:var(--text)}
+code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2);border:1px solid var(--border);color:var(--teal2);font-family:'Fira Code','Courier New',monospace}
+.wrap{width:var(--w);margin:auto;position:relative}
+.pill{display:inline-flex;padding:5px 13px;border-radius:999px;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.25);width:max-content}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:11px;font-weight:700;font-size:.92rem;transition:all .18s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.btn-primary{background:var(--teal);color:var(--navy);box-shadow:0 4px 16px rgba(43,181,160,.28)}
+.btn-primary:hover{background:var(--teal2);transform:translateY(-2px)}
+.btn-secondary{background:var(--surface);color:var(--text);border:1px solid var(--border);box-shadow:var(--shadow)}
+.btn-secondary:hover{border-color:var(--teal);color:var(--teal2);background:var(--teal-dim)}
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.2)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:58px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0;text-decoration:none}
+.brand-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand-icon img{width:24px;height:24px;object-fit:contain}
+.brand-text .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;letter-spacing:-.02em;display:block}
+.brand-text .tagline{font-size:.72rem;color:rgba(255,255,255,.42);font-weight:500;display:block;margin-top:1px}
+.site-nav{display:flex;align-items:center;gap:1px}
+.site-nav a{padding:7px 13px;border-radius:8px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.58);transition:color .18s,background .18s;white-space:nowrap}
+.site-nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.site-nav a.active{color:var(--teal);background:rgba(43,181,160,.14)}
+.nav-dl{padding:8px 18px !important;background:var(--teal) !important;color:var(--navy) !important;border-radius:9px !important;font-weight:700 !important;font-size:.88rem !important;margin-left:8px;display:inline-flex !important;align-items:center;gap:6px;transition:background .18s,transform .15s !important}
+.nav-dl:hover{background:var(--teal2) !important;transform:translateY(-1px)}
+/* FOOTER */
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:52px 0 36px;background:var(--navy)}
+.footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px}
+.footer-brand .brand{margin-bottom:14px}
+.footer-brand>p{font-size:.87rem;max-width:30ch;color:rgba(255,255,255,.38);line-height:1.65}
+.footer-col h4{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.28);margin-bottom:14px}
+.footer-col a{display:block;font-size:.9rem;color:rgba(255,255,255,.52);font-weight:500;padding:3px 0;transition:color .18s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:.83rem;color:rgba(255,255,255,.28)}
+.footer-bottom a{color:rgba(255,255,255,.48);font-weight:600;transition:color .18s}
+.footer-bottom a:hover{color:var(--teal)}
+.footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:var(--teal)}
+.footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
+li{color:var(--text2);line-height:1.75}
+.page-hero{padding:52px 0 36px}
+.page-hero h1{font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:800;margin-bottom:12px}
+.page-hero p{font-size:.98rem;max-width:56ch;margin-bottom:20px}
+.meta-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:.83rem;font-weight:600;color:var(--text2);box-shadow:var(--shadow)}
+.meta-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.alert-box{padding:16px 20px;border-radius:14px;background:var(--teal-dim);border:1px solid rgba(43,181,160,.22);color:var(--text2);font-size:.92rem;display:flex;gap:10px;align-items:flex-start;margin-bottom:28px}
+.alert-box::before{content:'ℹ';color:var(--teal2);font-weight:800;flex-shrink:0}
+.content-body{padding-bottom:64px;display:grid;gap:14px}
+.sec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.sec-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--teal),transparent)}
+.sec-card h2{font-size:1.15rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-card h2 .num{font-size:.76rem;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.22)}
+.sec-card p+p{margin-top:10px}
+.sec-card ul,.sec-card ol{padding-left:20px;margin-top:10px;display:grid;gap:6px}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.service-tile{padding:16px 18px;border-radius:12px;background:var(--surface2);border:1px solid var(--border)}
+.service-tile h3{font-size:.93rem;font-weight:700;margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.service-tile h3::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.service-tile p{font-size:.87rem}
+@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.services-grid{grid-template-columns:1fr}.sec-card{padding:20px 18px}.footer-inner{grid-template-columns:1fr 1fr;gap:22px}}
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-icon"><img class="js-icon" src="iconMyTeX.ico" alt="MyTeX"></div>
+      <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Giới thiệu</a>
+      <a href="index.html#modules">Phân hệ</a>
+      <a href="user-guide.html">Hướng dẫn</a>
+      <a href="privacy.html" class="active">Bảo mật</a>
+      <a class="nav-dl" href="index.html#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải về</a>
+    </nav>
+  </div></header>
+<main>
+<section class="page-hero"><div class="wrap">
+  <span class="pill" style="margin-bottom:14px">Privacy Policy</span>
+  <h1>Chính sách bảo mật của MyTeX</h1>
+  <p>Chính sách này giải thích dữ liệu nào được lưu cục bộ, dữ liệu nào có thể được gửi tới dịch vụ bên thứ ba khi bạn chủ động sử dụng một tính năng cụ thể và cách bạn kiểm soát dữ liệu đó.</p>
+  <span class="meta-badge">Cập nhật lần cuối: <span id="privacy-date"></span></span>
+</div></section>
+<div class="wrap">
+  <div class="alert-box">MyTeX là ứng dụng desktop. Phần lớn dữ liệu vận hành được giữ trên máy người dùng. Dữ liệu chỉ được gửi ra ngoài khi bạn chủ động dùng các tính năng cần Google, Gemini, Email hoặc Zalo.</div>
+  <div class="content-body">
+    <article class="sec-card"><h2><span class="num">1</span>Phạm vi áp dụng</h2><p>Chính sách này áp dụng cho website MyTeX trên GitHub Pages và cho ứng dụng desktop MyTeX. Website cung cấp thông tin, hướng dẫn và liên kết tải về. Ứng dụng desktop xử lý TeX, tạo đề, dùng AI, tạo Google Form, chấm bài và gửi kết quả.</p></article>
+    <article class="sec-card"><h2><span class="num">2</span>Dữ liệu được lưu cục bộ</h2>
+      <p>Trong quá trình sử dụng, MyTeX có thể lưu cục bộ các dữ liệu sau:</p>
+      <ul><li>Cấu hình Gemini, Google, Email, Zalo.</li><li>Trạng thái giao diện và trạng thái phiên làm việc.</li><li>File đề, kết quả sinh đề, phiếu chấm HTML, metadata chấm bài.</li><li>Ảnh đầu vào hoặc dữ liệu tạm của các tab AI.</li></ul>
+    </article>
+    <article class="sec-card"><h2><span class="num">3</span>Khi nào dữ liệu được gửi tới dịch vụ bên thứ ba?</h2>
+      <div class="services-grid">
+        <div class="service-tile"><h3>Gemini</h3><p>Khi bạn dùng <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận, nội dung nhập, ảnh và bài làm có thể được gửi tới Gemini để xử lý.</p></div>
+        <div class="service-tile"><h3>Google</h3><p>Khi bạn dùng tab <code>Google Form</code>, MyTeX có thể làm việc với Google Form, Google Drive hoặc các API liên quan để tạo form, đọc phản hồi và đồng bộ dữ liệu.</p></div>
+        <div class="service-tile"><h3>Email</h3><p>Khi bạn chủ động gửi kết quả qua email, dữ liệu cần cho việc gửi thư sẽ được dùng để hoàn tất tác vụ đó.</p></div>
+        <div class="service-tile"><h3>Zalo</h3><p>Khi bạn chủ động gửi kết quả qua Zalo, dữ liệu người nhận và nội dung phản hồi sẽ được dùng cho lần gửi tương ứng.</p></div>
+      </div>
+    </article>
+    <article class="sec-card"><h2><span class="num">4</span>Dữ liệu liên quan đến Google</h2><p>Nếu bạn sử dụng các tính năng Google trong MyTeX, ứng dụng có thể cần xác thực tài khoản Google và lưu thông tin cấu hình hoặc token cục bộ để duy trì phiên làm việc. MyTeX không yêu cầu bạn nhập mật khẩu Google trực tiếp trong ứng dụng.</p><p>Thông tin Google được dùng để phục vụ đúng chức năng mà bạn đã kích hoạt, như tạo Google Form, đọc phản hồi hoặc quản lý dữ liệu liên quan đến form.</p></article>
+    <article class="sec-card"><h2><span class="num">5</span>Dữ liệu liên quan đến Gemini và AI</h2><p>Khi bạn sử dụng tính năng AI, MyTeX có thể gửi tới Gemini các dữ liệu cần thiết — ví dụ: ảnh câu hỏi, phần chữ bổ sung, ảnh chụp lỗi, nội dung đề, lời giải, bài làm học sinh, tiêu chí chấm hoặc trích đoạn từ <code>user-guide.html</code> để trợ lý AI trả lời đúng phạm vi MyTeX.</p><p>Nếu bạn không dùng các tính năng AI, MyTeX không chủ động gửi những dữ liệu này tới Gemini.</p></article>
+    <article class="sec-card"><h2><span class="num">6</span>Website MyTeX</h2><p>Website MyTeX là website tĩnh. Chúng tôi không chủ động cài hệ thống quảng cáo hoặc form theo dõi riêng. Tuy nhiên, website được phân phối qua GitHub Pages nên GitHub có thể ghi nhận nhật ký truy cập kỹ thuật theo chính sách riêng của họ.</p></article>
+    <article class="sec-card"><h2><span class="num">7</span>Quyền kiểm soát của người dùng</h2>
+      <ul><li>Bạn có thể không dùng các phân hệ AI nếu không muốn gửi dữ liệu tới Gemini.</li><li>Bạn có thể không cấu hình Google, Email hoặc Zalo nếu không cần các tích hợp đó.</li><li>Bạn có thể xóa dữ liệu cục bộ trong thư mục làm việc của MyTeX.</li><li>Bạn có thể thu hồi quyền truy cập trong tài khoản Google nếu đã cấp quyền cho ứng dụng.</li></ul>
+    </article>
+    <article class="sec-card"><h2><span class="num">8</span>Giấy phép phần mềm</h2>
+      <p>MyTeX được phát hành theo giấy phép <strong>GNU General Public License v3.0 (GPL-3.0)</strong>.</p>
+      <p>Bạn có thể sử dụng, sao chép, sửa đổi và phân phối lại phần mềm theo các điều khoản được nêu trong file <a href="https://github.com/mytexvn/mytexvn.github.io/blob/main/LICENSE" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600">LICENSE</a>.</p>
+      <p>Khi phân phối bản sửa đổi hoặc sản phẩm dẫn xuất, cần giữ nguyên giấy phép GPL-3.0 và cung cấp mã nguồn tương ứng theo yêu cầu của giấy phép này.</p>
+    </article>
+    <article class="sec-card"><h2><span class="num">9</span>Liên hệ</h2>
+      <p>Nếu bạn cần trao đổi về quyền riêng tư hoặc dữ liệu của MyTeX, vui lòng liên hệ:</p>
+      <ul style="list-style:none;padding:0;margin-top:12px;display:grid;gap:8px">
+        <li><strong class="js-author" style="color:var(--text)"></strong></li>
+        <li>Email: <a class="js-email" href="#" style="color:var(--teal2);font-weight:600"></a></li>
+        <li>Facebook: <a class="js-facebook" href="#" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600"></a></li>
+      </ul>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <div class="brand-icon"><img class="js-icon" src="iconMyTeX.ico" alt="MyTeX"></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+      </a>
+      <p>Bộ công cụ desktop cho TeX, đề thi, AI và Google Form.</p>
+    </div>
+    <div class="footer-col"><h4>Ứng dụng</h4>
+      <a href="index.html">Giới thiệu</a>
+      <a href="index.html#modules">Phân hệ</a>
+      <a href="index.html#download">Tải về</a>
+    </div>
+    <div class="footer-col"><h4>Tài liệu</h4>
+      <a href="user-guide.html">Hướng dẫn sử dụng</a>
+      <a href="privacy.html">Chính sách bảo mật</a>
+    </div>
+    <div class="footer-col"><h4>Liên hệ</h4>
+      <a class="js-email" href="#">—</a>
+      <a class="js-facebook" href="#" target="_blank" rel="noopener">—</a>
+      <a href="https://github.com/mytexvn" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · <a class="js-email" href="#">—</a></p>
+    <span class="footer-badge">Desktop · Windows · macOS · Linux</span>
+  </div>
+</div></footer>
+<script src="config.js"></script>
+</body>
+</html>
