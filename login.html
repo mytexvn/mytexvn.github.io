@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Xác thực thành công | MyTeX</title>
+    <link rel="icon" href="iconMyTeX.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #111111;
+            --text-primary: #e6e3dd;
+            --text-secondary: #908d88;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            text-align: center;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        .brand-name {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.02em;
+        }
+        p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin: 0;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="brand">
+        <div class="brand-icon">
+            <img src="iconMyTeX.ico" alt="MyTeX Logo">
+        </div>
+        <div class="brand-name">MyTeX</div>
+    </div>
+
+    <h1>Sign in complete</h1>
+    <p>You can now close this window.</p>
+
+    <script>
+        window.onload = function() {
+            // Trigger the native app protocol so the browser shows the "Open MyTeX?" dialog
+            setTimeout(function() {
+                window.location.href = "mytex://auth-complete";
+            }, 300);
+        };
+    </script>
+
+</body>
+</html>
