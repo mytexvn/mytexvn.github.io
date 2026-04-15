@@ -1,3 +1,18 @@
+/**
+ * Tên file: config.js
+ *
+ * Mô tả: File cấu hình tập trung cho toàn bộ website MyTeX — định nghĩa
+ *         thông tin ứng dụng, tác giả, liên kết video, URL tải xuống cho
+ *         4 nền tảng và thông tin phiên bản. Chỉnh sửa tại đây để đồng
+ *         bộ nội dung tự động trên tất cả các trang.
+ *
+ * Dự án: MyTeX
+ * Tác giả: Nguyễn Hoàng Hải
+ * Hỗ trợ lập trình: Claude, ChatGPT, Gemini
+ * Ngày tạo: 15/04/2026
+ *
+ * Bản quyền: 2026 MyTeX · Nguyễn Hoàng Hải · nghai.math@gmail.com
+ */
 // ╔═══════════════════════════════════════════════════════╗
 // ║  config.js — Chỉnh tại đây để đồng bộ toàn website    ║
 // ╚═══════════════════════════════════════════════════════╝
