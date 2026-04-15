@@ -16,12 +16,16 @@
 -->
 <html lang="vi">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hướng dẫn sử dụng — MyTeX</title>
-<meta name="description" content="Sách hướng dẫn sử dụng chi tiết MyTeX: cấu hình, xử lý TeX, tạo đề thi, dùng AI, Google Form, chấm bài và gửi kết quả.">
+<meta name="description" content="Sách hướng dẫn sử dụng chi tiết MyTeX: cấu hình Gemini AI, đăng nhập Google, tạo đề thi, chấm bài tự động và gửi kết quả qua Email hoặc Zalo.">
 <link rel="icon" href="assets/iconMyTeX.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 :root{
   --navy:#1a2d3d;--teal:#2bb5a0;--teal2:#239e8c;--teal-dim:rgba(43,181,160,.1);
@@ -73,21 +77,17 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 .footer-bottom a:hover{color:var(--teal)}
 .footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:var(--teal)}
 .footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
+li{color:var(--text2);line-height:1.75}
+/* PAGE HERO */
 .page-hero{padding:52px 0 36px}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .page-hero h1{font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:800;margin-bottom:12px}
-.page-hero>div>p{font-size:.97rem;max-width:52ch;margin-bottom:22px}
+.page-hero>.wrap>p,.page-hero>.wrap>.hero-grid>div>p{font-size:.97rem;max-width:52ch;margin-bottom:22px}
 .btn-group{display:flex;gap:10px;flex-wrap:wrap}
 .btn{padding:10px 20px;border-radius:11px;font-size:.88rem}
-.hero-video{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);background:#000;border:1px solid var(--border);position:relative;aspect-ratio:16/9;display:block;cursor:pointer;text-decoration:none}
-.hero-video img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}
-.hero-video:hover img{opacity:.85}
-.hero-video .play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.hero-video .play-btn svg{width:64px;height:64px;filter:drop-shadow(0 2px 12px rgba(0,0,0,.5));transition:transform .2s}
-.hero-video:hover .play-btn svg{transform:scale(1.1)}
-.hero-video .vid-label{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font-size:.84rem;font-weight:600;display:flex;align-items:center;gap:7px}
-.hero-video .vid-label::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
-.guide-layout{display:grid;grid-template-columns:210px 1fr;gap:26px;padding-bottom:64px;align-items:start}
+.hero-video{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);background:#000;border:1px solid var(--border);position:relative;aspect-ratio:16/9;width:100%}
+/* GUIDE LAYOUT */
+.guide-layout{display:grid;grid-template-columns:220px 1fr;gap:26px;padding-bottom:64px;align-items:start}
 .toc-sidebar{position:sticky;top:72px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 .toc-sidebar h4{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:10px}
 .toc-list{list-style:none;padding:0;display:grid;gap:1px}
@@ -95,85 +95,101 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 .toc-list a:hover{color:var(--teal2);background:var(--teal-dim)}
 .toc-num{font-size:.7rem;font-weight:800;color:var(--muted);min-width:16px}
 .guide-content{display:grid;gap:14px}
-.sec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 30px;scroll-margin-top:80px;box-shadow:var(--shadow)}
+/* SECTION CARDS */
+.sec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 30px;scroll-margin-top:80px;box-shadow:var(--shadow)}
 .sec-tag{display:inline-flex;padding:4px 11px;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
 .sec-tag.green{background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.25)}
 .sec-tag.orange{background:var(--amber-dim);color:#b45309;border:1px solid rgba(245,158,11,.3)}
-.sec-card h2{font-size:1.18rem;font-weight:700;margin-bottom:10px}
+.sec-card h2{font-size:1.18rem;font-weight:700;margin-bottom:12px}
+/* CONTENT COMPONENTS */
 .content-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:14px;align-items:start}
 figure{margin:0;padding:14px;background:var(--surface2);border:1px solid var(--border);border-radius:14px}
 figure img{border-radius:10px;border:1px solid var(--border);width:100%}
 figcaption{margin-top:8px;color:var(--muted);font-size:.83rem}
-.steps-list{list-style:none;padding:0;display:grid;gap:7px;margin-top:10px}
-.steps-list li{display:flex;align-items:flex-start;gap:9px;font-size:.91rem}
+.steps-list{list-style:none;padding:0;display:grid;gap:8px;margin-top:10px}
+.steps-list li{display:flex;align-items:flex-start;gap:9px;font-size:.91rem;color:var(--text2)}
 .sn{width:20px;height:20px;border-radius:6px;background:var(--surface3);border:1px solid var(--border);color:var(--teal2);font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
 .steps-list strong{color:var(--text)}
-.note{padding:12px 16px;border-radius:11px;font-size:.89rem;margin-top:14px;display:flex;gap:9px}
+.note{padding:13px 16px;border-radius:11px;font-size:.89rem;margin-top:14px;display:flex;gap:9px}
 .note-tip{background:var(--teal-dim);border:1px solid rgba(43,181,160,.2)}
 .note-tip::before{content:'💡';flex-shrink:0}
 .note-warn{background:var(--amber-dim);border:1px solid rgba(245,158,11,.2)}
 .note-warn::before{content:'⚠';flex-shrink:0}
 .note strong{color:var(--text);display:block;margin-bottom:2px}
-.note p{font-size:.87rem}
+.note p{font-size:.87rem;color:var(--text2)}
 .sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.sub-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px}
-.sub-card h3{font-size:.97rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.sub-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
+.sub-card h3{font-size:.97rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px;color:var(--text)}
 .sub-card h3::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
 .sub-full{grid-column:1/-1}
+/* FAQ */
 details{background:var(--surface2);border:1px solid var(--border);border-radius:13px;padding:12px 16px;transition:border-color .18s}
 details+details{margin-top:8px}
-details[open]{border-color:rgba(43,181,160,.25)}
+details[open]{border-color:rgba(43,181,160,.25);background:var(--surface)}
 summary{cursor:pointer;font-weight:700;font-size:.93rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none}
+summary::-webkit-details-marker{display:none}
 summary::after{content:'+';font-size:1.1rem;color:var(--teal2);transition:transform .18s;flex-shrink:0}
 details[open] summary::after{transform:rotate(45deg)}
-details p{margin-top:10px;font-size:.9rem}
-li{color:var(--text2);line-height:1.75}
+details p,details ul,details ol{margin-top:10px;font-size:.9rem;color:var(--text2)}
+details ul,details ol{padding-left:18px;display:grid;gap:4px}
+/* RESPONSIVE */
 @media(max-width:980px){.guide-layout{grid-template-columns:1fr}.toc-sidebar{display:none}.content-grid{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.sub-grid{grid-template-columns:1fr}.sec-card{padding:20px 16px}.footer-inner{grid-template-columns:1fr 1fr;gap:22px}}
-@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}</style>
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
+
+<!-- HEADER -->
 <header class="site-header"><div class="wrap header-inner">
-    <a class="brand" href="index.html">
-      <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-      <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+  <a class="brand" href="index.html">
+    <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html">Giới thiệu</a>
+    <a href="index.html#modules">Phân hệ</a>
+    <a href="user-guide.html" class="active">Hướng dẫn</a>
+    <a href="privacy.html">Bảo mật</a>
+    <a class="nav-dl" href="index.html#download">
+      <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Tải về
     </a>
-    <nav class="site-nav">
-      <a href="index.html">Giới thiệu</a>
-      <a href="index.html#modules">Phân hệ</a>
-      <a href="user-guide.html" class="active">Hướng dẫn</a>
-      <a href="privacy.html">Bảo mật</a>
-      <a class="nav-dl" href="index.html#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải về</a>
-    </nav>
-  </div></header>
+  </nav>
+</div></header>
+
 <main>
+
+<!-- PAGE HERO -->
 <section class="page-hero"><div class="wrap"><div class="hero-grid">
   <div>
     <span class="pill" style="margin-bottom:14px">User Guide</span>
     <h1>Hướng dẫn sử dụng MyTeX</h1>
-    <p>Tài liệu mô tả quy trình làm việc đầy đủ: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> và <code>Google Form</code>.</p>
+    <p>Tài liệu mô tả đầy đủ quy trình làm việc: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> và <code>Google Form</code>. Tài liệu này cũng được Trợ lý AI trong ứng dụng đọc để tư vấn chính xác theo phiên bản mới nhất.</p>
     <div class="btn-group">
-      <a class="btn btn-secondary" href="#start">Bắt đầu</a>
-      <a class="btn btn-secondary" href="#ai">Nhóm AI</a>
+      <a class="btn btn-secondary" href="#start">Cấu hình ban đầu</a>
       <a class="btn btn-secondary" href="#google">Google Form</a>
+      <a class="btn btn-secondary" href="#faq">FAQ</a>
     </div>
   </div>
-  <iframe 
+  <iframe
     id="heroVideo"
-    class="hero-video" 
-    width="100%" 
-    style="aspect-ratio: 16 / 9; height: auto; border-radius: 18px;" 
-    title="Video hướng dẫn MyTeX" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    class="hero-video"
+    title="Video hướng dẫn MyTeX"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen>
   </iframe>
 </div></div></section>
 
+<!-- GUIDE BODY -->
 <div class="wrap guide-layout">
-  <aside class="toc-sidebar"><h4>Nội dung</h4>
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <h4>Nội dung</h4>
     <ul class="toc-list">
-      <li><a href="#start"><span class="toc-num">1</span>Chuẩn bị</a></li>
+      <li><a href="#start"><span class="toc-num">1</span>Cấu hình ban đầu</a></li>
       <li><a href="#overview"><span class="toc-num">2</span>Tổng quan</a></li>
       <li><a href="#tex"><span class="toc-num">3</span>Xử lý TeX</a></li>
       <li><a href="#exam"><span class="toc-num">4</span>Tạo đề thi</a></li>
@@ -184,206 +200,359 @@ li{color:var(--text2);line-height:1.75}
       <li><a href="#contact"><span class="toc-num">9</span>Liên hệ</a></li>
     </ul>
   </aside>
+
+  <!-- GUIDE CONTENT -->
   <div class="guide-content">
-    <article id="start" class="sec-card"><span class="sec-tag green">1. Chuẩn bị</span><h2>Bắt đầu và cấu hình ban đầu</h2>
-      <p>MyTeX là ứng dụng desktop. Sau khi tải đúng bản phát hành, hãy mở app và vào tab <code>Tổng quan</code> để kiểm tra trạng thái các tích hợp.</p>
+
+    <!-- 1. CẤU HÌNH BAN ĐẦU -->
+    <article id="start" class="sec-card">
+      <span class="sec-tag green">1. Cấu hình ban đầu</span>
+      <h2>Bắt đầu với MyTeX</h2>
+      <p>MyTeX là ứng dụng desktop đã đóng gói sẵn — không cần cài Python hay bất kỳ phụ thuộc nào. Tải đúng bản phát hành theo hệ điều hành, giải nén và mở ứng dụng. Sau đó vào tab <code>Tổng quan</code> để thiết lập các tích hợp.</p>
       <ol class="steps-list">
-        <li><span class="sn">1</span><span><strong>Thiết lập Gemini:</strong> bắt buộc nếu bạn muốn dùng các tab AI hoặc chấm tự luận.</span></li>
-        <li><span class="sn">2</span><span><strong>Thiết lập Google:</strong> bắt buộc nếu bạn muốn tạo và quản lý Google Form trong app.</span></li>
-        <li><span class="sn">3</span><span><strong>Thiết lập Email và Zalo:</strong> cần khi muốn gửi kết quả cho học sinh.</span></li>
-        <li><span class="sn">4</span><span><strong>Phím nhanh:</strong> nhấn <code>F11</code> để chuyển toàn màn hình.</span></li>
+        <li><span class="sn">1</span><span><strong>Thiết lập Gemini:</strong> bắt buộc nếu muốn dùng các tab AI hoặc chấm tự luận. Cần có Gemini API Key.</span></li>
+        <li><span class="sn">2</span><span><strong>Đăng nhập Google:</strong> bắt buộc nếu muốn tạo và quản lý Google Form. Chỉ cần đăng nhập tài khoản Google — không cần cấu hình Google Cloud Console.</span></li>
+        <li><span class="sn">3</span><span><strong>Thiết lập Email / Zalo:</strong> tùy chọn, chỉ cần khi muốn gửi phiếu kết quả cho học sinh.</span></li>
+        <li><span class="sn">4</span><span><strong>Thiết lập Phiếu chấm:</strong> nhập tên đơn vị hiển thị trên phiếu kết quả.</span></li>
+        <li><span class="sn">5</span><span><strong>Phím nhanh:</strong> nhấn <code>F11</code> để chuyển toàn màn hình.</span></li>
       </ol>
-      <div class="note note-tip"><div><strong>Khuyến nghị</strong><p>Luôn thử trước trên một bộ dữ liệu nhỏ để xác nhận toàn bộ pipeline trước khi dùng cho đề chính thức. Các bộ cài Windows, macOS và Linux trên website chỉ được đóng gói theo từng đợt khi có yêu cầu phát hành, nên việc chưa thấy bản mới ngay sau một thay đổi tài liệu hoặc mã nguồn là bình thường.</p></div></div>
+      <div class="note note-tip">
+        <div><strong>Khuyến nghị</strong><p>Luôn thử trước trên một bộ dữ liệu nhỏ để xác nhận toàn bộ pipeline trước khi áp dụng cho kỳ thi chính thức.</p></div>
+      </div>
     </article>
-    <article id="overview" class="sec-card"><span class="sec-tag green">2. Tổng quan</span><h2>Tab Tổng quan</h2>
+
+    <!-- 2. TỔNG QUAN -->
+    <article id="overview" class="sec-card">
+      <span class="sec-tag green">2. Tổng quan</span>
+      <h2>Tab Tổng quan — Trung tâm điều phối</h2>
       <div class="content-grid">
-        <figure><img src="assets/screenshots/tong-quan.png" alt="Tab Tổng quan"><figcaption>Bảng điều phối trung tâm, trạng thái tích hợp và khu vực cài đặt hệ thống.</figcaption></figure>
-        <div><p>Đây là màn hình điều phối chính của MyTeX. Từ đây bạn có thể mở nhanh các phân hệ, theo dõi trạng thái sẵn sàng của từng tích hợp và cấu hình toàn bộ các mục quan trọng trước khi chạy quy trình thật.</p>
+        <figure><img src="assets/screenshots/tong-quan.png" alt="Tab Tổng quan"><figcaption>Bảng điều phối trung tâm — trạng thái tích hợp và cài đặt hệ thống.</figcaption></figure>
+        <div>
+          <p>Đây là màn hình khởi đầu của MyTeX. Tất cả cấu hình tích hợp, trạng thái tài khoản và lối vào nhanh đến các phân hệ đều nằm ở đây.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span><strong>Mở nhanh phân hệ:</strong> dùng các thẻ truy cập để chuyển sang đúng khu vực làm việc như <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Soạn đề AI</code> hay <code>Google Form</code>.</span></li>
-            <li><span class="sn">2</span><span><strong>Theo dõi trạng thái:</strong> các thẻ <code>Google</code>, <code>Email</code>, <code>Zalo</code>, <code>Gemini</code> và <code>Phiếu chấm</code> sẽ báo đã sẵn sàng hay chưa.</span></li>
-            <li><span class="sn">3</span><span><strong>Mở hộp thoại thiết lập:</strong> bấm nút <code>Thiết lập</code> trên từng thẻ để nhập thông tin cấu hình tương ứng.</span></li>
-            <li><span class="sn">4</span><span><strong>Kiểm tra theo thứ tự:</strong> nên hoàn thành <code>Gemini</code>, <code>Google</code>, sau đó mới tới <code>Email</code>, <code>Zalo</code> và các phần tùy chỉnh khác.</span></li>
+            <li><span class="sn">1</span><span><strong>Kiểm tra trạng thái:</strong> các thẻ <code>Gemini</code>, <code>Google</code>, <code>Email</code>, <code>Zalo</code> và <code>Phiếu chấm</code> báo sẵn sàng hay chưa.</span></li>
+            <li><span class="sn">2</span><span><strong>Mở thiết lập:</strong> bấm <code>Thiết lập</code> trên từng thẻ để nhập thông tin cấu hình.</span></li>
+            <li><span class="sn">3</span><span><strong>Mở nhanh phân hệ:</strong> dùng các nút truy cập để chuyển sang <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Google Form</code>...</span></li>
+            <li><span class="sn">4</span><span><strong>Thứ tự khuyến nghị:</strong> Gemini → Google → Email / Zalo → Phiếu chấm → Giao diện.</span></li>
           </ol>
-          <div class="note note-warn"><div><strong>Lưu ý</strong><p>Nếu Gemini hoặc Google chưa sẵn sàng, nhiều bước phía sau vẫn mở được nhưng sẽ không chạy trọn quy trình, đặc biệt là nhóm AI, Google Form và chấm tự luận.</p></div></div>
+          <div class="note note-warn">
+            <div><strong>Lưu ý</strong><p>Nếu Gemini hoặc Google chưa sẵn sàng, nhiều tính năng vẫn mở được nhưng sẽ không chạy trọn pipeline — đặc biệt là nhóm AI và Google Form.</p></div>
+          </div>
         </div>
       </div>
 
       <div class="sub-grid">
-        <div class="sub-card"><h3>Thiết lập Gemini</h3>
-          <p style="font-size:.88rem;margin-bottom:10px">Gemini là cấu hình bắt buộc nếu bạn muốn dùng <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> hoặc chấm phần tự luận.</p>
+        <!-- Gemini -->
+        <div class="sub-card">
+          <h3>Thiết lập Gemini AI</h3>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Bắt buộc nếu muốn dùng <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Tại thẻ <code>Gemini</code>, bấm <code>Thiết lập</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Khóa API</code> Gemini vào ô tương ứng.</span></li>
-            <li><span class="sn">3</span><span>Nhập tên <code>Mô hình</code> bạn muốn sử dụng để app gọi đúng model.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Kiểm tra</code> để xác nhận API key và model đang hoạt động.</span></li>
-            <li><span class="sn">5</span><span>Nếu thông báo thành công, nhấn <code>Lưu</code>. Sau đó trạng thái ở tab Tổng quan sẽ hiển thị tên model hoặc trạng thái sẵn sàng.</span></li>
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Gemini</code>.</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Khóa API Gemini</code> — lấy miễn phí tại <strong>aistudio.google.com</strong>.</span></li>
+            <li><span class="sn">3</span><span>Nhập tên <code>Mô hình</code> muốn dùng (ví dụ: <code>gemini-2.0-flash</code>).</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Kiểm tra</code> để xác nhận key và model hoạt động.</span></li>
+            <li><span class="sn">5</span><span>Nhấn <code>Lưu</code>. Thẻ Gemini sẽ chuyển sang trạng thái sẵn sàng.</span></li>
           </ol>
         </div>
 
-        <div class="sub-card"><h3>Thiết lập Google</h3>
-          <p style="font-size:.88rem;margin-bottom:10px">Google là phần cấu hình quan trọng để tạo Google Form, lấy phản hồi, chấm bài và ghi dữ liệu lên Drive.</p>
+        <!-- Google -->
+        <div class="sub-card">
+          <h3>Đăng nhập Google</h3>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">MyTeX đã tích hợp sẵn thông tin xác thực OAuth. <strong style="color:var(--text)">Không cần</strong> tự cấu hình Google Cloud Console — chỉ cần đăng nhập tài khoản Google của bạn.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Tại thẻ <code>Google</code>, bấm <code>Thiết lập</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>OAuth Client ID</code> và <code>OAuth Client Secret</code> lấy từ Google Cloud Console.</span></li>
-            <li><span class="sn">3</span><span>Nếu đơn vị đã có sẵn thư mục gốc trên Drive, nhập <code>ID thư mục Drive</code>. Nếu chưa có, có thể để trống để MyTeX tự tạo thư mục mặc định khi cần.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code> để ghi cấu hình OAuth vào hệ thống.</span></li>
-            <li><span class="sn">5</span><span>Sau khi lưu xong, quay về khu vực tài khoản Google trong tab Tổng quan và bấm <code>Đăng nhập</code> để liên kết tài khoản Google thực tế với MyTeX.</span></li>
-            <li><span class="sn">6</span><span>Dùng <code>Chuyển</code> khi muốn đăng nhập lại bằng tài khoản khác, hoặc <code>Thoát</code> khi muốn hủy liên kết tài khoản hiện tại.</span></li>
+            <li><span class="sn">1</span><span>Trong khu vực <code>Tài khoản Google</code> ở tab Tổng quan, bấm <code>Đăng nhập</code>.</span></li>
+            <li><span class="sn">2</span><span>Trình duyệt tự động mở trang đăng nhập Google. Đăng nhập và bấm <code>Cho phép</code> khi được hỏi quyền.</span></li>
+            <li><span class="sn">3</span><span>Sau khi xác thực thành công, ứng dụng tự nhận token và hiển thị tên và ảnh đại diện.</span></li>
+            <li><span class="sn">4</span><span>Dùng <code>Chuyển tài khoản</code> khi muốn đăng nhập bằng tài khoản Google khác.</span></li>
+            <li><span class="sn">5</span><span>Dùng <code>Đăng xuất</code> khi muốn hủy liên kết tài khoản hiện tại.</span></li>
+          </ol>
+          <div class="note note-tip" style="margin-top:10px">
+            <div><strong>Quyền truy cập tối thiểu</strong><p>MyTeX chỉ yêu cầu 3 quyền: tạo/sửa Google Form, upload file do app tạo lên Drive, và lưu cấu hình vào vùng riêng tư. Bạn có thể thu hồi bất kỳ lúc nào tại <code>myaccount.google.com → Bảo mật → Ứng dụng</code>.</p></div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="sub-card">
+          <h3>Thiết lập Email (SMTP)</h3>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Dùng để gửi phiếu kết quả kèm lời giải HTML cho từng học sinh sau khi chấm bài.</p>
+          <ol class="steps-list">
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Email</code>.</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Máy chủ SMTP</code> và <code>Cổng SMTP</code> (ví dụ: Gmail dùng <code>smtp.gmail.com</code> / cổng <code>587</code>).</span></li>
+            <li><span class="sn">3</span><span>Nhập <code>Email gửi</code>, <code>Mật khẩu ứng dụng</code> và <code>Tên hiển thị</code>.</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Kiểm tra kết nối</code> rồi <code>Lưu</code> nếu thành công.</span></li>
+          </ol>
+          <div class="note note-tip" style="margin-top:10px">
+            <div><strong>Gmail</strong><p>Dùng <code>Mật khẩu ứng dụng</code> (App Password) thay vì mật khẩu tài khoản chính. Bật tại <code>myaccount.google.com → Bảo mật → Xác minh 2 bước → Mật khẩu ứng dụng</code>.</p></div>
+          </div>
+        </div>
+
+        <!-- Zalo -->
+        <div class="sub-card">
+          <h3>Thiết lập Zalo Bot</h3>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Gửi thông báo điểm và lời giải cho học sinh qua Zalo Bot API (bot-api.zapps.me).</p>
+          <ol class="steps-list">
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Zalo</code>.</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Mã bot</code> (Bot Token từ nền tảng Zalo Mini App).</span></li>
+            <li><span class="sn">3</span><span>Bấm <code>Chọn tệp...</code> để nạp file <code>user_data.csv</code> chứa danh sách học sinh và Zalo ID.</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code>. Ứng dụng sẽ kiểm tra bot và báo trạng thái.</span></li>
           </ol>
         </div>
 
-        <div class="sub-card"><h3>Thiết lập Email</h3>
-          <p style="font-size:.88rem;margin-bottom:10px">Mục này dùng để gửi phiếu kết quả hoặc thông báo qua SMTP sau khi đã chấm bài.</p>
+        <!-- Phiếu chấm -->
+        <div class="sub-card">
+          <h3>Thiết lập Phiếu chấm</h3>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Tên đơn vị xuất hiện trên phiếu HTML, email kết quả và tin nhắn Zalo.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Tại thẻ <code>Email</code>, bấm <code>Thiết lập</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Máy chủ SMTP</code> và <code>Cổng SMTP</code> theo dịch vụ email bạn đang dùng.</span></li>
-            <li><span class="sn">3</span><span>Nhập <code>Email gửi</code>, <code>Mật khẩu</code> và <code>Tên hiển thị</code> cho người nhận nhìn thấy.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Kiểm tra kết nối</code> để kiểm tra SMTP trước khi lưu.</span></li>
-            <li><span class="sn">5</span><span>Nếu kiểm tra thành công, nhấn <code>Lưu</code>. Trạng thái Email trong tab Tổng quan sẽ đổi sang sẵn sàng.</span></li>
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Phiếu chấm</code>.</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Tên cơ sở giáo dục</code> hoặc tên đơn vị muốn hiển thị.</span></li>
+            <li><span class="sn">3</span><span>Nhấn <code>Lưu</code> để áp dụng cho tất cả phiếu tạo sau này.</span></li>
           </ol>
         </div>
 
-        <div class="sub-card"><h3>Thiết lập Zalo</h3>
-          <p style="font-size:.88rem;margin-bottom:10px">Zalo được dùng để gửi kết quả hoặc thông báo tới người nhận qua bot và danh sách người dùng đã chuẩn bị sẵn.</p>
+        <!-- Giao diện -->
+        <div class="sub-card">
+          <h3>Thiết lập Giao diện</h3>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Tùy chỉnh font chữ, cỡ chữ và bảng màu để phù hợp sở thích làm việc.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Tại thẻ <code>Zalo</code>, bấm <code>Thiết lập</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Mã bot</code> vào ô tương ứng.</span></li>
-            <li><span class="sn">3</span><span>Ở dòng <code>user_data.csv</code>, bấm <code>Chọn tệp...</code> để nạp đúng tệp danh sách người nhận.</span></li>
-            <li><span class="sn">4</span><span>Đảm bảo đường dẫn tệp tồn tại thật trên máy. Nếu chọn sai hoặc tệp bị xóa, app sẽ không chấp nhận lưu cấu hình.</span></li>
-            <li><span class="sn">5</span><span>Nhấn <code>Lưu</code> để hoàn tất. Sau đó tab Tổng quan sẽ tự kiểm tra bot và báo trạng thái sẵn sàng hoặc chưa kết nối.</span></li>
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Giao diện</code>.</span></li>
+            <li><span class="sn">2</span><span>Chọn <code>Font chữ</code>, <code>Cỡ chữ</code> và <code>Bảng màu</code> ưa thích.</span></li>
+            <li><span class="sn">3</span><span>Tùy chỉnh thêm màu chính, màu nhấn, màu thanh bên và màu khung chat AI nếu muốn.</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code> để áp dụng ngay toàn bộ ứng dụng.</span></li>
           </ol>
         </div>
 
-        <div class="sub-card"><h3>Thiết lập Phiếu chấm</h3>
-          <p style="font-size:.88rem;margin-bottom:10px">Cấu hình này quyết định tên đơn vị xuất hiện trên phiếu kết quả, email kết quả và tin nhắn Zalo.</p>
+        <!-- Trình tự -->
+        <div class="sub-card sub-full">
+          <h3>Trình tự thiết lập khuyến nghị</h3>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Tại thẻ <code>Phiếu chấm</code>, bấm <code>Thiết lập</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập tên <code>Cơ sở giáo dục</code> hoặc tên đơn vị bạn muốn hiển thị.</span></li>
-            <li><span class="sn">3</span><span>Nếu bỏ trống, ứng dụng sẽ dùng giá trị mặc định đang có trong hệ thống.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code> để áp dụng tên hiển thị cho các phiếu chấm tạo về sau.</span></li>
+            <li><span class="sn">1</span><span>Thiết lập <code>Gemini</code> trước để toàn bộ các tab AI có thể hoạt động.</span></li>
+            <li><span class="sn">2</span><span>Đăng nhập <code>Google</code> — chỉ bấm Đăng nhập, không cần cấu hình gì thêm.</span></li>
+            <li><span class="sn">3</span><span>Thiết lập <code>Email</code> và <code>Zalo</code> nếu cần gửi kết quả cho học sinh.</span></li>
+            <li><span class="sn">4</span><span>Thiết lập <code>Phiếu chấm</code> để thống nhất tên đơn vị trên đầu ra.</span></li>
+            <li><span class="sn">5</span><span>Điều chỉnh <code>Giao diện</code> theo sở thích (bước cuối cùng, không ảnh hưởng dữ liệu).</span></li>
+            <li><span class="sn">6</span><span>Sau mỗi lần lưu, kiểm tra lại trạng thái các thẻ ở tab Tổng quan trước khi bắt đầu pipeline thật.</span></li>
           </ol>
-        </div>
-
-        <div class="sub-card"><h3>Thiết lập Giao diện</h3>
-          <p style="font-size:.88rem;margin-bottom:10px">Mục này không ảnh hưởng tới dữ liệu nghiệp vụ, nhưng rất hữu ích khi muốn đồng bộ trải nghiệm làm việc trong toàn bộ ứng dụng.</p>
-          <ol class="steps-list">
-            <li><span class="sn">1</span><span>Trong thẻ <code>Giao diện</code>, bấm <code>Thiết lập</code>.</span></li>
-            <li><span class="sn">2</span><span>Chọn <code>Font chữ</code>, <code>Cỡ chữ</code> và <code>Bảng màu</code> phù hợp với nhu cầu sử dụng.</span></li>
-            <li><span class="sn">3</span><span>Nếu cần, tùy chỉnh thêm <code>Màu chính</code>, <code>Màu nhấn</code>, <code>Màu thanh bên</code> và màu của các khung chat AI/người dùng.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Dùng màu của chủ đề</code> nếu muốn bỏ các màu tùy chỉnh và quay lại màu theo preset.</span></li>
-            <li><span class="sn">5</span><span>Nhấn <code>Mặc định</code> nếu muốn khôi phục toàn bộ giao diện về trạng thái mặc định ban đầu.</span></li>
-            <li><span class="sn">6</span><span>Nhấn <code>Lưu</code> để áp dụng ngay giao diện mới cho toàn bộ MyTeX.</span></li>
-          </ol>
-        </div>
-
-        <div class="sub-card sub-full"><h3>Trình tự thiết lập được khuyến nghị</h3>
-          <ol class="steps-list">
-            <li><span class="sn">1</span><span>Thiết lập <code>Gemini</code> trước để toàn bộ các tab AI có thể hoạt động ngay.</span></li>
-            <li><span class="sn">2</span><span>Thiết lập <code>Google</code>, sau đó thực hiện <code>Đăng nhập</code> tài khoản Google ở cột trái hoặc thẻ tài khoản trong tab Tổng quan.</span></li>
-            <li><span class="sn">3</span><span>Thiết lập <code>Email</code> và <code>Zalo</code> nếu đơn vị có nhu cầu gửi kết quả cho học sinh hoặc người nhận.</span></li>
-            <li><span class="sn">4</span><span>Thiết lập <code>Phiếu chấm</code> để thống nhất tên đơn vị hiển thị trên đầu ra.</span></li>
-            <li><span class="sn">5</span><span>Chỉnh <code>Giao diện</code> sau cùng, vì mục này chỉ ảnh hưởng cách hiển thị chứ không ảnh hưởng luồng dữ liệu.</span></li>
-            <li><span class="sn">6</span><span>Sau mỗi lần lưu, quay lại tab Tổng quan và kiểm tra các thẻ đã chuyển sang trạng thái sẵn sàng hay chưa trước khi bắt đầu pipeline thật.</span></li>
-          </ol>
-          <div class="note note-tip"><div><strong>Mẹo kiểm tra nhanh</strong><p>Nếu một thẻ vẫn báo <code>✕ Chưa</code> hoặc hiển thị thông báo lỗi, hãy mở lại đúng hộp thoại <code>Thiết lập</code> của mục đó, kiểm tra kỹ trường còn thiếu rồi lưu lại một lần nữa trước khi chuyển sang bước tiếp theo.</p></div></div>
+          <div class="note note-tip">
+            <div><strong>Mẹo kiểm tra nhanh</strong><p>Nếu một thẻ vẫn báo <code>✕ Chưa</code>, mở lại đúng hộp thoại <code>Thiết lập</code> của mục đó, kiểm tra kỹ từng trường và lưu lại một lần nữa.</p></div>
+          </div>
         </div>
       </div>
     </article>
-    <article id="tex" class="sec-card"><span class="sec-tag orange">3. Xử lý TeX</span><h2>Tab Xử lý TeX</h2>
+
+    <!-- 3. XỬ LÝ TEX -->
+    <article id="tex" class="sec-card">
+      <span class="sec-tag orange">3. Xử lý TeX</span>
+      <h2>Tab Xử lý TeX — Xây dựng ngân hàng câu hỏi</h2>
       <div class="content-grid">
-        <figure><img src="assets/screenshots/xu-ly-tex.png" alt="Tab Xử lý TeX"><figcaption>Chuẩn hóa nguồn <code>.tex</code> và xây ngân hàng câu hỏi.</figcaption></figure>
-        <div><p>Phân hệ này dùng để lọc nguồn, kiểm tra dữ liệu và nhập câu hỏi vào ngân hàng dùng chung.</p>
+        <figure><img src="assets/screenshots/xu-ly-tex.png" alt="Tab Xử lý TeX"><figcaption>Chuẩn hóa nguồn <code>.tex</code> và nạp vào ngân hàng câu hỏi.</figcaption></figure>
+        <div>
+          <p>Phân hệ này dùng để đọc file <code>.tex</code> nguồn, lọc câu hỏi theo tiêu chí và nhập vào ngân hàng dùng chung cho toàn bộ quy trình ra đề.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span><strong>Nạp file nguồn:</strong> nhấn <code>Chọn tệp...</code>.</span></li>
-            <li><span class="sn">2</span><span><strong>Lọc câu hỏi:</strong> dùng bộ lọc theo <code>Loại</code>, <code>Dạng</code> hoặc <code>ID</code>.</span></li>
-            <li><span class="sn">3</span><span><strong>Kiểm tra danh sách:</strong> xem câu nào hợp lệ, đang chọn hoặc đang hiển thị.</span></li>
-            <li><span class="sn">4</span><span><strong>Xuất thử:</strong> dùng <code>Xuất .tex</code> để kiểm tra một nhóm câu.</span></li>
-            <li><span class="sn">5</span><span><strong>Nhập vào ngân hàng:</strong> dùng <code>Bổ sung vào ngân hàng...</code>.</span></li>
+            <li><span class="sn">1</span><span><strong>Nạp file nguồn:</strong> nhấn <code>Chọn tệp...</code> và chọn file <code>.tex</code> chứa ngân hàng câu hỏi.</span></li>
+            <li><span class="sn">2</span><span><strong>Lọc câu hỏi:</strong> dùng bộ lọc theo <code>Loại</code>, <code>Dạng</code>, <code>Chủ đề</code> hoặc <code>ID</code>.</span></li>
+            <li><span class="sn">3</span><span><strong>Xem danh sách:</strong> kiểm tra câu nào hợp lệ, đang chọn hoặc cần chỉnh sửa.</span></li>
+            <li><span class="sn">4</span><span><strong>Xuất thử:</strong> dùng <code>Xuất .tex</code> để kiểm tra một nhóm câu trước khi nạp chính thức.</span></li>
+            <li><span class="sn">5</span><span><strong>Nạp vào ngân hàng:</strong> nhấn <code>Bổ sung vào ngân hàng...</code> để lưu vào thư mục ngân hàng dùng chung.</span></li>
           </ol>
+          <div class="note note-tip">
+            <div><strong>Mẹo</strong><p>Ngân hàng càng phong phú và chuẩn hóa tốt, tab <code>Tạo đề thi</code> càng ít báo thiếu câu khi áp ma trận.</p></div>
+          </div>
         </div>
       </div>
     </article>
-    <article id="exam" class="sec-card"><span class="sec-tag green">4. Tạo đề thi</span><h2>Tab Tạo đề thi</h2>
+
+    <!-- 4. TẠO ĐỀ THI -->
+    <article id="exam" class="sec-card">
+      <span class="sec-tag green">4. Tạo đề thi</span>
+      <h2>Tab Tạo đề thi — Sinh đề theo ma trận</h2>
       <div class="content-grid">
-        <figure><img src="assets/screenshots/tao-de-thi.png" alt="Tab Tạo đề thi"><figcaption>Nạp ngân hàng, nạp ma trận và sinh nhiều mã đề.</figcaption></figure>
-        <div><p>Đây là nơi ghép ngân hàng câu hỏi với ma trận đề để tạo ra đề dùng thực tế.</p>
+        <figure><img src="assets/screenshots/tao-de-thi.png" alt="Tab Tạo đề thi"><figcaption>Nạp ngân hàng, áp ma trận và xuất nhiều mã đề cùng lúc.</figcaption></figure>
+        <div>
+          <p>Phân hệ ghép ngân hàng câu hỏi với ma trận đề để tạo ra bộ đề hoàn chỉnh, sẵn sàng phát hành.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span><strong>Nạp ngân hàng:</strong> chọn thư mục dữ liệu đã được chuẩn hóa.</span></li>
-            <li><span class="sn">2</span><span><strong>Nạp ma trận:</strong> chọn file Excel hoặc tạo ma trận mẫu.</span></li>
-            <li><span class="sn">3</span><span><strong>Khai báo tham số:</strong> nhập số đề, mức trộn và chế độ lấy câu.</span></li>
-            <li><span class="sn">4</span><span><strong>Đọc khối kiểm tra:</strong> app sẽ báo ma trận có đủ câu hay đang thiếu.</span></li>
-            <li><span class="sn">5</span><span><strong>Tạo đề:</strong> nhấn <code>Tạo đề thi</code> rồi xuất ra <code>.tex</code>.</span></li>
+            <li><span class="sn">1</span><span><strong>Nạp ngân hàng:</strong> chọn thư mục ngân hàng đã được chuẩn hóa.</span></li>
+            <li><span class="sn">2</span><span><strong>Nạp ma trận:</strong> chọn file Excel chứa ma trận đề thi.</span></li>
+            <li><span class="sn">3</span><span><strong>Khai báo tham số:</strong> nhập số mã đề, mức trộn câu và chế độ lấy câu (ngẫu nhiên / theo ID).</span></li>
+            <li><span class="sn">4</span><span><strong>Kiểm tra khả năng đáp ứng:</strong> ứng dụng báo ma trận có đủ câu hay đang thiếu ở phần nào.</span></li>
+            <li><span class="sn">5</span><span><strong>Tạo và xuất đề:</strong> nhấn <code>Tạo đề thi</code> rồi xuất ra file <code>.tex</code>.</span></li>
           </ol>
-          <div class="note note-tip"><div><strong>Mẹo</strong><p>Nếu ma trận báo thiếu câu, quay lại <code>Xử lý TeX</code> để bổ sung ngân hàng trước.</p></div></div>
+          <div class="note note-tip">
+            <div><strong>Mẹo</strong><p>Nếu ma trận báo thiếu câu, quay lại tab <code>Xử lý TeX</code> để bổ sung ngân hàng trước. Sau đó nhấn làm mới để kiểm tra lại.</p></div>
+          </div>
         </div>
       </div>
     </article>
-    <article id="ai" class="sec-card"><span class="sec-tag orange">5. Nhóm AI</span><h2>Soạn đề AI, Soạn thảo AI và Trợ lý AI</h2>
-      <p>MyTeX hiện có ba phân hệ AI khác nhau. Chúng dùng cùng Gemini nhưng phục vụ ba mục đích riêng biệt.</p>
+
+    <!-- 5. NHÓM AI -->
+    <article id="ai" class="sec-card">
+      <span class="sec-tag orange">5. Nhóm AI</span>
+      <h2>Soạn đề AI, Soạn thảo AI và Trợ lý AI</h2>
+      <p>MyTeX tích hợp Gemini AI vào 3 phân hệ riêng biệt, phục vụ 3 mục đích khác nhau. Tất cả đều yêu cầu Gemini đã được thiết lập ở tab <code>Tổng quan</code>.</p>
       <div class="sub-grid">
-        <div class="sub-card"><h3>Soạn đề AI</h3>
-          <p style="font-size:.87rem;margin-bottom:10px">Dùng khi bạn muốn <strong style="color:var(--text)">chuyển ảnh sang TeX</strong>, sáng tác đề mới hoặc sinh theo chủ đề.</p>
+        <div class="sub-card">
+          <h3>Soạn đề AI</h3>
+          <p style="font-size:.87rem;margin-bottom:10px;color:var(--text2)">Dùng khi muốn <strong style="color:var(--text)">chuyển ảnh thành LaTeX</strong> hoặc sinh câu hỏi mới theo chủ đề.</p>
           <figure style="margin-bottom:10px"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Tab Soạn đề AI.</figcaption></figure>
-          <ol class="steps-list"><li><span class="sn">1</span><span>Chọn chế độ <code>[A]</code>, <code>[B]</code> hoặc <code>[C]</code>.</span></li><li><span class="sn">2</span><span>Thêm ảnh hoặc dán ảnh.</span></li><li><span class="sn">3</span><span>Điền chủ đề, số lượng khi cần.</span></li><li><span class="sn">4</span><span>Nhấn <code>Chạy</code> và lưu file <code>.tex</code>.</span></li></ol>
+          <ol class="steps-list">
+            <li><span class="sn">1</span><span>Chọn chế độ phù hợp: <code>[A]</code> chuyển ảnh sang TeX, <code>[B]</code> sinh câu theo chủ đề, <code>[C]</code> bổ sung ngân hàng.</span></li>
+            <li><span class="sn">2</span><span>Thêm ảnh (kéo thả hoặc dán từ clipboard).</span></li>
+            <li><span class="sn">3</span><span>Điền chủ đề, số câu và mức độ khi cần.</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Chạy</code>, kiểm tra kết quả và lưu file <code>.tex</code>.</span></li>
+          </ol>
         </div>
-        <div class="sub-card"><h3>Soạn thảo AI</h3>
-          <p style="font-size:.87rem;margin-bottom:10px">Dùng khi bạn muốn <strong style="color:var(--text)">chép lại nội dung từ ảnh</strong> và bổ sung thêm phần chữ nhập.</p>
+        <div class="sub-card">
+          <h3>Soạn thảo AI</h3>
+          <p style="font-size:.87rem;margin-bottom:10px;color:var(--text2)">Dùng khi muốn <strong style="color:var(--text)">biên tập LaTeX từ ảnh</strong> kết hợp ghi chú nhập tay.</p>
           <figure style="margin-bottom:10px"><img src="assets/screenshots/soan-thao-ai.png" alt="Soạn thảo AI"><figcaption>Tab Soạn thảo AI.</figcaption></figure>
-          <ol class="steps-list"><li><span class="sn">1</span><span>Thêm ảnh hoặc dán ảnh.</span></li><li><span class="sn">2</span><span>Nhập phần nội dung còn thiếu ở ô <code>Nhập nội dung</code>.</span></li><li><span class="sn">3</span><span>Nhấn <code>Soạn thảo</code>.</span></li><li><span class="sn">4</span><span>Kiểm tra <code>Xem trước</code>, rồi sao chép TeX hoặc HTML.</span></li></ol>
+          <ol class="steps-list">
+            <li><span class="sn">1</span><span>Thêm ảnh (kéo thả hoặc dán từ clipboard).</span></li>
+            <li><span class="sn">2</span><span>Nhập phần nội dung bổ sung ở ô <code>Nhập nội dung</code>.</span></li>
+            <li><span class="sn">3</span><span>Nhấn <code>Soạn thảo</code> để Gemini tạo LaTeX hoàn chỉnh.</span></li>
+            <li><span class="sn">4</span><span>Kiểm tra <code>Xem trước HTML</code>, rồi sao chép TeX hoặc HTML theo nhu cầu.</span></li>
+          </ol>
         </div>
-        <div class="sub-card sub-full"><h3>Trợ lý AI</h3>
+        <div class="sub-card sub-full">
+          <h3>Trợ lý AI</h3>
           <div class="content-grid" style="margin-top:0">
-            <figure><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><figcaption>Tab Trợ lý AI.</figcaption></figure>
-            <div><p style="font-size:.9rem;margin-bottom:10px">Chatbot nội bộ của MyTeX — chỉ trả lời trong phạm vi MyTeX, có thể đọc ảnh chụp lỗi và dùng handbook này làm nguồn tri thức.</p>
-              <ol class="steps-list"><li><span class="sn">1</span><span><strong>Đặt câu hỏi bằng chữ</strong> hoặc kèm ảnh màn hình.</span></li><li><span class="sn">2</span><span><strong>Nhấn Enter để gửi</strong>, dùng <code>Shift+Enter</code> để xuống dòng.</span></li><li><span class="sn">3</span><span>Tin của bạn bên phải, phản hồi Gemini bên trái.</span></li><li><span class="sn">4</span><span><strong>Mở User Guide</strong> ngay trong tab nếu cần đối chiếu tài liệu gốc.</span></li></ol>
+            <figure><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><figcaption>Tab Trợ lý AI — chatbot nội bộ của MyTeX.</figcaption></figure>
+            <div>
+              <p style="font-size:.9rem;margin-bottom:10px;color:var(--text2)">Chatbot Gemini được tinh chỉnh để tư vấn trong phạm vi MyTeX. Tự động tải hướng dẫn sử dụng mới nhất từ website để đảm bảo trả lời đúng theo phiên bản hiện tại.</p>
+              <ol class="steps-list">
+                <li><span class="sn">1</span><span>Đặt câu hỏi bằng văn bản hoặc đính kèm ảnh chụp màn hình lỗi.</span></li>
+                <li><span class="sn">2</span><span>Nhấn <code>Enter</code> để gửi. Dùng <code>Shift+Enter</code> để xuống dòng.</span></li>
+                <li><span class="sn">3</span><span>Câu hỏi của bạn ở bên phải, phản hồi Gemini ở bên trái.</span></li>
+                <li><span class="sn">4</span><span>Mở <code>Hướng dẫn sử dụng</code> ngay trong tab để đối chiếu khi cần.</span></li>
+              </ol>
             </div>
           </div>
         </div>
       </div>
     </article>
-    <article id="google" class="sec-card"><span class="sec-tag green">6. Google Form</span><h2>Tạo form, chấm bài và gửi kết quả</h2>
+
+    <!-- 6. GOOGLE FORM -->
+    <article id="google" class="sec-card">
+      <span class="sec-tag green">6. Google Form</span>
+      <h2>Tạo form, chấm bài và gửi kết quả</h2>
       <div class="sub-grid">
-        <div class="sub-card"><h3>Google Form — Tạo form</h3>
-          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-form.png" alt="Google Form"><figcaption>Chuẩn bị đề và khai báo điểm từng phần.</figcaption></figure>
-          <ol class="steps-list"><li><span class="sn">1</span><span>Chọn file <code>.tex</code> của đề.</span></li><li><span class="sn">2</span><span>Kiểm tra thống kê số câu theo từng loại.</span></li><li><span class="sn">3</span><span>Nhập tiêu đề, thời gian mở và đóng đề.</span></li><li><span class="sn">4</span><span>Nhập điểm cho từng phần I, II, III, IV.</span></li><li><span class="sn">5</span><span>Nhấn <code>Tạo Google Form</code>. Liên kết sẽ được sao chép vào clipboard.</span></li></ol>
+        <div class="sub-card">
+          <h3>Tạo Google Form</h3>
+          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-form.png" alt="Google Form — tạo đề"><figcaption>Khai báo đề và cài đặt điểm từng phần.</figcaption></figure>
+          <ol class="steps-list">
+            <li><span class="sn">1</span><span>Chọn file <code>.tex</code> của đề thi.</span></li>
+            <li><span class="sn">2</span><span>Xem thống kê số câu theo từng loại (TN / Đúng-Sai / Trả lời ngắn / Tự luận).</span></li>
+            <li><span class="sn">3</span><span>Nhập tiêu đề bài kiểm tra, thời gian mở và thời gian đóng.</span></li>
+            <li><span class="sn">4</span><span>Nhập điểm tối đa cho từng phần (I, II, III, IV).</span></li>
+            <li><span class="sn">5</span><span>Nhấn <code>Tạo Google Form</code>. Liên kết form và mã QR sẽ được tạo tự động.</span></li>
+          </ol>
         </div>
-        <div class="sub-card"><h3>Google Form — Chấm bài</h3>
-          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-cham-bai.png" alt="Google Form chấm bài"><figcaption>Quản lý đề, phản hồi, điểm số và phiếu kết quả.</figcaption></figure>
-          <ol class="steps-list"><li><span class="sn">1</span><span>Làm mới danh sách đề.</span></li><li><span class="sn">2</span><span>Chọn đề cần làm việc.</span></li><li><span class="sn">3</span><span>Tải phản hồi học sinh.</span></li><li><span class="sn">4</span><span>Chấm phản hồi chọn hoặc chấm tất cả mới.</span></li><li><span class="sn">5</span><span>Mở tệp kết quả HTML và gửi qua Email hoặc Zalo.</span></li></ol>
+        <div class="sub-card">
+          <h3>Chấm bài và gửi kết quả</h3>
+          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-cham-bai.png" alt="Google Form — chấm bài"><figcaption>Tổng hợp phản hồi, xem điểm và gửi phiếu kết quả.</figcaption></figure>
+          <ol class="steps-list">
+            <li><span class="sn">1</span><span>Nhấn <code>Làm mới danh sách đề</code> để cập nhật các đề thi đã tạo.</span></li>
+            <li><span class="sn">2</span><span>Chọn đề cần làm việc từ danh sách.</span></li>
+            <li><span class="sn">3</span><span>Nhấn <code>Tải phản hồi</code> để lấy bài làm học sinh từ Google Forms.</span></li>
+            <li><span class="sn">4</span><span>Chấm từng phản hồi hoặc nhấn <code>Chấm tất cả mới</code>.</span></li>
+            <li><span class="sn">5</span><span>Mở phiếu kết quả HTML, sau đó nhấn <code>Gửi Email</code> hoặc <code>Gửi Zalo</code> để phát điểm.</span></li>
+          </ol>
         </div>
       </div>
-      <div class="note note-warn" style="margin-top:14px"><div><strong>Với câu tự luận</strong><p>MyTeX hỗ trợ đủ 4 loại câu hỏi. Phần tự luận sẽ dùng Gemini để chấm theo tổng điểm bạn đã khai báo khi tạo form.</p></div></div>
+      <div class="note note-warn" style="margin-top:14px">
+        <div><strong>Phần tự luận</strong><p>MyTeX hỗ trợ đủ 4 loại câu hỏi trong cùng một form. Phần tự luận sẽ được chấm bằng Gemini AI dựa trên thang điểm bạn đã khai báo khi tạo form. Kết quả chấm tự luận cần xem xét và có thể điều chỉnh trước khi gửi cho học sinh.</p></div>
+      </div>
     </article>
-    <article id="workflow" class="sec-card"><span class="sec-tag green">7. Quy trình đầy đủ</span><h2>Cách dùng MyTeX theo thứ tự ổn định nhất</h2>
+
+    <!-- 7. QUY TRÌNH ĐẦY ĐỦ -->
+    <article id="workflow" class="sec-card">
+      <span class="sec-tag green">7. Quy trình đầy đủ</span>
+      <h2>Sử dụng MyTeX theo thứ tự ổn định nhất</h2>
       <ol class="steps-list">
-        <li><span class="sn">1</span><span>Vào <code>Tổng quan</code> để hoàn tất cấu hình Gemini và Google.</span></li>
-        <li><span class="sn">2</span><span>Dùng <code>Xử lý TeX</code> để chuẩn hóa nguồn và nhập ngân hàng.</span></li>
-        <li><span class="sn">3</span><span>Dùng <code>Tạo đề thi</code> để áp ma trận và xuất đề.</span></li>
-        <li><span class="sn">4</span><span>Khi cần, dùng <code>Soạn đề AI</code> để tạo nội dung mới hoặc <code>Soạn thảo AI</code> để chép lại tài liệu từ ảnh.</span></li>
-        <li><span class="sn">5</span><span>Dùng <code>Google Form</code> để tạo bài làm trực tuyến.</span></li>
-        <li><span class="sn">6</span><span>Sau khi học sinh nộp bài, quay lại <code>Google Form</code> để tải phản hồi, chấm, mở phiếu HTML và gửi kết quả.</span></li>
+        <li><span class="sn">1</span><span>Vào <code>Tổng quan</code> — thiết lập Gemini, đăng nhập Google và cấu hình Email / Zalo nếu cần.</span></li>
+        <li><span class="sn">2</span><span>Dùng <code>Xử lý TeX</code> — đọc file nguồn, lọc và nạp câu hỏi vào ngân hàng dùng chung.</span></li>
+        <li><span class="sn">3</span><span>Dùng <code>Tạo đề thi</code> — áp ma trận Excel, kiểm tra đủ câu và xuất nhiều mã đề <code>.tex</code>.</span></li>
+        <li><span class="sn">4</span><span>(Tùy chọn) Dùng <code>Soạn đề AI</code> hoặc <code>Soạn thảo AI</code> để bổ sung câu hỏi mới hoặc chuyển đổi từ ảnh.</span></li>
+        <li><span class="sn">5</span><span>Dùng <code>Google Form</code> → <em>Tạo form</em> — chọn file <code>.tex</code>, khai báo điểm và nhấn tạo form.</span></li>
+        <li><span class="sn">6</span><span>Chia sẻ liên kết hoặc mã QR cho học sinh làm bài trực tuyến.</span></li>
+        <li><span class="sn">7</span><span>Dùng <code>Google Form</code> → <em>Chấm bài</em> — tải phản hồi, chấm tự động và chấm tự luận bằng Gemini.</span></li>
+        <li><span class="sn">8</span><span>Gửi phiếu điểm HTML kèm lời giải cho từng học sinh qua Email hoặc Zalo.</span></li>
       </ol>
     </article>
-    <article id="faq" class="sec-card"><span class="sec-tag orange">8. FAQ</span><h2>Xử lý sự cố thường gặp</h2>
+
+    <!-- 8. FAQ -->
+    <article id="faq" class="sec-card">
+      <span class="sec-tag orange">8. FAQ</span>
+      <h2>Câu hỏi thường gặp</h2>
       <div style="margin-top:14px">
-        <details><summary>AI không chạy hoặc báo chưa sẵn sàng</summary><p>Hãy kiểm tra lại cấu hình Gemini ở tab Tổng quan. Trường hợp phổ biến nhất là chưa nhập API key hoặc model chưa đúng.</p></details>
-        <details><summary>Tạo đề thi báo thiếu câu</summary><p>Ngân hàng hiện chưa đủ câu để đáp ứng ma trận. Hãy bổ sung ngân hàng ở Xử lý TeX hoặc điều chỉnh ma trận.</p></details>
-        <details><summary>Google Form không tạo được</summary><p>Kiểm tra đăng nhập Google, kết nối Internet và trạng thái tích hợp Google trong ứng dụng.</p></details>
-        <details><summary>Phần tự luận không chấm được</summary><p>Thông thường do Gemini chưa sẵn sàng hoặc bạn chưa nhập điểm cho phần tự luận khi tạo form.</p></details>
+        <details>
+          <summary>Tôi có cần tự tạo Google Cloud Project và cấu hình OAuth không?</summary>
+          <p>Không. MyTeX đã tích hợp sẵn thông tin xác thực OAuth — bạn chỉ cần bấm <code>Đăng nhập</code> trong tab Tổng quan và đăng nhập bằng tài khoản Google của mình. Không cần tạo project, không cần Client ID hay Secret.</p>
+        </details>
+        <details>
+          <summary>AI không chạy hoặc báo chưa sẵn sàng</summary>
+          <p>Hãy kiểm tra lại cấu hình Gemini ở tab Tổng quan. Trường hợp phổ biến nhất là chưa nhập API key, key hết hạn hoặc tên model không đúng. Nhấn <code>Kiểm tra</code> để xác nhận.</p>
+        </details>
+        <details>
+          <summary>Tạo đề thi báo thiếu câu</summary>
+          <p>Ngân hàng hiện chưa đủ câu để đáp ứng ma trận. Quay lại tab <code>Xử lý TeX</code> để bổ sung, sau đó nhấn làm mới ở tab Tạo đề thi và kiểm tra lại.</p>
+        </details>
+        <details>
+          <summary>Google Form không tạo được</summary>
+          <p>Kiểm tra: (1) đã đăng nhập tài khoản Google trong tab Tổng quan chưa, (2) kết nối Internet ổn định, (3) file <code>.tex</code> được chọn đúng và có dữ liệu hợp lệ. Nếu vẫn lỗi, thử đăng xuất và đăng nhập lại Google.</p>
+        </details>
+        <details>
+          <summary>Phần tự luận không chấm được hoặc điểm là 0</summary>
+          <p>Nguyên nhân thường gặp: (1) Gemini chưa sẵn sàng — kiểm tra API key, (2) bạn chưa nhập điểm cho phần tự luận khi tạo form — điểm phần IV phải lớn hơn 0, (3) câu trả lời của học sinh quá ngắn hoặc không liên quan.</p>
+        </details>
+        <details>
+          <summary>Gửi email thất bại</summary>
+          <p>Kiểm tra cài đặt SMTP: đúng địa chỉ server, đúng cổng, đúng mật khẩu ứng dụng. Nếu dùng Gmail, phải dùng <em>App Password</em> (mật khẩu ứng dụng) thay vì mật khẩu tài khoản chính. Đảm bảo đã bật tính năng Xác minh 2 bước trên tài khoản Gmail trước khi tạo App Password.</p>
+        </details>
+        <details>
+          <summary>Phiếu kết quả HTML trông như thế nào?</summary>
+          <p>Phiếu kết quả HTML bao gồm: tên học sinh, điểm từng phần (Trắc nghiệm, Đúng/Sai, Trả lời ngắn, Tự luận), bảng đáp án chi tiết so sánh câu trả lời của học sinh với đáp án đúng, nhận xét của AI cho phần tự luận và logo/tên đơn vị theo cài đặt Phiếu chấm.</p>
+        </details>
+        <details>
+          <summary>Dữ liệu học sinh được lưu ở đâu?</summary>
+          <p>Toàn bộ dữ liệu (phản hồi đã chấm, phiếu kết quả HTML, metadata đề thi, cấu hình...) được lưu <strong>cục bộ trên máy của bạn</strong>, trong thư mục dữ liệu của ứng dụng. Dữ liệu chỉ được gửi ra ngoài khi bạn chủ động dùng các tính năng Google, Gemini, Email hoặc Zalo. Xem thêm tại <a href="privacy.html" style="color:var(--teal2);font-weight:600">Chính sách bảo mật</a>.</p>
+        </details>
+        <details>
+          <summary>Làm sao để cập nhật lên phiên bản mới?</summary>
+          <p>Tải bản mới từ <a href="index.html#download" style="color:var(--teal2);font-weight:600">trang tải về</a>, giải nén vào cùng thư mục hoặc thư mục mới. Dữ liệu (token, cài đặt, phiếu kết quả...) được lưu riêng trong thư mục dữ liệu của hệ điều hành — không bị mất khi cập nhật ứng dụng.</p>
+        </details>
       </div>
     </article>
-    <article id="contact" class="sec-card"><span class="sec-tag green">9. Liên hệ</span><h2>Thông tin liên hệ</h2>
-      <p>Nếu bạn cần trao đổi thêm về cách dùng, triển khai hoặc cập nhật MyTeX:</p>
-      <ul class="steps-list" style="list-style:none;margin-top:12px">
-        <li><span class="sn">👤</span><span><strong class="js-author" style="color:var(--text)"></strong></span></li>
-        <li><span class="sn" style="font-size:.6rem">@</span><span>Email: <a class="js-email" href="#" style="color:var(--teal2);font-weight:600"></a></span></li>
-        <li><span class="sn" style="font-size:.6rem">fb</span><span>Facebook: <a class="js-facebook" href="#" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600"></a></span></li>
+
+    <!-- 9. LIÊN HỆ -->
+    <article id="contact" class="sec-card">
+      <span class="sec-tag green">9. Liên hệ</span>
+      <h2>Hỗ trợ và liên hệ tác giả</h2>
+      <p>Nếu cần trao đổi thêm về cách dùng, triển khai, báo lỗi hoặc đề xuất tính năng, hãy liên hệ trực tiếp:</p>
+      <ul class="steps-list" style="margin-top:14px">
+        <li>
+          <span class="sn" style="font-size:.65rem">👤</span>
+          <span><strong class="js-author" style="color:var(--text)"></strong> — Tác giả &amp; phát triển MyTeX</span>
+        </li>
+        <li>
+          <span class="sn" style="font-size:.65rem">@</span>
+          <span>Email: <a class="js-email" href="#" style="color:var(--teal2);font-weight:600"></a></span>
+        </li>
+        <li>
+          <span class="sn" style="font-size:.65rem">fb</span>
+          <span>Facebook: <a class="js-facebook" href="#" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600"></a></span>
+        </li>
+        <li>
+          <span class="sn" style="font-size:.65rem">gh</span>
+          <span>GitHub: <a href="https://github.com/mytexvn" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600">github.com/mytexvn</a></span>
+        </li>
       </ul>
     </article>
-  </div>
-</div>
+
+  </div><!-- end guide-content -->
+</div><!-- end guide-layout -->
+
 </main>
+
+<!-- FOOTER -->
 <footer class="site-footer"><div class="wrap">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -409,10 +578,11 @@ li{color:var(--text2);line-height:1.75}
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · <a class="js-email" href="#">—</a></p>
-    <span class="footer-badge">Desktop · Windows · macOS · Linux</span>
+    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · Giấy phép GPL-3.0</p>
+    <span class="footer-badge">Windows · macOS · Linux</span>
   </div>
 </div></footer>
+
 <script src="config.js"></script>
 </body>
 </html>

@@ -16,12 +16,16 @@
 -->
 <html lang="vi">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MyTeX — Nền tảng desktop cho quy trình ra đề, TeX và Google Form</title>
-<meta name="description" content="MyTeX là nền tảng desktop giúp chuẩn hóa dữ liệu TeX, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận, tích hợp AI và phát hành bài kiểm tra qua Google Form trong một quy trình thống nhất.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyTeX — Nền tảng desktop: TeX · Đề thi · AI · Google Form</title>
+<meta name="description" content="MyTeX là ứng dụng desktop giúp giáo viên chuẩn hóa dữ liệu TeX, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận, tích hợp Gemini AI và vận hành bài kiểm tra qua Google Form trong một quy trình thống nhất.">
 <link rel="icon" href="assets/iconMyTeX.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 :root{
   --navy:#1a2d3d;--teal:#2bb5a0;--teal2:#239e8c;--teal-dim:rgba(43,181,160,.1);
@@ -73,15 +77,18 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 .footer-bottom a:hover{color:var(--teal)}
 .footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:var(--teal)}
 .footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
-.hero{padding:64px 0 52px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+/* HERO */
+.hero{padding:68px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:999px;background:var(--teal-dim);border:1px solid rgba(43,181,160,.25);font-size:.75rem;font-weight:700;color:var(--teal2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:22px}
 .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(2.2rem,3.8vw,3.5rem);font-weight:800;margin-bottom:18px;line-height:1.1}
+.hero h1{font-size:clamp(2.2rem,3.8vw,3.4rem);font-weight:800;margin-bottom:18px;line-height:1.1}
 .hero h1 em{font-style:normal;color:var(--teal2)}
-.hero-desc{font-size:1.02rem;max-width:50ch;margin-bottom:30px}
+.hero-desc{font-size:1.02rem;max-width:50ch;margin-bottom:10px;color:var(--text2)}
+.hero-sub{font-size:.9rem;color:var(--muted);margin-bottom:30px;max-width:48ch}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* SLIDESHOW */
 .hero-slideshow{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);background:var(--surface);border:1px solid var(--border);position:relative}
 .slides-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
 .slide-item{min-width:100%;position:relative}
@@ -94,7 +101,8 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 .slideshow-nav{position:absolute;top:calc(50% - 14px);transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 10px;pointer-events:none;z-index:2}
 .slideshow-nav button{pointer-events:all;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.85);color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .18s}
 .slideshow-nav button:hover{background:#fff}
-.stats-section{padding:0 0 52px}
+/* STATS */
+.stats-section{padding:0 0 56px}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
 .stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
@@ -102,72 +110,94 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 .stat-card:hover::after{opacity:1}
 .stat-value{font-family:'Bricolage Grotesque',sans-serif;font-size:2.1rem;font-weight:800;color:var(--teal2);line-height:1;margin-bottom:7px;display:block}
 .stat-label{font-size:.87rem;color:var(--text2)}
+/* SECTIONS */
 .section-head{display:grid;gap:10px;max-width:60ch;margin-bottom:36px}
 .section-head h2{font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:800}
 .section-head p{font-size:.97rem;max-width:54ch}
+/* MODULES */
 .modules-section{padding:0 0 60px}
 .modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .mod-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s,border-color .2s}
 .mod-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border2)}
-.mod-badge{display:inline-flex;padding:4px 11px;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.mod-icon{font-size:1.5rem;margin-bottom:12px}
+.mod-badge{display:inline-flex;padding:4px 11px;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
 .mod-badge.g{background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.25)}
 .mod-badge.o{background:var(--amber-dim);color:#b45309;border:1px solid rgba(245,158,11,.3)}
 .mod-card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
 .mod-card p{font-size:.88rem}
+.mod-card ul{list-style:none;padding:0;margin-top:10px;display:grid;gap:4px}
+.mod-card ul li{font-size:.84rem;color:var(--muted);display:flex;align-items:baseline;gap:6px}
+.mod-card ul li::before{content:'·';color:var(--teal);font-weight:800;flex-shrink:0}
+/* DOWNLOAD */
 .download-section{padding:0 0 60px}
 .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .dl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
 .dl-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:10px}
-.dl-card h3 .icon{width:34px;height:34px;border-radius:9px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dl-card h3 .icon{width:34px;height:34px;border-radius:9px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
 .dl-card>p{font-size:.91rem;margin-bottom:16px}
 .dl-links{list-style:none;padding:0;display:grid;gap:7px}
-.dl-links li a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);font-size:.9rem;font-weight:600;color:var(--text2);transition:all .18s}
+.dl-links li a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);font-size:.9rem;font-weight:600;color:var(--text2);transition:all .18s}
 .dl-links li a:hover{background:var(--teal-dim);border-color:rgba(43,181,160,.35);color:var(--teal2)}
 .dl-links li a .os{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--teal2);min-width:64px}
-.dl-links li a .meta{display:grid;gap:2px}
+.dl-links li a .meta{display:grid;gap:2px;flex:1}
 .dl-links li a .title{color:var(--text);font-weight:700}
 .dl-links li a .desc{font-size:.82rem;font-weight:500;line-height:1.45;color:var(--muted)}
-.dl-links li a .arrow{margin-left:auto;opacity:.4;transition:opacity .18s,transform .18s;color:var(--teal2)}
+.dl-links li a .arrow{opacity:.4;transition:opacity .18s,transform .18s;color:var(--teal2);flex-shrink:0}
 .dl-links li a:hover .arrow{opacity:1;transform:translateX(3px)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 0 60px}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 0 64px}
 .info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
 .info-card h3{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
 .info-card h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0}
 .info-card>p{font-size:.91rem;margin-bottom:14px}
-.contact-list{list-style:none;padding:0;display:grid;gap:8px}
-.contact-list li{font-size:.91rem}
+.contact-list{list-style:none;padding:0;display:grid;gap:10px}
+.contact-list li{font-size:.91rem;display:flex;align-items:center;gap:8px;color:var(--text2)}
+.contact-list li .lbl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);min-width:56px}
 .contact-list li a{color:var(--teal2);font-weight:600}
 .contact-list li a:hover{text-decoration:underline}
-.tip-list{list-style:none;padding:0;display:grid;gap:8px}
-.tip-list li{display:flex;align-items:flex-start;gap:9px;font-size:.9rem}
+.tip-list{list-style:none;padding:0;display:grid;gap:10px}
+.tip-list li{display:flex;align-items:flex-start;gap:9px;font-size:.9rem;color:var(--text2)}
 .tip-list li::before{content:'✓';color:var(--teal2);font-weight:800;flex-shrink:0;margin-top:2px}
 .tip-list li a{color:var(--teal2);font-weight:600}
-@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:32px}.stats-grid{grid-template-columns:1fr 1fr}.modules-grid{grid-template-columns:1fr 1fr}.dl-grid,.contact-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
-@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.hero{padding:44px 0 36px}.stats-grid,.modules-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}</style>
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:36px}.stats-grid{grid-template-columns:1fr 1fr}.modules-grid{grid-template-columns:1fr 1fr}.dl-grid,.contact-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.hero{padding:48px 0 40px}.stats-grid,.modules-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
+</style>
 </head>
 <body>
+
+<!-- HEADER -->
 <header class="site-header"><div class="wrap header-inner">
-    <a class="brand" href="index.html">
-      <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-      <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+  <a class="brand" href="index.html">
+    <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html" class="active">Giới thiệu</a>
+    <a href="index.html#modules">Phân hệ</a>
+    <a href="user-guide.html">Hướng dẫn</a>
+    <a href="privacy.html">Bảo mật</a>
+    <a class="nav-dl" href="#download">
+      <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Tải về
     </a>
-    <nav class="site-nav">
-      <a href="index.html" class="active">Giới thiệu</a>
-      <a href="index.html#modules">Phân hệ</a>
-      <a href="user-guide.html">Hướng dẫn</a>
-      <a href="privacy.html">Bảo mật</a>
-      <a class="nav-dl" href="#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải về</a>
-    </nav>
-  </div></header>
+  </nav>
+</div></header>
+
 <main>
+
+<!-- HERO -->
 <section class="hero"><div class="wrap"><div class="hero-grid">
   <div>
     <div class="hero-eyebrow">MyTeX Desktop Suite</div>
-    <h1>Nền tảng desktop chuẩn hóa<br><em>toàn bộ quy trình ra đề</em></h1>
-    <p class="hero-desc">MyTeX hỗ trợ tổ chuyên môn, trung tâm đào tạo và nhóm biên soạn đi trọn quy trình từ chuẩn hóa nguồn <code>.tex</code>, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận đến phát hành bài kiểm tra, chấm bài và phản hồi kết quả trong một môi trường làm việc thống nhất.</p>
+    <h1>Một ứng dụng —<br><em>trọn bộ quy trình ra đề</em></h1>
+    <p class="hero-desc">Từ chuẩn hóa nguồn <code>.tex</code>, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận đến phát hành bài kiểm tra trực tuyến và chấm điểm tự động — MyTeX gộp tất cả vào một giao diện duy nhất.</p>
+    <p class="hero-sub">Hỗ trợ Gemini AI · Google Forms · Email · Zalo · Windows · macOS · Linux</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải bản phát hành</a>
-      <a class="btn btn-secondary" href="user-guide.html">Xem tài liệu</a>
+      <a class="btn btn-primary" href="#download">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Tải bản phát hành
+      </a>
+      <a class="btn btn-secondary" href="user-guide.html">Đọc hướng dẫn</a>
     </div>
   </div>
   <div class="hero-slideshow" id="heroSlideshow">
@@ -176,84 +206,177 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
       <button onclick="slideshowMove(1)" aria-label="Sau">&#8250;</button>
     </div>
     <div class="slides-track" id="slidesTrack">
-      <div class="slide-item"><img src="assets/screenshots/tong-quan.png" alt="Tổng quan"><div class="slide-caption">Tổng quan — trung tâm điều phối cấu hình và tích hợp</div></div>
-      <div class="slide-item"><img src="assets/screenshots/xu-ly-tex.png" alt="Xử lý TeX"><div class="slide-caption">Xử lý TeX — chuẩn hóa nguồn đề và xây ngân hàng câu hỏi</div></div>
-      <div class="slide-item"><img src="assets/screenshots/tao-de-thi.png" alt="Tạo đề thi"><div class="slide-caption">Tạo đề thi — thiết lập ma trận và sinh nhiều mã đề</div></div>
-      <div class="slide-item"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><div class="slide-caption">Soạn đề AI — chuyển ảnh sang TeX hoặc biên soạn theo chủ đề</div></div>
-      <div class="slide-item"><img src="assets/screenshots/soan-thao-ai.png" alt="Soạn thảo AI"><div class="slide-caption">Soạn thảo AI — biên tập LaTeX từ ảnh và nội dung bổ sung</div></div>
-      <div class="slide-item"><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><div class="slide-caption">Trợ lý AI — hỗ trợ thao tác trong phạm vi MyTeX</div></div>
-      <div class="slide-item"><img src="assets/screenshots/google-form.png" alt="Google Form"><div class="slide-caption">Google Form — chuẩn bị và phát hành bài kiểm tra</div></div>
-      <div class="slide-item"><img src="assets/screenshots/google-cham-bai.png" alt="Google Form chấm bài"><div class="slide-caption">Chấm bài — tổng hợp kết quả và gửi phản hồi</div></div>
+      <div class="slide-item"><img src="assets/screenshots/tong-quan.png" alt="Tổng quan"><div class="slide-caption">Tổng quan — bảng điều phối trung tâm và cấu hình tích hợp</div></div>
+      <div class="slide-item"><img src="assets/screenshots/xu-ly-tex.png" alt="Xử lý TeX"><div class="slide-caption">Xử lý TeX — chuẩn hóa nguồn đề và xây dựng ngân hàng câu hỏi</div></div>
+      <div class="slide-item"><img src="assets/screenshots/tao-de-thi.png" alt="Tạo đề thi"><div class="slide-caption">Tạo đề thi — áp ma trận và xuất nhiều mã đề cùng lúc</div></div>
+      <div class="slide-item"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><div class="slide-caption">Soạn đề AI — chuyển ảnh thành mã LaTeX hoặc sinh câu hỏi mới</div></div>
+      <div class="slide-item"><img src="assets/screenshots/soan-thao-ai.png" alt="Soạn thảo AI"><div class="slide-caption">Soạn thảo AI — biên tập LaTeX từ ảnh kết hợp nội dung nhập tay</div></div>
+      <div class="slide-item"><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><div class="slide-caption">Trợ lý AI — hỗ trợ thao tác và giải đáp trong phạm vi MyTeX</div></div>
+      <div class="slide-item"><img src="assets/screenshots/google-form.png" alt="Google Form"><div class="slide-caption">Google Form — tạo bài kiểm tra trực tuyến từ file TeX</div></div>
+      <div class="slide-item"><img src="assets/screenshots/google-cham-bai.png" alt="Chấm bài"><div class="slide-caption">Chấm bài — tổng hợp phản hồi và gửi phiếu điểm cho từng học sinh</div></div>
     </div>
     <div class="slideshow-dots" id="slideshowDots"></div>
   </div>
 </div></div></section>
 
+<!-- STATS -->
 <section class="stats-section"><div class="wrap"><div class="stats-grid">
-  <div class="stat-card"><span class="stat-value">7</span><p class="stat-label">phân hệ chuyên trách, liên thông dữ liệu</p></div>
-  <div class="stat-card"><span class="stat-value">4</span><p class="stat-label">nhóm câu hỏi: Trắc nghiệm, Đúng/Sai, Ngắn, Tự luận</p></div>
-  <div class="stat-card"><span class="stat-value">3</span><p class="stat-label">nền tảng triển khai: Windows, macOS, Linux</p></div>
-  <div class="stat-card"><span class="stat-value" style="font-size:1.2rem;padding-top:5px">AI + Google</span><p class="stat-label">Gemini, Google Form, Email và Zalo tích hợp</p></div>
+  <div class="stat-card">
+    <span class="stat-value">7</span>
+    <p class="stat-label">phân hệ chuyên trách, dữ liệu liên thông xuyên suốt</p>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">4</span>
+    <p class="stat-label">loại câu hỏi: Trắc nghiệm, Đúng/Sai, Trả lời ngắn, Tự luận</p>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">3</span>
+    <p class="stat-label">hệ điều hành: Windows, macOS (Intel &amp; ARM), Linux</p>
+  </div>
+  <div class="stat-card">
+    <span class="stat-value">0đ</span>
+    <p class="stat-label">chi phí phần mềm — miễn phí, mã nguồn mở GPL-3.0</p>
+  </div>
 </div></div></section>
 
+<!-- MODULES -->
 <section id="modules" class="modules-section"><div class="wrap">
-  <div class="section-head"><span class="pill">Năng lực cốt lõi</span><h2>Một nền tảng duy nhất cho toàn bộ quy trình xây dựng và vận hành đề thi</h2><p>MyTeX được tổ chức theo các phân hệ rõ vai trò, giúp người dùng mới dễ tiếp cận trong khi dữ liệu vẫn được quản lý thống nhất từ đầu đến cuối quy trình.</p></div>
+  <div class="section-head">
+    <span class="pill">Năng lực cốt lõi</span>
+    <h2>Từ nguồn TeX đến kết quả học sinh — không cần rời khỏi ứng dụng</h2>
+    <p>MyTeX được tổ chức theo 7 phân hệ rõ vai trò. Người dùng mới có thể bắt đầu từng bước, trong khi dữ liệu vẫn được quản lý thống nhất từ đầu đến cuối.</p>
+  </div>
   <div class="modules-grid">
-    <article class="mod-card"><span class="mod-badge g">Tổng quan</span><h3>Bảng điều phối hệ thống</h3><p>Theo dõi trạng thái các tích hợp, mở nhanh quy trình cần dùng và kiểm soát cấu hình vận hành trước khi làm việc với dữ liệu thật.</p></article>
-    <article class="mod-card"><span class="mod-badge o">Xử lý TeX</span><h3>Chuẩn hóa dữ liệu nguồn</h3><p>Đọc nguồn <code>.tex</code>, lọc câu hỏi, rà soát lỗi và đưa nội dung vào ngân hàng dùng chung với cấu trúc nhất quán.</p></article>
-    <article class="mod-card"><span class="mod-badge g">Tạo đề thi</span><h3>Sinh đề theo ma trận</h3><p>Thiết lập quy tắc phân bổ câu hỏi, kiểm tra khả năng đáp ứng của ngân hàng và xuất bộ đề sẵn sàng phát hành.</p></article>
-    <article class="mod-card"><span class="mod-badge o">Soạn đề AI</span><h3>Biên soạn và chuyển đổi bằng AI</h3><p>Sử dụng Gemini để chuyển ảnh sang TeX, gợi ý câu hỏi mới hoặc xây nội dung theo chủ đề, mục tiêu và mức độ mong muốn.</p></article>
-    <article class="mod-card"><span class="mod-badge g">Soạn thảo AI</span><h3>Biên tập LaTeX nhanh hơn</h3><p>Kết hợp hình ảnh và nội dung nhập thêm để tạo LaTeX, đồng thời xem trước HTML ngay trong ứng dụng nhằm rút ngắn vòng lặp chỉnh sửa.</p></article>
-    <article class="mod-card"><span class="mod-badge o">Google Form + Trợ lý AI</span><h3>Phát hành, chấm bài và hỗ trợ sử dụng</h3><p>Tạo form, xử lý kết quả, gửi phản hồi và cung cấp trợ lý AI để giải đáp thao tác trong phạm vi nghiệp vụ của MyTeX.</p></article>
+    <article class="mod-card">
+      <span class="mod-badge g">Tổng quan</span>
+      <h3>Bảng điều phối trung tâm</h3>
+      <p>Kiểm tra trạng thái tất cả tích hợp, cấu hình Gemini, Google, Email, Zalo và giao diện — tất cả trước khi bắt đầu pipeline thật.</p>
+      <ul><li>Theo dõi sẵn sàng từng dịch vụ</li><li>Đăng nhập / đổi tài khoản Google</li><li>Tùy chỉnh theme và font chữ</li></ul>
+    </article>
+    <article class="mod-card">
+      <span class="mod-badge o">Xử lý TeX</span>
+      <h3>Chuẩn hóa ngân hàng câu hỏi</h3>
+      <p>Đọc file <code>.tex</code>, lọc câu hỏi theo tiêu chí, kiểm tra lỗi định dạng và nạp vào ngân hàng dùng chung với cấu trúc nhất quán.</p>
+      <ul><li>Lọc theo loại, dạng, ID, chủ đề</li><li>Xuất thử <code>.tex</code> trước khi nạp</li><li>Bổ sung vào ngân hàng hiện có</li></ul>
+    </article>
+    <article class="mod-card">
+      <span class="mod-badge g">Tạo đề thi</span>
+      <h3>Sinh đề theo ma trận chuẩn</h3>
+      <p>Áp ma trận từ file Excel, kiểm tra khả năng đáp ứng của ngân hàng, trộn ngẫu nhiên và xuất nhiều mã đề <code>.tex</code> trong một lần chạy.</p>
+      <ul><li>Nạp ma trận từ Excel</li><li>Cảnh báo nếu ngân hàng thiếu câu</li><li>Biên dịch PDF trực tiếp</li></ul>
+    </article>
+    <article class="mod-card">
+      <span class="mod-badge o">Soạn đề AI</span>
+      <h3>Biên soạn và chuyển đổi bằng Gemini</h3>
+      <p>Chuyển ảnh bài tập thành mã LaTeX, sinh câu hỏi mới theo chủ đề và mức độ mong muốn, hoặc bổ sung nội dung vào ngân hàng hiện có.</p>
+      <ul><li>Image-to-TeX từ ảnh chụp</li><li>Sinh câu hỏi theo chủ đề / số lượng</li><li>Xuất thẳng vào ngân hàng</li></ul>
+    </article>
+    <article class="mod-card">
+      <span class="mod-badge g">Soạn thảo AI</span>
+      <h3>Biên tập LaTeX nhanh hơn</h3>
+      <p>Kết hợp ảnh và nội dung nhập tay để Gemini tạo mã LaTeX hoàn chỉnh, xem trước HTML ngay trong ứng dụng và rút ngắn vòng lặp chỉnh sửa.</p>
+      <ul><li>Dán ảnh và nhập ghi chú bổ sung</li><li>Xem trước HTML tức thì</li><li>Sao chép LaTeX hoặc HTML</li></ul>
+    </article>
+    <article class="mod-card">
+      <span class="mod-badge o">Google Form + Trợ lý AI</span>
+      <h3>Phát hành, chấm bài và gửi kết quả</h3>
+      <p>Tạo Google Form từ file TeX, chấm 4 loại câu hỏi tự động (bao gồm tự luận bằng Gemini), xuất phiếu HTML và gửi cho từng học sinh qua Email hoặc Zalo.</p>
+      <ul><li>Tạo form + mã QR một bước</li><li>Chấm tự luận bằng Gemini AI</li><li>Gửi phiếu điểm qua Email / Zalo</li></ul>
+    </article>
   </div>
 </div></section>
 
+<!-- DOWNLOAD -->
 <section id="download" class="download-section"><div class="wrap">
-  <div class="section-head"><span class="pill">Tải về &amp; Tài liệu</span><h2>Sẵn sàng công bố, sẵn sàng triển khai cho người dùng cuối</h2><p>Người dùng có thể tải bản phát hành mới nhất, đọc tài liệu vận hành và tra cứu chính sách bảo mật ngay trên cùng một trang.</p></div>
+  <div class="section-head">
+    <span class="pill">Tải về</span>
+    <h2>Sẵn sàng cho Windows, macOS và Linux</h2>
+    <p>Mỗi gói cài đặt là bản dựng độc lập, không cần cài Python hay bất kỳ phụ thuộc nào. Tải đúng bản theo hệ điều hành, giải nén và mở ứng dụng.</p>
+  </div>
   <div class="dl-grid">
     <article class="dl-card">
-      <h3><span class="icon">⬇</span>Bản phát hành</h3>
-      <p>Liên kết tải luôn trỏ tới bản phát hành mới nhất trên GitHub Releases. Mỗi gói tương ứng với một hệ điều hành hoặc kiến trúc máy cụ thể. Bốn gói cài đặt này chỉ được đội vận hành đóng gói và phát hành khi có yêu cầu, không tự tạo mới trên mọi lần cập nhật mã nguồn hay tài liệu.</p>
+      <h3><span class="icon">⬇</span>Bản phát hành mới nhất</h3>
+      <p>Liên kết luôn trỏ tới bản mới nhất trên GitHub Releases. Đội phát triển chỉ đóng gói và phát hành khi có đợt cập nhật chính thức — không tự phát hành theo từng commit.</p>
       <ul class="dl-links">
-        <li><a id="dl-windows" href="#"><span class="os">Windows</span><span class="meta"><span class="title">Bản Windows x64 (.zip)</span><span class="desc">Dành cho máy Windows 64-bit, phù hợp với phần lớn môi trường văn phòng, trường học và đơn vị vận hành phổ thông.</span></span><span class="arrow">→</span></a></li>
-        <li><a id="dl-macos-arm64" href="#"><span class="os">macOS</span><span class="meta"><span class="title">Bản macOS Apple Silicon (.tar.gz)</span><span class="desc">Dành cho các thiết bị Mac sử dụng chip M-series như M1, M2, M3 hoặc các thế hệ mới hơn.</span></span><span class="arrow">→</span></a></li>
-        <li><a id="dl-macos-intel" href="#"><span class="os">macOS</span><span class="meta"><span class="title">Bản macOS Intel (.tar.gz)</span><span class="desc">Dành cho các máy Mac chạy chip Intel, phù hợp khi thiết bị chưa chuyển sang kiến trúc Apple Silicon.</span></span><span class="arrow">→</span></a></li>
-        <li><a id="dl-linux" href="#"><span class="os">Linux</span><span class="meta"><span class="title">Bản Linux x64 (.tar.gz)</span><span class="desc">Dành cho hệ điều hành Linux 64-bit, thích hợp cho môi trường kỹ thuật hoặc triển khai nội bộ có quản trị riêng.</span></span><span class="arrow">→</span></a></li>
+        <li><a id="dl-windows" href="#">
+          <span class="os">Windows</span>
+          <span class="meta"><span class="title">Windows x64 (.zip)</span><span class="desc">Dành cho máy Windows 64-bit. Giải nén và mở MyTeX.exe.</span></span>
+          <span class="arrow">→</span>
+        </a></li>
+        <li><a id="dl-macos-arm64" href="#">
+          <span class="os">macOS</span>
+          <span class="meta"><span class="title">macOS Apple Silicon (.tar.gz)</span><span class="desc">Dành cho Mac chip M1, M2, M3 và các thế hệ mới hơn.</span></span>
+          <span class="arrow">→</span>
+        </a></li>
+        <li><a id="dl-macos-intel" href="#">
+          <span class="os">macOS</span>
+          <span class="meta"><span class="title">macOS Intel (.tar.gz)</span><span class="desc">Dành cho Mac chip Intel (2020 trở về trước).</span></span>
+          <span class="arrow">→</span>
+        </a></li>
+        <li><a id="dl-linux" href="#">
+          <span class="os">Linux</span>
+          <span class="meta"><span class="title">Linux x64 (.tar.gz)</span><span class="desc">Dành cho Linux 64-bit (Ubuntu 20.04+, Debian, Fedora...).</span></span>
+          <span class="arrow">→</span>
+        </a></li>
       </ul>
     </article>
     <article class="dl-card">
       <h3><span class="icon">📖</span>Tài liệu và hỗ trợ</h3>
-      <p>Website đi kèm handbook, chính sách bảo mật và kênh phát hành chính thức để hỗ trợ triển khai và bàn giao.</p>
+      <p>Đọc hướng dẫn trước khi sử dụng để rút ngắn thời gian làm quen và tránh lỗi phổ biến khi cấu hình lần đầu.</p>
       <ul class="dl-links">
-        <li><a href="user-guide.html"><span class="os">Guide</span><span class="meta"><span class="title">Hướng dẫn sử dụng</span><span class="desc">Tổng hợp quy trình thiết lập, thao tác theo từng phân hệ và các lưu ý khi vận hành thực tế.</span></span><span class="arrow">→</span></a></li>
-        <li><a href="privacy.html"><span class="os">Privacy</span><span class="meta"><span class="title">Chính sách bảo mật</span><span class="desc">Làm rõ phạm vi dữ liệu, trách nhiệm xử lý và các nguyên tắc bảo vệ thông tin khi sử dụng MyTeX.</span></span><span class="arrow">→</span></a></li>
-        <li><a href="https://github.com/mytexvn" target="_blank" rel="noopener"><span class="os">GitHub</span><span class="meta"><span class="title">Kênh phát hành chính thức</span><span class="desc">Theo dõi các đợt phát hành được yêu cầu chính thức, kho mã nguồn công khai và các cập nhật liên quan tới hệ sinh thái MyTeX.</span></span><span class="arrow">→</span></a></li>
+        <li><a href="user-guide.html">
+          <span class="os">Guide</span>
+          <span class="meta"><span class="title">Hướng dẫn sử dụng</span><span class="desc">Hướng dẫn đầy đủ từng bước: cấu hình, tạo đề, chấm bài, gửi kết quả.</span></span>
+          <span class="arrow">→</span>
+        </a></li>
+        <li><a href="privacy.html">
+          <span class="os">Privacy</span>
+          <span class="meta"><span class="title">Chính sách bảo mật</span><span class="desc">Dữ liệu nào được lưu, dữ liệu nào gửi ra ngoài và cách kiểm soát.</span></span>
+          <span class="arrow">→</span>
+        </a></li>
+        <li><a href="https://github.com/mytexvn" target="_blank" rel="noopener">
+          <span class="os">GitHub</span>
+          <span class="meta"><span class="title">Mã nguồn và lịch sử phát hành</span><span class="desc">Theo dõi các bản phát hành, báo lỗi hoặc đóng góp cải tiến.</span></span>
+          <span class="arrow">→</span>
+        </a></li>
+        <li><a href="https://www.youtube.com/watch?v=F-5TN2JQ-nQ" target="_blank" rel="noopener">
+          <span class="os">Video</span>
+          <span class="meta"><span class="title">Video hướng dẫn trực quan</span><span class="desc">Xem demo quy trình sử dụng MyTeX trên YouTube.</span></span>
+          <span class="arrow">→</span>
+        </a></li>
       </ul>
     </article>
   </div>
 </div></section>
 
+<!-- CONTACT -->
 <div class="contact-grid wrap">
-  <article class="info-card"><h3><span class="dot"></span>Liên hệ và hỗ trợ triển khai</h3>
-    <p>Nếu cần trao đổi về cài đặt, hướng dẫn sử dụng hoặc phương án triển khai, người dùng có thể liên hệ trực tiếp qua các kênh chính thức dưới đây.</p>
+  <article class="info-card">
+    <h3><span class="dot"></span>Liên hệ và hỗ trợ</h3>
+    <p>Cần trao đổi về cài đặt, triển khai hoặc hợp tác? Liên hệ trực tiếp qua các kênh chính thức dưới đây.</p>
     <ul class="contact-list">
-      <li><strong class="js-author"></strong></li>
-      <li>Email: <a class="js-email" href="#"></a></li>
-      <li>Facebook: <a class="js-facebook" href="#" target="_blank" rel="noopener"></a></li>
-      <li>GitHub: <a href="https://github.com/mytexvn" target="_blank" rel="noopener">github.com/mytexvn</a></li>
+      <li><span class="lbl">Tác giả</span><strong class="js-author"></strong></li>
+      <li><span class="lbl">Email</span><a class="js-email" href="#"></a></li>
+      <li><span class="lbl">Facebook</span><a class="js-facebook" href="#" target="_blank" rel="noopener"></a></li>
+      <li><span class="lbl">GitHub</span><a href="https://github.com/mytexvn" target="_blank" rel="noopener">github.com/mytexvn</a></li>
     </ul>
   </article>
-  <article class="info-card"><h3><span class="dot"></span>Gợi ý bắt đầu nhanh</h3>
-    <p>Người dùng mới có thể tiếp cận MyTeX theo một lộ trình ngắn gọn để giảm rủi ro khi đưa vào quy trình chính thức.</p>
+  <article class="info-card">
+    <h3><span class="dot"></span>Bắt đầu trong 5 phút</h3>
+    <p>Lộ trình ngắn giúp người dùng mới làm quen nhanh mà không bỏ sót bước nào:</p>
     <ul class="tip-list">
-      <li>Đọc <a href="user-guide.html">hướng dẫn sử dụng</a> trước khi thao tác với dữ liệu thật hoặc cấu hình tích hợp.</li>
-      <li>Kiểm tra trạng thái Google, Gemini, Email và Zalo từ phân hệ <code>Tổng quan</code>.</li>
-      <li>Dùng <code>Trợ lý AI</code> ngay trong app khi cần tra cứu thao tác hoặc quy trình.</li>
-      <li>Thử trước trên bộ dữ liệu nhỏ trước khi áp dụng cho kỳ kiểm tra chính thức.</li>
+      <li>Tải đúng bản phát hành theo hệ điều hành và giải nén vào thư mục cố định.</li>
+      <li>Đọc <a href="user-guide.html">hướng dẫn sử dụng</a> — đặc biệt phần cấu hình Gemini và Google.</li>
+      <li>Vào tab <code>Tổng quan</code>, thiết lập Gemini AI rồi đăng nhập tài khoản Google.</li>
+      <li>Thử tạo 1 đề nhỏ và 1 Google Form để xác nhận toàn bộ pipeline hoạt động.</li>
+      <li>Dùng <code>Trợ lý AI</code> ngay trong app khi cần hỏi về thao tác cụ thể.</li>
     </ul>
   </article>
 </div>
+
 </main>
+
+<!-- FOOTER -->
 <footer class="site-footer"><div class="wrap">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -261,7 +384,7 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
         <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
         <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
       </a>
-      <p>Nền tảng desktop hỗ trợ xử lý TeX, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận và vận hành bài kiểm tra với AI cùng Google Form.</p>
+      <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>
     <div class="footer-col"><h4>Sản phẩm</h4>
       <a href="index.html">Giới thiệu</a>
@@ -271,39 +394,47 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
     <div class="footer-col"><h4>Tài liệu</h4>
       <a href="user-guide.html">Hướng dẫn sử dụng</a>
       <a href="privacy.html">Chính sách bảo mật</a>
+      <a href="https://github.com/mytexvn" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="footer-col"><h4>Liên hệ</h4>
       <a class="js-email" href="#">—</a>
       <a class="js-facebook" href="#" target="_blank" rel="noopener">—</a>
-      <a href="https://github.com/mytexvn" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.youtube.com/watch?v=F-5TN2JQ-nQ" target="_blank" rel="noopener">YouTube</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · <a class="js-email" href="#">—</a></p>
-    <span class="footer-badge">Desktop · Windows · macOS · Linux</span>
+    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · Giấy phép GPL-3.0</p>
+    <span class="footer-badge">Windows · macOS · Linux</span>
   </div>
 </div></footer>
+
 <script src="config.js"></script>
 <script>
-(function(){
-  var track=document.getElementById('slidesTrack'),dots=document.getElementById('slideshowDots');
-  if(!track)return;
-  var items=track.querySelectorAll('.slide-item'),n=items.length,cur=0,timer;
-  items.forEach(function(_,i){
-    var b=document.createElement('button');
-    if(i===0)b.classList.add('active');
-    b.onclick=function(){goTo(i);reset();};
+(function () {
+  var track = document.getElementById('slidesTrack');
+  var dots  = document.getElementById('slideshowDots');
+  if (!track) return;
+  var items = track.querySelectorAll('.slide-item'), n = items.length, cur = 0, timer;
+  items.forEach(function (_, i) {
+    var b = document.createElement('button');
+    if (i === 0) b.classList.add('active');
+    b.setAttribute('aria-label', 'Ảnh ' + (i + 1));
+    b.onclick = function () { goTo(i); reset(); };
     dots.appendChild(b);
   });
-  function goTo(i){cur=(i+n)%n;track.style.transform='translateX(-'+cur*100+'%)';
-    dots.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('active',j===cur);});}
-  function reset(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1);},3400);}
-  window.slideshowMove=function(d){goTo(cur+d);reset();};
-  var box=document.getElementById('heroSlideshow');
-  box.addEventListener('mouseenter',function(){clearInterval(timer);});
-  box.addEventListener('mouseleave',reset);
+  function goTo(i) {
+    cur = (i + n) % n;
+    track.style.transform = 'translateX(-' + cur * 100 + '%)';
+    dots.querySelectorAll('button').forEach(function (b, j) { b.classList.toggle('active', j === cur); });
+  }
+  function reset() { clearInterval(timer); timer = setInterval(function () { goTo(cur + 1); }, 3600); }
+  window.slideshowMove = function (d) { goTo(cur + d); reset(); };
+  var box = document.getElementById('heroSlideshow');
+  box.addEventListener('mouseenter', function () { clearInterval(timer); });
+  box.addEventListener('mouseleave', reset);
   reset();
 })();
 </script>
+
 </body>
 </html>
