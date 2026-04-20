@@ -1,0 +1,290 @@
+<!doctype html>
+<!--
+  Tên file: versions.html
+
+  Mô tả: Trang lịch sử phiên bản MyTeX — liệt kê tất cả các bản phát hành
+          theo thứ tự mới nhất trước, kèm ngày phát hành và danh sách thay
+          đổi. Mỗi phiên bản được đánh dấu bằng thẻ <article id="vX.Y.Z">
+          để ứng dụng có thể tự động đọc và hiển thị khi thông báo cập nhật.
+
+  Dự án: MyTeX
+  Tác giả: Nguyễn Hoàng Hải
+  Hỗ trợ lập trình: Claude, ChatGPT, Gemini
+  Ngày tạo: 20/04/2026
+
+  Bản quyền: 2026 MyTeX · Nguyễn Hoàng Hải · nghai.math@gmail.com
+
+  ── Lưu ý cho developer ──────────────────────────────────────────────────────
+  KHÔNG chỉnh tay file này. Dùng lệnh:
+      python scripts/release.py vX.Y.Z
+  Script sẽ tự động thêm phần tử <article> mới vào đầu #changelog,
+  commit, tạo tag git và push lên GitHub.
+  ─────────────────────────────────────────────────────────────────────────────
+-->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lịch sử phiên bản — MyTeX</title>
+<meta name="description" content="Lịch sử các phiên bản phát hành của MyTeX — ứng dụng desktop TeX · Đề thi · AI · Google Form.">
+<link rel="icon" href="assets/iconMyTeX.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+:root{
+  --navy:#1a2d3d;--teal:#2bb5a0;--teal2:#239e8c;--teal-dim:rgba(43,181,160,.1);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.1);
+  --bg:#eef3f8;--surface:#fff;--surface2:#f4f8fb;--surface3:#e8eef5;
+  --border:#d4dde8;--border2:#c2cfdb;
+  --text:#1a2d3d;--text2:#4a6278;--muted:#7a95ab;
+  --radius:18px;--shadow:0 2px 16px rgba(26,45,61,.1);--shadow-md:0 6px 32px rgba(26,45,61,.13);
+  --w:min(900px,calc(100% - 40px));
+}
+body{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+p{color:var(--text2);line-height:1.75}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter-spacing:-.02em;color:var(--text)}
+.wrap{width:var(--w);margin:auto;position:relative}
+.pill{display:inline-flex;padding:5px 13px;border-radius:999px;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.25);width:max-content}
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.2)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:58px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0;text-decoration:none}
+.brand-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand-icon img{width:24px;height:24px;object-fit:contain}
+.brand-text .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;letter-spacing:-.02em;display:block}
+.brand-text .tagline{font-size:.72rem;color:rgba(255,255,255,.42);font-weight:500;display:block;margin-top:1px}
+.site-nav{display:flex;align-items:center;gap:1px}
+.site-nav a{padding:7px 13px;border-radius:8px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.58);transition:color .18s,background .18s;white-space:nowrap}
+.site-nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.site-nav a.active{color:var(--teal);background:rgba(43,181,160,.14)}
+/* PAGE HERO */
+.page-hero{padding:52px 0 40px;border-bottom:1px solid var(--border)}
+.page-hero .pill{margin-bottom:16px}
+.page-hero h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:10px}
+.page-hero p{font-size:1.05rem;color:var(--text2);max-width:52ch}
+/* CHANGELOG */
+.changelog{padding:48px 0 80px}
+.timeline{display:flex;flex-direction:column;gap:0}
+/* Version article */
+.version-entry{display:grid;grid-template-columns:200px 1fr;gap:0 36px;padding:36px 0;border-bottom:1px solid var(--border)}
+.version-entry:last-child{border-bottom:none}
+.version-meta{padding-top:4px}
+.version-tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px}
+.version-tag .vtag{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:800;color:var(--navy)}
+.version-tag .latest-badge{display:inline-flex;padding:2px 9px;border-radius:999px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--teal-dim);color:var(--teal2);border:1px solid rgba(43,181,160,.3)}
+.version-date{font-size:.83rem;color:var(--muted);font-weight:500}
+.version-body{}
+.version-body h3{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:12px;display:none}
+.notes-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.notes-list li{display:flex;gap:10px;font-size:.93rem;color:var(--text2);line-height:1.6}
+.notes-list li::before{content:'→';color:var(--teal2);font-weight:700;flex-shrink:0;margin-top:1px}
+.notes-list li strong{color:var(--text);font-weight:600}
+/* FOOTER */
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0 28px;background:var(--navy)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:.83rem;color:rgba(255,255,255,.28)}
+.footer-bottom a{color:rgba(255,255,255,.48);font-weight:600;transition:color .18s}
+.footer-bottom a:hover{color:var(--teal)}
+@media(max-width:640px){
+  .version-entry{grid-template-columns:1fr;gap:12px}
+  .version-meta{padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></span>
+      <span class="brand-text">
+        <span class="name">MyTeX</span>
+        <span class="tagline">Desktop suite · TeX · AI · Google Form</span>
+      </span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Tổng quan</a>
+      <a href="user-guide.html">Hướng dẫn</a>
+      <a href="versions.html" class="active">Phiên bản</a>
+      <a href="privacy.html">Quyền riêng tư</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="pill">Changelog</div>
+    <h1>Lịch sử phiên bản</h1>
+    <p>Tất cả các bản phát hành của MyTeX — mới nhất hiển thị trước. Ứng dụng tự động đọc trang này để thông báo khi có phiên bản mới.</p>
+  </div>
+</section>
+
+<!-- CHANGELOG -->
+<section class="changelog">
+  <div class="wrap">
+    <div class="timeline" id="changelog">
+
+      <!-- ═══════════════════════════════════════════════════════════════════
+           Các phiên bản mới sẽ được chèn TỰ ĐỘNG ở ĐÂY bởi scripts/release.py
+           ═══════════════════════════════════════════════════════════════════ -->
+
+      <article id="v2026.1.9" data-version="2026.1.9" data-date="2026-04-20" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag">
+            <span class="vtag">v2026.1.9</span>
+            <span class="latest-badge">Mới nhất</span>
+          </div>
+          <div class="version-date">20/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Đồng bộ version tự động từ git tag — không cần chỉnh tay bất kỳ file nào</li>
+            <li><strong>build.yml</strong>: ghi <code>version.txt</code> từ <code>GITHUB_REF_NAME</code> trước khi build</li>
+            <li><strong>build.spec</strong>: đọc <code>version.txt</code> để gán <code>CFBundleVersion</code> động cho macOS</li>
+            <li><strong>updater.py</strong>: <code>APP_VERSION</code> đọc theo thứ tự <code>version.txt</code> → <code>git describe</code> → fallback</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.8" data-version="2026.1.8" data-date="2026-04-20" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.8</span></div>
+          <div class="version-date">20/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Thêm chức năng tự động kiểm tra và thông báo phiên bản mới khi khởi động</li>
+            <li>Dialog thông báo cập nhật hiển thị phiên bản hiện tại, phiên bản mới và release notes</li>
+            <li>Hỗ trợ tải xuống đúng nền tảng: Windows, macOS Intel/ARM64, Linux</li>
+            <li>Lưu phiên bản bị bỏ qua vào <code>state/update_state.json</code> để không nhắc lại</li>
+            <li>Hiển thị phiên bản hiện tại trên title bar ứng dụng</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.7" data-version="2026.1.7" data-date="2026-04-20" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.7</span></div>
+          <div class="version-date">20/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Cập nhật lớn toàn bộ giao diện và tính năng</li>
+            <li>Bắt buộc đăng nhập Google — thay thế nút "Kết nối lại" bằng quy trình đăng nhập bắt buộc</li>
+            <li>Sửa lỗi xác thực: đảm bảo trạng thái kết nối được thiết lập đúng sau khi đăng nhập</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.6" data-version="2026.1.6" data-date="2026-04-16" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.6</span></div>
+          <div class="version-date">16/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Sửa lỗi tạo và đồng bộ Google Form</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.5" data-version="2026.1.5" data-date="2026-04-16" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.5</span></div>
+          <div class="version-date">16/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Sửa lỗi xử lý padding và resize ảnh icon cho macOS (<code>iconutil</code>)</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.4" data-version="2026.1.4" data-date="2026-04-16" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.4</span></div>
+          <div class="version-date">16/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Thêm script <code>scripts/make_icns.py</code> để tạo file <code>.icns</code> — sửa lỗi build macOS</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.3" data-version="2026.1.3" data-date="2026-04-16" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.3</span></div>
+          <div class="version-date">16/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Cập nhật cấu hình build và thư mục <code>filter_data</code></li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.2" data-version="2026.1.2" data-date="2026-04-16" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.2</span></div>
+          <div class="version-date">16/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Cập nhật module lọc đề (<code>filter_exam</code>) và kiểm tra cơ bản (<code>extest_basic</code>)</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.1" data-version="2026.1.1" data-date="2026-04-16" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.1</span></div>
+          <div class="version-date">16/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Khôi phục OAuth client secret bị lỗi trong <code>gf_config.py</code></li>
+            <li>Thêm trang lỗi đăng nhập và chuyển hướng khi xác thực thất bại</li>
+          </ul>
+        </div>
+      </article>
+
+      <article id="v2026.1.0" data-version="2026.1.0" data-date="2026-04-15" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag"><span class="vtag">v2026.1.0</span></div>
+          <div class="version-date">15/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Phát hành chính thức đầu tiên của MyTeX</li>
+            <li>Hợp nhất mã nguồn ứng dụng và website vào một monorepo duy nhất</li>
+            <li>Hỗ trợ đầy đủ Windows, macOS (Intel &amp; ARM64) và Linux</li>
+            <li>Tích hợp Gemini AI, Google Form, Email và Zalo Bot</li>
+            <li>Hệ thống đa chủ đề giao diện (Default, Ocean, Forest, Rose)</li>
+          </ul>
+        </div>
+      </article>
+
+    </div><!-- /#changelog -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>&copy; 2026 MyTeX · <a href="mailto:nghai.math@gmail.com">nghai.math@gmail.com</a></p>
+      <a href="https://github.com/mytexvn" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
