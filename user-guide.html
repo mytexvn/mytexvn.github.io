@@ -117,11 +117,15 @@ figcaption{margin-top:8px;color:var(--muted);font-size:.83rem}
 .note-warn::before{content:'⚠';flex-shrink:0}
 .note strong{color:var(--text);display:block;margin-bottom:2px}
 .note p{font-size:.87rem;color:var(--text2)}
+.note a{color:var(--teal2);font-weight:600}
 .sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .sub-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
 .sub-card h3{font-size:.97rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px;color:var(--text)}
 .sub-card h3::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
 .sub-full{grid-column:1/-1}
+/* LINK HIGHLIGHT */
+.ext-link{color:var(--teal2);font-weight:600;text-decoration:underline;text-decoration-color:rgba(43,181,160,.35);text-underline-offset:2px;transition:color .15s}
+.ext-link:hover{color:var(--teal)}
 /* FAQ */
 details{background:var(--surface2);border:1px solid var(--border);border-radius:13px;padding:12px 16px;transition:border-color .18s}
 details+details{margin-top:8px}
@@ -132,6 +136,7 @@ summary::after{content:'+';font-size:1.1rem;color:var(--teal2);transition:transf
 details[open] summary::after{transform:rotate(45deg)}
 details p,details ul,details ol{margin-top:10px;font-size:.9rem;color:var(--text2)}
 details ul,details ol{padding-left:18px;display:grid;gap:4px}
+details a{color:var(--teal2);font-weight:600}
 /* RESPONSIVE */
 @media(max-width:980px){.guide-layout{grid-template-columns:1fr}.toc-sidebar{display:none}.content-grid{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.sub-grid{grid-template-columns:1fr}.sec-card{padding:20px 16px}.footer-inner{grid-template-columns:1fr 1fr;gap:22px}}
@@ -165,7 +170,7 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
   <div>
     <span class="pill" style="margin-bottom:14px">User Guide</span>
     <h1>Hướng dẫn sử dụng MyTeX</h1>
-    <p>Tài liệu mô tả đầy đủ quy trình làm việc: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> và <code>Google Form</code>. Tài liệu này cũng được Trợ lý AI trong ứng dụng đọc để tư vấn chính xác theo phiên bản mới nhất.</p>
+    <p>Tài liệu mô tả đầy đủ quy trình làm việc: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> và <code>Google Form</code>. Tài liệu này cũng được Trợ lý AI trong ứng dụng tự động tải về để tư vấn chính xác theo phiên bản mới nhất.</p>
     <div class="btn-group">
       <a class="btn btn-secondary" href="#start">Cấu hình ban đầu</a>
       <a class="btn btn-secondary" href="#google">Google Form</a>
@@ -208,13 +213,14 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <article id="start" class="sec-card">
       <span class="sec-tag green">1. Cấu hình ban đầu</span>
       <h2>Bắt đầu với MyTeX</h2>
-      <p>MyTeX là ứng dụng desktop đã đóng gói sẵn — không cần cài Python hay bất kỳ phụ thuộc nào. Tải đúng bản phát hành theo hệ điều hành, giải nén và mở ứng dụng. Sau đó vào tab <code>Tổng quan</code> để thiết lập các tích hợp.</p>
+      <p>MyTeX là ứng dụng desktop đã đóng gói sẵn — không cần cài Python hay bất kỳ phụ thuộc nào. Tải đúng bản phát hành theo hệ điều hành, giải nén và mở ứng dụng. Sau đó vào tab <code>Tổng quan</code> để thiết lập các tích hợp theo thứ tự dưới đây.</p>
       <ol class="steps-list">
-        <li><span class="sn">1</span><span><strong>Thiết lập Gemini:</strong> bắt buộc nếu muốn dùng các tab AI hoặc chấm tự luận. Cần có Gemini API Key.</span></li>
-        <li><span class="sn">2</span><span><strong>Đăng nhập Google:</strong> bắt buộc nếu muốn tạo và quản lý Google Form. Chỉ cần đăng nhập tài khoản Google — không cần cấu hình Google Cloud Console.</span></li>
+        <li><span class="sn">1</span><span><strong>Thiết lập Gemini:</strong> bắt buộc nếu muốn dùng các tab AI hoặc chấm tự luận. Cần có Gemini API Key — lấy miễn phí tại <a class="ext-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/api-key</a>.</span></li>
+        <li><span class="sn">2</span><span><strong>Đăng nhập Google:</strong> bắt buộc nếu muốn tạo và quản lý Google Form. Chỉ cần đăng nhập tài khoản Google — không cần tạo Google Cloud Project hay Client ID.</span></li>
         <li><span class="sn">3</span><span><strong>Thiết lập Email / Zalo:</strong> tùy chọn, chỉ cần khi muốn gửi phiếu kết quả cho học sinh.</span></li>
         <li><span class="sn">4</span><span><strong>Thiết lập Phiếu chấm:</strong> nhập tên đơn vị hiển thị trên phiếu kết quả.</span></li>
-        <li><span class="sn">5</span><span><strong>Phím nhanh:</strong> nhấn <code>F11</code> để chuyển toàn màn hình.</span></li>
+        <li><span class="sn">5</span><span><strong>Tùy chỉnh Giao diện:</strong> chọn font chữ, cỡ chữ và bảng màu phù hợp với sở thích.</span></li>
+        <li><span class="sn">6</span><span><strong>Phím nhanh:</strong> nhấn <code>F11</code> để chuyển toàn màn hình. Nhấn <code>Ctrl+V</code> để dán ảnh từ clipboard vào các tab AI.</span></li>
       </ol>
       <div class="note note-tip">
         <div><strong>Khuyến nghị</strong><p>Luôn thử trước trên một bộ dữ liệu nhỏ để xác nhận toàn bộ pipeline trước khi áp dụng cho kỳ thi chính thức.</p></div>
@@ -224,19 +230,19 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <!-- 2. TỔNG QUAN -->
     <article id="overview" class="sec-card">
       <span class="sec-tag green">2. Tổng quan</span>
-      <h2>Tab Tổng quan — Trung tâm điều phối</h2>
+      <h2>Tab Tổng quan — Trung tâm điều phối MyTeX</h2>
       <div class="content-grid">
-        <figure><img src="assets/screenshots/tong-quan.png" alt="Tab Tổng quan"><figcaption>Bảng điều phối trung tâm — trạng thái tích hợp và cài đặt hệ thống.</figcaption></figure>
+        <figure><img src="assets/screenshots/tong-quan.png" alt="Tab Tổng quan"><figcaption>Bảng điều phối trung tâm — trạng thái tích hợp và lối vào nhanh các phân hệ.</figcaption></figure>
         <div>
-          <p>Đây là màn hình khởi đầu của MyTeX. Tất cả cấu hình tích hợp, trạng thái tài khoản và lối vào nhanh đến các phân hệ đều nằm ở đây.</p>
+          <p>Đây là màn hình khởi đầu của MyTeX. Tất cả cấu hình tích hợp, trạng thái kết nối và lối vào nhanh đến các phân hệ đều nằm ở đây. Góc trên hiển thị 3 chỉ số: số phân hệ sẵn sàng, số mục đã cấu hình và số bước trong luồng chính.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span><strong>Kiểm tra trạng thái:</strong> các thẻ <code>Gemini</code>, <code>Google</code>, <code>Email</code>, <code>Zalo</code> và <code>Phiếu chấm</code> báo sẵn sàng hay chưa.</span></li>
-            <li><span class="sn">2</span><span><strong>Mở thiết lập:</strong> bấm <code>Thiết lập</code> trên từng thẻ để nhập thông tin cấu hình.</span></li>
-            <li><span class="sn">3</span><span><strong>Mở nhanh phân hệ:</strong> dùng các nút truy cập để chuyển sang <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Google Form</code>...</span></li>
-            <li><span class="sn">4</span><span><strong>Thứ tự khuyến nghị:</strong> Gemini → Google → Email / Zalo → Phiếu chấm → Giao diện.</span></li>
+            <li><span class="sn">1</span><span><strong>Kiểm tra trạng thái:</strong> các thẻ <code>Google</code>, <code>Email</code>, <code>Zalo</code> và <code>Gemini</code> báo <code>✓ Đặt</code> (sẵn sàng) hoặc <code>✕ Chưa</code> (chưa cấu hình).</span></li>
+            <li><span class="sn">2</span><span><strong>Mở thiết lập:</strong> bấm <code>Thiết lập</code> trên từng thẻ để nhập thông tin cấu hình tương ứng.</span></li>
+            <li><span class="sn">3</span><span><strong>Mở nhanh phân hệ:</strong> khu vực "Mở nhanh phân hệ" có 6 nút trực tiếp vào Xử lý TeX, Tạo đề thi, Google Form, Soạn đề AI, Soạn thảo AI và Trợ lý AI.</span></li>
+            <li><span class="sn">4</span><span><strong>Đăng nhập Google:</strong> phần cuối sidebar bên trái luôn hiển thị trạng thái tài khoản Google và nút <code>Đăng nhập</code> / <code>Chuyển tài khoản</code>.</span></li>
           </ol>
           <div class="note note-warn">
-            <div><strong>Lưu ý</strong><p>Nếu Gemini hoặc Google chưa sẵn sàng, nhiều tính năng vẫn mở được nhưng sẽ không chạy trọn pipeline — đặc biệt là nhóm AI và Google Form.</p></div>
+            <div><strong>Lưu ý</strong><p>Nếu Gemini hoặc Google chưa sẵn sàng, các tính năng tương ứng sẽ không chạy được — đặc biệt là nhóm AI và Google Form. Hãy hoàn thành cấu hình trước khi sử dụng pipeline thực tế.</p></div>
           </div>
         </div>
       </div>
@@ -245,24 +251,28 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
         <!-- Gemini -->
         <div class="sub-card">
           <h3>Thiết lập Gemini AI</h3>
-          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Bắt buộc nếu muốn dùng <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận.</p>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Bắt buộc nếu muốn dùng <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận. Gemini API miễn phí với hạn mức sử dụng hàng ngày.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Gemini</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Khóa API Gemini</code> — lấy miễn phí tại <strong>aistudio.google.com</strong>.</span></li>
-            <li><span class="sn">3</span><span>Nhập tên <code>Mô hình</code> muốn dùng (ví dụ: <code>gemini-2.0-flash</code>).</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Kiểm tra</code> để xác nhận key và model hoạt động.</span></li>
-            <li><span class="sn">5</span><span>Nhấn <code>Lưu</code>. Thẻ Gemini sẽ chuyển sang trạng thái sẵn sàng.</span></li>
+            <li><span class="sn">1</span><span>Truy cập <a class="ext-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/api-key</a> để lấy Gemini API Key miễn phí.</span></li>
+            <li><span class="sn">2</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Gemini</code> trong tab Tổng quan.</span></li>
+            <li><span class="sn">3</span><span>Nhập <code>Khóa API Gemini</code> vừa lấy.</span></li>
+            <li><span class="sn">4</span><span>Nhập tên <code>Mô hình</code> muốn dùng, ví dụ: <code>gemini-2.0-flash</code> hoặc <code>gemini-2.5-pro</code>.</span></li>
+            <li><span class="sn">5</span><span>Nhấn <code>Kiểm tra</code> để xác nhận key và model hoạt động.</span></li>
+            <li><span class="sn">6</span><span>Nhấn <code>Lưu</code>. Thẻ Gemini sẽ chuyển sang <code>✓ Đặt</code>.</span></li>
           </ol>
+          <div class="note note-tip" style="margin-top:10px">
+            <div><strong>Mô hình khuyến nghị</strong><p>Dùng <code>gemini-2.0-flash</code> cho tốc độ cao, hoặc <code>gemini-2.5-pro</code> cho chất lượng tốt hơn với tự luận phức tạp. Xem danh sách model tại <a class="ext-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">Gemini API</a>.</p></div>
+          </div>
         </div>
 
         <!-- Google -->
         <div class="sub-card">
           <h3>Đăng nhập Google</h3>
-          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">MyTeX đã tích hợp sẵn thông tin xác thực OAuth. <strong style="color:var(--text)">Không cần</strong> tự cấu hình Google Cloud Console — chỉ cần đăng nhập tài khoản Google của bạn.</p>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">MyTeX đã tích hợp sẵn thông tin xác thực OAuth. <strong style="color:var(--text)">Không cần</strong> tự tạo Google Cloud Project, Client ID hay Secret — chỉ cần đăng nhập tài khoản Google của bạn.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Trong khu vực <code>Tài khoản Google</code> ở tab Tổng quan, bấm <code>Đăng nhập</code>.</span></li>
+            <li><span class="sn">1</span><span>Trong sidebar bên trái hoặc tab Tổng quan, bấm <code>Đăng nhập</code>.</span></li>
             <li><span class="sn">2</span><span>Trình duyệt tự động mở trang đăng nhập Google. Đăng nhập và bấm <code>Cho phép</code> khi được hỏi quyền.</span></li>
-            <li><span class="sn">3</span><span>Sau khi xác thực thành công, ứng dụng tự nhận token và hiển thị tên và ảnh đại diện.</span></li>
+            <li><span class="sn">3</span><span>Sau khi xác thực thành công, ứng dụng tự nhận token và hiển thị tên, ảnh đại diện trong sidebar.</span></li>
             <li><span class="sn">4</span><span>Dùng <code>Chuyển tài khoản</code> khi muốn đăng nhập bằng tài khoản Google khác.</span></li>
             <li><span class="sn">5</span><span>Dùng <code>Đăng xuất</code> khi muốn hủy liên kết tài khoản hiện tại.</span></li>
           </ol>
@@ -274,37 +284,42 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
         <!-- Email -->
         <div class="sub-card">
           <h3>Thiết lập Email (SMTP)</h3>
-          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Dùng để gửi phiếu kết quả kèm lời giải HTML cho từng học sinh sau khi chấm bài.</p>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Dùng để gửi phiếu kết quả kèm lời giải HTML cho từng học sinh sau khi chấm bài. Hỗ trợ mọi nhà cung cấp SMTP.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Email</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Máy chủ SMTP</code> và <code>Cổng SMTP</code> (ví dụ: Gmail dùng <code>smtp.gmail.com</code> / cổng <code>587</code>).</span></li>
-            <li><span class="sn">3</span><span>Nhập <code>Email gửi</code>, <code>Mật khẩu ứng dụng</code> và <code>Tên hiển thị</code>.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Kiểm tra kết nối</code> rồi <code>Lưu</code> nếu thành công.</span></li>
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Email</code> trong tab Tổng quan.</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Máy chủ SMTP</code> và <code>Cổng</code> — Gmail dùng <code>smtp.gmail.com</code> / cổng <code>587</code>.</span></li>
+            <li><span class="sn">3</span><span>Nhập <code>Email gửi</code> và <code>Tên hiển thị</code>.</span></li>
+            <li><span class="sn">4</span><span>Nhập <code>Mật khẩu ứng dụng</code> (xem hướng dẫn bên dưới nếu dùng Gmail).</span></li>
+            <li><span class="sn">5</span><span>Nhấn <code>Kiểm tra kết nối</code> rồi <code>Lưu</code> nếu thành công.</span></li>
           </ol>
           <div class="note note-tip" style="margin-top:10px">
-            <div><strong>Gmail</strong><p>Dùng <code>Mật khẩu ứng dụng</code> (App Password) thay vì mật khẩu tài khoản chính. Bật tại <code>myaccount.google.com → Bảo mật → Xác minh 2 bước → Mật khẩu ứng dụng</code>.</p></div>
+            <div><strong>Gmail — Mật khẩu ứng dụng</strong><p>Gmail yêu cầu <strong>Mật khẩu ứng dụng</strong> (App Password) thay vì mật khẩu tài khoản chính. Tạo tại: <a class="ext-link" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>. Bạn cần bật <strong>Xác minh 2 bước</strong> trước khi tạo được App Password.</p></div>
           </div>
         </div>
 
         <!-- Zalo -->
         <div class="sub-card">
           <h3>Thiết lập Zalo Bot</h3>
-          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Gửi thông báo điểm và lời giải cho học sinh qua Zalo Bot API (bot-api.zapps.me).</p>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Gửi thông báo điểm và phiếu kết quả cho học sinh qua Zalo Bot API. Yêu cầu tạo Zalo Mini App Bot trước khi cấu hình.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Zalo</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Mã bot</code> (Bot Token từ nền tảng Zalo Mini App).</span></li>
-            <li><span class="sn">3</span><span>Bấm <code>Chọn tệp...</code> để nạp file <code>user_data.csv</code> chứa danh sách học sinh và Zalo ID.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code>. Ứng dụng sẽ kiểm tra bot và báo trạng thái.</span></li>
+            <li><span class="sn">1</span><span>Tạo Zalo Bot và lấy Bot Token theo hướng dẫn tại <a class="ext-link" href="https://bot.zapps.me/docs/create-bot" target="_blank" rel="noopener">bot.zapps.me/docs/create-bot</a>.</span></li>
+            <li><span class="sn">2</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Zalo</code> trong tab Tổng quan.</span></li>
+            <li><span class="sn">3</span><span>Nhập <code>Mã bot</code> (Bot Token từ nền tảng Zalo Mini App).</span></li>
+            <li><span class="sn">4</span><span>Bấm <code>Chọn tệp...</code> để nạp file <code>user_data.csv</code> chứa danh sách học sinh và Zalo ID tương ứng.</span></li>
+            <li><span class="sn">5</span><span>Nhấn <code>Lưu</code>. Ứng dụng sẽ kiểm tra bot và báo trạng thái kết nối.</span></li>
           </ol>
+          <div class="note note-tip" style="margin-top:10px">
+            <div><strong>Cấu trúc file CSV</strong><p>File <code>user_data.csv</code> cần có ít nhất 2 cột: họ tên học sinh và Zalo ID. MyTeX dùng cột này để ghép tên trên phiếu với Zalo ID khi gửi tin nhắn.</p></div>
+          </div>
         </div>
 
         <!-- Phiếu chấm -->
         <div class="sub-card">
           <h3>Thiết lập Phiếu chấm</h3>
-          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Tên đơn vị xuất hiện trên phiếu HTML, email kết quả và tin nhắn Zalo.</p>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Tên đơn vị xuất hiện trên phiếu HTML, email kết quả và tin nhắn Zalo gửi cho học sinh.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Phiếu chấm</code>.</span></li>
-            <li><span class="sn">2</span><span>Nhập <code>Tên cơ sở giáo dục</code> hoặc tên đơn vị muốn hiển thị.</span></li>
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Phiếu chấm</code> trong tab Tổng quan.</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Tên cơ sở giáo dục</code> hoặc tên đơn vị muốn hiển thị trên đầu phiếu.</span></li>
             <li><span class="sn">3</span><span>Nhấn <code>Lưu</code> để áp dụng cho tất cả phiếu tạo sau này.</span></li>
           </ol>
         </div>
@@ -312,12 +327,12 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
         <!-- Giao diện -->
         <div class="sub-card">
           <h3>Thiết lập Giao diện</h3>
-          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Tùy chỉnh font chữ, cỡ chữ và bảng màu để phù hợp sở thích làm việc.</p>
+          <p style="font-size:.88rem;margin-bottom:10px;color:var(--text2)">Tùy chỉnh font chữ, cỡ chữ và bảng màu để phù hợp sở thích làm việc. Thay đổi áp dụng ngay toàn bộ ứng dụng.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Giao diện</code>.</span></li>
-            <li><span class="sn">2</span><span>Chọn <code>Font chữ</code>, <code>Cỡ chữ</code> và <code>Bảng màu</code> ưa thích.</span></li>
-            <li><span class="sn">3</span><span>Tùy chỉnh thêm màu chính, màu nhấn, màu thanh bên và màu khung chat AI nếu muốn.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code> để áp dụng ngay toàn bộ ứng dụng.</span></li>
+            <li><span class="sn">1</span><span>Bấm <code>Thiết lập</code> tại thẻ <code>Giao diện</code> trong tab Tổng quan.</span></li>
+            <li><span class="sn">2</span><span>Chọn <code>Font chữ</code> và <code>Cỡ chữ</code> ưa thích.</span></li>
+            <li><span class="sn">3</span><span>Chọn <code>Bảng màu</code> có sẵn hoặc tùy chỉnh thêm màu chính, màu nhấn, màu thanh bên và màu khung chat AI.</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Lưu</code> để áp dụng ngay.</span></li>
           </ol>
         </div>
 
@@ -325,12 +340,13 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
         <div class="sub-card sub-full">
           <h3>Trình tự thiết lập khuyến nghị</h3>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Thiết lập <code>Gemini</code> trước để toàn bộ các tab AI có thể hoạt động.</span></li>
-            <li><span class="sn">2</span><span>Đăng nhập <code>Google</code> — chỉ bấm Đăng nhập, không cần cấu hình gì thêm.</span></li>
-            <li><span class="sn">3</span><span>Thiết lập <code>Email</code> và <code>Zalo</code> nếu cần gửi kết quả cho học sinh.</span></li>
-            <li><span class="sn">4</span><span>Thiết lập <code>Phiếu chấm</code> để thống nhất tên đơn vị trên đầu ra.</span></li>
-            <li><span class="sn">5</span><span>Điều chỉnh <code>Giao diện</code> theo sở thích (bước cuối cùng, không ảnh hưởng dữ liệu).</span></li>
-            <li><span class="sn">6</span><span>Sau mỗi lần lưu, kiểm tra lại trạng thái các thẻ ở tab Tổng quan trước khi bắt đầu pipeline thật.</span></li>
+            <li><span class="sn">1</span><span>Thiết lập <code>Gemini</code> trước để toàn bộ các tab AI có thể hoạt động. Cần API Key từ <a class="ext-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">Gemini API</a>.</span></li>
+            <li><span class="sn">2</span><span>Đăng nhập <code>Google</code> — chỉ bấm Đăng nhập, không cần cấu hình Cloud Console.</span></li>
+            <li><span class="sn">3</span><span>Thiết lập <code>Email</code> nếu muốn gửi phiếu kết quả qua Gmail. Cần tạo App Password tại <a class="ext-link" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>.</span></li>
+            <li><span class="sn">4</span><span>Thiết lập <code>Zalo</code> nếu muốn gửi điểm qua Zalo Bot. Xem hướng dẫn tạo bot tại <a class="ext-link" href="https://bot.zapps.me/docs/create-bot" target="_blank" rel="noopener">bot.zapps.me/docs/create-bot</a>.</span></li>
+            <li><span class="sn">5</span><span>Thiết lập <code>Phiếu chấm</code> để thống nhất tên đơn vị trên mọi đầu ra.</span></li>
+            <li><span class="sn">6</span><span>Điều chỉnh <code>Giao diện</code> theo sở thích — bước cuối cùng, không ảnh hưởng dữ liệu.</span></li>
+            <li><span class="sn">7</span><span>Sau mỗi lần lưu, kiểm tra lại trạng thái các thẻ ở tab Tổng quan trước khi bắt đầu pipeline thật.</span></li>
           </ol>
           <div class="note note-tip">
             <div><strong>Mẹo kiểm tra nhanh</strong><p>Nếu một thẻ vẫn báo <code>✕ Chưa</code>, mở lại đúng hộp thoại <code>Thiết lập</code> của mục đó, kiểm tra kỹ từng trường và lưu lại một lần nữa.</p></div>
@@ -342,20 +358,20 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <!-- 3. XỬ LÝ TEX -->
     <article id="tex" class="sec-card">
       <span class="sec-tag orange">3. Xử lý TeX</span>
-      <h2>Tab Xử lý TeX — Xây dựng ngân hàng câu hỏi</h2>
+      <h2>Tab Xử lý TeX — Lọc nguồn và xây ngân hàng câu hỏi</h2>
       <div class="content-grid">
-        <figure><img src="assets/screenshots/xu-ly-tex.png" alt="Tab Xử lý TeX"><figcaption>Chuẩn hóa nguồn <code>.tex</code> và nạp vào ngân hàng câu hỏi.</figcaption></figure>
+        <figure><img src="assets/screenshots/xu-ly-tex.png" alt="Tab Xử lý TeX"><figcaption>Chuẩn hóa nguồn <code>.tex</code>, lọc và nạp vào ngân hàng câu hỏi dùng chung.</figcaption></figure>
         <div>
-          <p>Phân hệ này dùng để đọc file <code>.tex</code> nguồn, lọc câu hỏi theo tiêu chí và nhập vào ngân hàng dùng chung cho toàn bộ quy trình ra đề.</p>
+          <p>Phân hệ này dùng để đọc file <code>.tex</code> nguồn, kiểm tra ID, lọc câu hỏi theo tiêu chí và nạp vào ngân hàng dùng chung cho toàn bộ quy trình ra đề. Phía trên hiển thị 4 chỉ số: số tệp nguồn, số câu hợp lệ, số nhóm đang hiển thị và số câu đã chọn.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span><strong>Nạp file nguồn:</strong> nhấn <code>Chọn tệp...</code> và chọn file <code>.tex</code> chứa ngân hàng câu hỏi.</span></li>
-            <li><span class="sn">2</span><span><strong>Lọc câu hỏi:</strong> dùng bộ lọc theo <code>Loại</code>, <code>Dạng</code>, <code>Chủ đề</code> hoặc <code>ID</code>.</span></li>
-            <li><span class="sn">3</span><span><strong>Xem danh sách:</strong> kiểm tra câu nào hợp lệ, đang chọn hoặc cần chỉnh sửa.</span></li>
-            <li><span class="sn">4</span><span><strong>Xuất thử:</strong> dùng <code>Xuất .tex</code> để kiểm tra một nhóm câu trước khi nạp chính thức.</span></li>
-            <li><span class="sn">5</span><span><strong>Nạp vào ngân hàng:</strong> nhấn <code>Bổ sung vào ngân hàng...</code> để lưu vào thư mục ngân hàng dùng chung.</span></li>
+            <li><span class="sn">1</span><span><strong>Nạp tệp nguồn:</strong> nhấn <code>Chọn tệp...</code> và chọn file <code>.tex</code> chứa câu hỏi. Tên tệp hiển thị ở ô bên trái.</span></li>
+            <li><span class="sn">2</span><span><strong>Lọc câu hỏi:</strong> dùng bộ lọc theo <code>Loại</code> (Tất cả / TN / Đúng-Sai / ...), <code>Dạng</code> và <code>ID</code> (nhập trực tiếp, ví dụ: <code>1D7, 2H2H1</code>).</span></li>
+            <li><span class="sn">3</span><span><strong>Xem danh sách:</strong> bảng hiển thị các cột Câu hỏi, Loại, Dạng và Xem trước nội dung. Nhấn <code>Chọn tất cả</code> hoặc <code>Bỏ chọn</code> để quản lý lựa chọn hàng loạt.</span></li>
+            <li><span class="sn">4</span><span><strong>Xuất thử:</strong> nhấn <code>Xuất .tex</code> để xuất các câu đã chọn ra file thử nghiệm trước khi nạp chính thức.</span></li>
+            <li><span class="sn">5</span><span><strong>Nạp vào ngân hàng:</strong> nhấn <code>Bổ sung vào ngân hàng...</code> để lưu các câu hỏi hợp lệ vào thư mục ngân hàng dùng chung.</span></li>
           </ol>
           <div class="note note-tip">
-            <div><strong>Mẹo</strong><p>Ngân hàng càng phong phú và chuẩn hóa tốt, tab <code>Tạo đề thi</code> càng ít báo thiếu câu khi áp ma trận.</p></div>
+            <div><strong>Mẹo</strong><p>Ngân hàng càng phong phú và chuẩn hóa tốt, tab <code>Tạo đề thi</code> càng ít báo thiếu câu khi áp ma trận. Nên phân loại câu hỏi rõ ràng theo Loại và Dạng ngay từ file nguồn.</p></div>
           </div>
         </div>
       </div>
@@ -364,20 +380,21 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <!-- 4. TẠO ĐỀ THI -->
     <article id="exam" class="sec-card">
       <span class="sec-tag green">4. Tạo đề thi</span>
-      <h2>Tab Tạo đề thi — Sinh đề theo ma trận</h2>
+      <h2>Tab Tạo đề thi — Sinh đề từ ngân hàng và ma trận</h2>
       <div class="content-grid">
-        <figure><img src="assets/screenshots/tao-de-thi.png" alt="Tab Tạo đề thi"><figcaption>Nạp ngân hàng, áp ma trận và xuất nhiều mã đề cùng lúc.</figcaption></figure>
+        <figure><img src="assets/screenshots/tao-de-thi.png" alt="Tab Tạo đề thi"><figcaption>Nạp ngân hàng, áp ma trận Excel và xuất nhiều mã đề cùng lúc.</figcaption></figure>
         <div>
-          <p>Phân hệ ghép ngân hàng câu hỏi với ma trận đề để tạo ra bộ đề hoàn chỉnh, sẵn sàng phát hành.</p>
+          <p>Phân hệ ghép ngân hàng câu hỏi với ma trận đề để tạo ra bộ đề hoàn chỉnh gồm nhiều mã đề. Phía trên hiển thị 4 chỉ số: trạng thái Ngân hàng, trạng thái Ma trận, Khả năng sinh đề và số đề ở Đầu ra.</p>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span><strong>Nạp ngân hàng:</strong> chọn thư mục ngân hàng đã được chuẩn hóa.</span></li>
-            <li><span class="sn">2</span><span><strong>Nạp ma trận:</strong> chọn file Excel chứa ma trận đề thi.</span></li>
-            <li><span class="sn">3</span><span><strong>Khai báo tham số:</strong> nhập số mã đề, mức trộn câu và chế độ lấy câu (ngẫu nhiên / theo ID).</span></li>
-            <li><span class="sn">4</span><span><strong>Kiểm tra khả năng đáp ứng:</strong> ứng dụng báo ma trận có đủ câu hay đang thiếu ở phần nào.</span></li>
-            <li><span class="sn">5</span><span><strong>Tạo và xuất đề:</strong> nhấn <code>Tạo đề thi</code> rồi xuất ra file <code>.tex</code>.</span></li>
+            <li><span class="sn">1</span><span><strong>Nạp ngân hàng:</strong> nhấn <code>Chọn thư mục...</code> để chọn thư mục ngân hàng đã được chuẩn hóa từ tab Xử lý TeX.</span></li>
+            <li><span class="sn">2</span><span><strong>Nạp ma trận:</strong> nhấn <code>Chọn tệp...</code> để chọn file Excel <code>.xlsx</code> chứa ma trận đề thi. Có thể dùng <code>Tạo ma trận mẫu</code> để tải về file Excel mẫu, hoặc <code>Tạo ma trận từ đề thi</code> để tự động tạo ma trận từ một đề có sẵn.</span></li>
+            <li><span class="sn">3</span><span><strong>Khai báo mã chủ đề:</strong> ô <code>Mã chủ đề [ID6]</code> cho phép giới hạn hoặc lọc câu theo tiền tố ID.</span></li>
+            <li><span class="sn">4</span><span><strong>Khai báo tham số:</strong> nhập <code>Số đề</code>, mức <code>Trộn câu hỏi</code> và chọn <code>Chế độ lấy câu</code> (Ngẫu nhiên hoặc Theo ID).</span></li>
+            <li><span class="sn">5</span><span><strong>Kiểm tra:</strong> bảng hiển thị từng mã chủ đề cùng số câu yêu cầu và khả năng đáp ứng cho 4 loại: Trắc nghiệm, Đúng/Sai, Trả lời ngắn, Tự luận.</span></li>
+            <li><span class="sn">6</span><span><strong>Tạo và xuất đề:</strong> nhấn <code>Tạo đề thi</code> rồi <code>Xuất ra tệp .tex</code> để lưu các mã đề ra file.</span></li>
           </ol>
           <div class="note note-tip">
-            <div><strong>Mẹo</strong><p>Nếu ma trận báo thiếu câu, quay lại tab <code>Xử lý TeX</code> để bổ sung ngân hàng trước. Sau đó nhấn làm mới để kiểm tra lại.</p></div>
+            <div><strong>Mẹo</strong><p>Nếu bảng kiểm tra báo thiếu câu ở chủ đề nào, quay lại tab <code>Xử lý TeX</code> để bổ sung ngân hàng, sau đó làm mới lại tab Tạo đề thi để kiểm tra lại khả năng đáp ứng.</p></div>
           </div>
         </div>
       </div>
@@ -387,41 +404,50 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <article id="ai" class="sec-card">
       <span class="sec-tag orange">5. Nhóm AI</span>
       <h2>Soạn đề AI, Soạn thảo AI và Trợ lý AI</h2>
-      <p>MyTeX tích hợp Gemini AI vào 3 phân hệ riêng biệt, phục vụ 3 mục đích khác nhau. Tất cả đều yêu cầu Gemini đã được thiết lập ở tab <code>Tổng quan</code>.</p>
+      <p>MyTeX tích hợp Gemini AI vào 3 phân hệ riêng biệt, phục vụ 3 mục đích khác nhau. Tất cả đều yêu cầu Gemini đã được thiết lập ở tab <code>Tổng quan</code>. Góc trên mỗi tab hiển thị chỉ số Gemini (<code>Sẵn sàng</code> / <code>Chưa</code>) để xác nhận trạng thái trước khi chạy.</p>
       <div class="sub-grid">
+
+        <!-- Soạn đề AI -->
         <div class="sub-card">
           <h3>Soạn đề AI</h3>
-          <p style="font-size:.87rem;margin-bottom:10px;color:var(--text2)">Dùng khi muốn <strong style="color:var(--text)">chuyển ảnh thành LaTeX</strong> hoặc sinh câu hỏi mới theo chủ đề.</p>
-          <figure style="margin-bottom:10px"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Tab Soạn đề AI.</figcaption></figure>
+          <p style="font-size:.87rem;margin-bottom:10px;color:var(--text2)">Dùng khi muốn <strong style="color:var(--text)">chuyển ảnh thành LaTeX</strong> hoặc sinh câu hỏi mới theo chủ đề. Hỗ trợ 3 chế độ hoạt động.</p>
+          <figure style="margin-bottom:10px"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Tab Soạn đề AI — chọn chế độ, thêm ảnh và nhấn Chạy.</figcaption></figure>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Chọn chế độ phù hợp: <code>[A]</code> chuyển ảnh sang TeX, <code>[B]</code> sinh câu theo chủ đề, <code>[C]</code> bổ sung ngân hàng.</span></li>
-            <li><span class="sn">2</span><span>Thêm ảnh (kéo thả hoặc dán từ clipboard).</span></li>
-            <li><span class="sn">3</span><span>Điền chủ đề, số câu và mức độ khi cần.</span></li>
-            <li><span class="sn">4</span><span>Nhấn <code>Chạy</code>, kiểm tra kết quả và lưu file <code>.tex</code>.</span></li>
+            <li><span class="sn">1</span><span>Chọn <code>Chế độ</code>: <code>[A] Ảnh sang TeX</code> (chuyển ảnh câu hỏi thành LaTeX), <code>[B]</code> sinh câu theo chủ đề, hoặc <code>[C]</code> bổ sung thẳng vào ngân hàng.</span></li>
+            <li><span class="sn">2</span><span>Thêm ảnh bằng <code>Thêm ảnh...</code> hoặc <code>Dán ảnh</code> từ clipboard (<code>Ctrl+V</code>). Dùng <code>Xóa chọn</code> / <code>Xóa tất cả</code> để quản lý ảnh.</span></li>
+            <li><span class="sn">3</span><span>Điền thông tin bổ sung (chủ đề, số câu, mức độ) tùy theo chế độ đã chọn.</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Chạy</code> để Gemini xử lý. Theo dõi tiến trình trong phần <code>Nhật ký</code>.</span></li>
+            <li><span class="sn">5</span><span>Kiểm tra kết quả, sau đó nhấn <code>Lưu tệp .tex...</code> hoặc <code>Mở tệp</code> để xem file đã tạo.</span></li>
           </ol>
         </div>
+
+        <!-- Soạn thảo AI -->
         <div class="sub-card">
           <h3>Soạn thảo AI</h3>
-          <p style="font-size:.87rem;margin-bottom:10px;color:var(--text2)">Dùng khi muốn <strong style="color:var(--text)">biên tập LaTeX từ ảnh</strong> kết hợp ghi chú nhập tay.</p>
-          <figure style="margin-bottom:10px"><img src="assets/screenshots/soan-thao-ai.png" alt="Soạn thảo AI"><figcaption>Tab Soạn thảo AI.</figcaption></figure>
+          <p style="font-size:.87rem;margin-bottom:10px;color:var(--text2)">Dùng khi muốn <strong style="color:var(--text)">biên tập LaTeX từ ảnh kết hợp ghi chú nhập tay</strong>. Gemini sẽ ghép cả hai nguồn để tạo ra LaTeX hoàn chỉnh hơn.</p>
+          <figure style="margin-bottom:10px"><img src="assets/screenshots/soan-thao-ai.png" alt="Soạn thảo AI"><figcaption>Tab Soạn thảo AI — kết quả hiển thị song song Xem trước và Mã LaTeX.</figcaption></figure>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Thêm ảnh (kéo thả hoặc dán từ clipboard).</span></li>
-            <li><span class="sn">2</span><span>Nhập phần nội dung bổ sung ở ô <code>Nhập nội dung</code>.</span></li>
-            <li><span class="sn">3</span><span>Nhấn <code>Soạn thảo</code> để Gemini tạo LaTeX hoàn chỉnh.</span></li>
-            <li><span class="sn">4</span><span>Kiểm tra <code>Xem trước HTML</code>, rồi sao chép TeX hoặc HTML theo nhu cầu.</span></li>
+            <li><span class="sn">1</span><span>Thêm ảnh bằng <code>Thêm ảnh...</code> hoặc <code>Dán ảnh</code> (<code>Ctrl+V</code>). Ảnh có thể bỏ trống nếu chỉ nhập văn bản.</span></li>
+            <li><span class="sn">2</span><span>Nhập phần chữ rõ hơn, phần bị thiếu trong ảnh, hoặc ghi chú thêm vào ô <code>Nhập nội dung</code> bên phải.</span></li>
+            <li><span class="sn">3</span><span>Nhấn <code>Soạn thảo</code> để Gemini tạo LaTeX. Kết quả hiện ở hai cột: <code>Xem trước</code> (HTML) và <code>Mã LaTeX</code>.</span></li>
+            <li><span class="sn">4</span><span>Sao chép kết quả bằng <code>Sao chép TeX</code> hoặc <code>Sao chép HTML</code> theo nhu cầu.</span></li>
+            <li><span class="sn">5</span><span>Theo dõi quá trình xử lý trong phần <code>Nhật ký</code> bên dưới.</span></li>
           </ol>
         </div>
+
+        <!-- Trợ lý AI -->
         <div class="sub-card sub-full">
           <h3>Trợ lý AI</h3>
           <div class="content-grid" style="margin-top:0">
-            <figure><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><figcaption>Tab Trợ lý AI — chatbot nội bộ của MyTeX.</figcaption></figure>
+            <figure><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><figcaption>Tab Trợ lý AI — chatbot nội bộ, tự động tải hướng dẫn sử dụng.</figcaption></figure>
             <div>
-              <p style="font-size:.9rem;margin-bottom:10px;color:var(--text2)">Chatbot Gemini được tinh chỉnh để tư vấn trong phạm vi MyTeX. Tự động tải hướng dẫn sử dụng mới nhất từ website để đảm bảo trả lời đúng theo phiên bản hiện tại.</p>
+              <p style="font-size:.9rem;margin-bottom:10px;color:var(--text2)">Chatbot Gemini được tinh chỉnh để tư vấn trong phạm vi MyTeX. Phạm vi giới hạn ở <code>MyTeX</code> — trợ lý chỉ hỗ trợ các câu hỏi về thao tác, lỗi và quy trình liên quan MyTeX. Tự động tải hướng dẫn sử dụng mới nhất từ website (hiển thị <code>Hướng dẫn: Đã nạp</code>) để đảm bảo trả lời đúng theo phiên bản hiện tại.</p>
               <ol class="steps-list">
-                <li><span class="sn">1</span><span>Đặt câu hỏi bằng văn bản hoặc đính kèm ảnh chụp màn hình lỗi.</span></li>
-                <li><span class="sn">2</span><span>Nhấn <code>Enter</code> để gửi. Dùng <code>Shift+Enter</code> để xuống dòng.</span></li>
-                <li><span class="sn">3</span><span>Câu hỏi của bạn ở bên phải, phản hồi Gemini ở bên trái.</span></li>
-                <li><span class="sn">4</span><span>Mở <code>Hướng dẫn sử dụng</code> ngay trong tab để đối chiếu khi cần.</span></li>
+                <li><span class="sn">1</span><span>Đặt câu hỏi bằng văn bản trong ô <code>Soạn câu hỏi</code> bên dưới. Nhấn <code>Enter</code> để gửi, <code>Shift+Enter</code> để xuống dòng.</span></li>
+                <li><span class="sn">2</span><span>Đính kèm ảnh chụp màn hình lỗi bằng <code>Thêm ảnh...</code> hoặc <code>Dán ảnh</code> (<code>Ctrl+V</code>) trước khi nhấn <code>Gửi Gemini</code>.</span></li>
+                <li><span class="sn">3</span><span>Hội thoại hiển thị theo thời gian thực trong khu vực <code>Hội thoại</code> phía trên.</span></li>
+                <li><span class="sn">4</span><span>Nhấn <code>Mở User Guide</code> để mở tài liệu hướng dẫn này ngay trong ứng dụng để đối chiếu.</span></li>
+                <li><span class="sn">5</span><span>Nhấn <code>Xóa hội thoại</code> để bắt đầu cuộc trò chuyện mới.</span></li>
               </ol>
             </div>
           </div>
@@ -432,33 +458,43 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <!-- 6. GOOGLE FORM -->
     <article id="google" class="sec-card">
       <span class="sec-tag green">6. Google Form</span>
-      <h2>Tạo form, chấm bài và gửi kết quả</h2>
+      <h2>Tạo Google Form, chấm bài và gửi kết quả</h2>
+      <p>Tab Google Form có 2 phần chính: <code>Tạo Google Form</code> và <code>Chấm bài</code>. Góc trên hiển thị 4 chỉ số: trạng thái Tài khoản Google, số đề đã đồng bộ, số Phản hồi và Thao tác hiện tại. Yêu cầu đã đăng nhập Google ở tab Tổng quan.</p>
       <div class="sub-grid">
+
+        <!-- Tạo Google Form -->
         <div class="sub-card">
           <h3>Tạo Google Form</h3>
-          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-form.png" alt="Google Form — tạo đề"><figcaption>Khai báo đề và cài đặt điểm từng phần.</figcaption></figure>
+          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-form.png" alt="Google Form — tạo đề"><figcaption>Tab Tạo Google Form — khai báo đề và điểm từng phần.</figcaption></figure>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Chọn file <code>.tex</code> của đề thi.</span></li>
-            <li><span class="sn">2</span><span>Xem thống kê số câu theo từng loại (TN / Đúng-Sai / Trả lời ngắn / Tự luận).</span></li>
-            <li><span class="sn">3</span><span>Nhập tiêu đề bài kiểm tra, thời gian mở và thời gian đóng.</span></li>
-            <li><span class="sn">4</span><span>Nhập điểm tối đa cho từng phần (I, II, III, IV).</span></li>
-            <li><span class="sn">5</span><span>Nhấn <code>Tạo Google Form</code>. Liên kết form và mã QR sẽ được tạo tự động.</span></li>
+            <li><span class="sn">1</span><span>Nhấn <code>Chọn tệp .tex...</code> để chọn file đề thi. Ứng dụng tự đọc và thống kê số câu theo từng loại (TN, Đúng-Sai, TL ngắn, Tự luận).</span></li>
+            <li><span class="sn">2</span><span>Nhập <code>Tiêu đề Google Form</code> — mặc định lấy theo tên đề đã chọn.</span></li>
+            <li><span class="sn">3</span><span>Chọn thời gian <code>Mở đề</code> và <code>Đóng đề</code> — học sinh chỉ làm bài được trong khoảng thời gian này.</span></li>
+            <li><span class="sn">4</span><span>Nhập <code>Điểm từng phần</code>: Phần I (Trắc nghiệm), Phần II (Đúng-Sai), Phần III (Trả lời ngắn), Phần IV (Tự luận). Tổng điểm tự tính.</span></li>
+            <li><span class="sn">5</span><span>Nhấn <code>Tạo Google Form</code>. Ứng dụng tạo form trên Google, hiển thị liên kết và mã QR để chia sẻ cho học sinh.</span></li>
           </ol>
+          <div class="note note-tip" style="margin-top:10px">
+            <div><strong>Sau khi tạo</strong><p>Form được lưu trên Google Drive tài khoản đã đăng nhập. Liên kết form và mã QR dùng để chia sẻ cho học sinh làm bài trực tuyến.</p></div>
+          </div>
         </div>
+
+        <!-- Chấm bài -->
         <div class="sub-card">
           <h3>Chấm bài và gửi kết quả</h3>
-          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-cham-bai.png" alt="Google Form — chấm bài"><figcaption>Tổng hợp phản hồi, xem điểm và gửi phiếu kết quả.</figcaption></figure>
+          <figure style="margin-bottom:10px"><img src="assets/screenshots/google-cham-bai.png" alt="Google Form — chấm bài"><figcaption>Tab Chấm bài — tổng hợp phản hồi, xem điểm và gửi phiếu kết quả.</figcaption></figure>
           <ol class="steps-list">
-            <li><span class="sn">1</span><span>Nhấn <code>Làm mới danh sách đề</code> để cập nhật các đề thi đã tạo.</span></li>
-            <li><span class="sn">2</span><span>Chọn đề cần làm việc từ danh sách.</span></li>
-            <li><span class="sn">3</span><span>Nhấn <code>Tải phản hồi</code> để lấy bài làm học sinh từ Google Forms.</span></li>
-            <li><span class="sn">4</span><span>Chấm từng phản hồi hoặc nhấn <code>Chấm tất cả mới</code>.</span></li>
-            <li><span class="sn">5</span><span>Mở phiếu kết quả HTML, sau đó nhấn <code>Gửi Email</code> hoặc <code>Gửi Zalo</code> để phát điểm.</span></li>
+            <li><span class="sn">1</span><span>Nhấn <code>Làm mới danh sách</code> để đồng bộ danh sách đề thi từ Google Drive. Bảng hiển thị Tiêu đề, số câu theo loại, thời gian Mở/Đóng và số Phản hồi.</span></li>
+            <li><span class="sn">2</span><span>Chọn đề cần làm việc trong bảng <code>Danh sách đề thi</code>. Dùng <code>Sao chép URL</code> để lấy link form, <code>Xóa đề</code> để xóa form khỏi hệ thống.</span></li>
+            <li><span class="sn">3</span><span>Nhấn <code>Tải phản hồi</code> để lấy bài làm học sinh từ Google Forms về bảng <code>Phản hồi</code> (cột Họ tên, Lớp, STT/Mã, Thời gian nộp, Trạng thái, Điểm, Tệp).</span></li>
+            <li><span class="sn">4</span><span>Nhấn <code>Chấm tất cả mới</code> để chấm hàng loạt toàn bộ phản hồi chưa chấm, hoặc chọn từng phản hồi rồi nhấn <code>Chấm phản hồi chọn</code>.</span></li>
+            <li><span class="sn">5</span><span>Chọn <code>Mức chi tiết</code> phiếu kết quả: Chỉ điểm, Chi tiết đáp án hoặc Chi tiết đầy đủ.</span></li>
+            <li><span class="sn">6</span><span>Sau khi chấm xong, chọn học sinh cần gửi rồi nhấn <code>Gửi email</code> hoặc <code>Gửi Zalo</code> để phát phiếu kết quả.</span></li>
+            <li><span class="sn">7</span><span>Nhấn <code>Mở tệp kết quả</code> hoặc <code>Mở thư mục kết quả</code> để xem phiếu HTML đã xuất ra ổ cứng.</span></li>
           </ol>
         </div>
       </div>
       <div class="note note-warn" style="margin-top:14px">
-        <div><strong>Phần tự luận</strong><p>MyTeX hỗ trợ đủ 4 loại câu hỏi trong cùng một form. Phần tự luận sẽ được chấm bằng Gemini AI dựa trên thang điểm bạn đã khai báo khi tạo form. Kết quả chấm tự luận cần xem xét và có thể điều chỉnh trước khi gửi cho học sinh.</p></div>
+        <div><strong>Chấm tự luận bằng Gemini</strong><p>MyTeX hỗ trợ đủ 4 loại câu hỏi trong cùng một form. Phần tự luận được chấm tự động bằng Gemini AI dựa trên thang điểm đã khai báo khi tạo form (Phần IV). Kết quả chấm tự luận nên được xem xét và có thể điều chỉnh thủ công trước khi gửi cho học sinh. Yêu cầu Gemini đã được thiết lập.</p></div>
       </div>
     </article>
 
@@ -467,14 +503,15 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
       <span class="sec-tag green">7. Quy trình đầy đủ</span>
       <h2>Sử dụng MyTeX theo thứ tự ổn định nhất</h2>
       <ol class="steps-list">
-        <li><span class="sn">1</span><span>Vào <code>Tổng quan</code> — thiết lập Gemini, đăng nhập Google và cấu hình Email / Zalo nếu cần.</span></li>
-        <li><span class="sn">2</span><span>Dùng <code>Xử lý TeX</code> — đọc file nguồn, lọc và nạp câu hỏi vào ngân hàng dùng chung.</span></li>
-        <li><span class="sn">3</span><span>Dùng <code>Tạo đề thi</code> — áp ma trận Excel, kiểm tra đủ câu và xuất nhiều mã đề <code>.tex</code>.</span></li>
-        <li><span class="sn">4</span><span>(Tùy chọn) Dùng <code>Soạn đề AI</code> hoặc <code>Soạn thảo AI</code> để bổ sung câu hỏi mới hoặc chuyển đổi từ ảnh.</span></li>
-        <li><span class="sn">5</span><span>Dùng <code>Google Form</code> → <em>Tạo form</em> — chọn file <code>.tex</code>, khai báo điểm và nhấn tạo form.</span></li>
-        <li><span class="sn">6</span><span>Chia sẻ liên kết hoặc mã QR cho học sinh làm bài trực tuyến.</span></li>
-        <li><span class="sn">7</span><span>Dùng <code>Google Form</code> → <em>Chấm bài</em> — tải phản hồi, chấm tự động và chấm tự luận bằng Gemini.</span></li>
-        <li><span class="sn">8</span><span>Gửi phiếu điểm HTML kèm lời giải cho từng học sinh qua Email hoặc Zalo.</span></li>
+        <li><span class="sn">1</span><span>Vào <code>Tổng quan</code> — thiết lập Gemini (cần API Key tại <a class="ext-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">Gemini API</a>), đăng nhập Google, cấu hình Email (App Password tại <a class="ext-link" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>) và Zalo (xem <a class="ext-link" href="https://bot.zapps.me/docs/create-bot" target="_blank" rel="noopener">bot.zapps.me/docs/create-bot</a>) nếu cần.</span></li>
+        <li><span class="sn">2</span><span>Dùng <code>Xử lý TeX</code> — đọc file nguồn <code>.tex</code>, lọc theo Loại / Dạng / ID và nạp câu hỏi hợp lệ vào ngân hàng dùng chung.</span></li>
+        <li><span class="sn">3</span><span>Dùng <code>Tạo đề thi</code> — nạp ngân hàng và ma trận Excel, kiểm tra khả năng đáp ứng, khai báo số đề và xuất nhiều mã đề <code>.tex</code>.</span></li>
+        <li><span class="sn">4</span><span>(Tùy chọn) Dùng <code>Soạn đề AI</code> để chuyển ảnh câu hỏi thành LaTeX hoặc sinh câu hỏi mới, bổ sung vào ngân hàng.</span></li>
+        <li><span class="sn">5</span><span>(Tùy chọn) Dùng <code>Soạn thảo AI</code> để biên tập tài liệu LaTeX từ ảnh kết hợp ghi chú nhập tay.</span></li>
+        <li><span class="sn">6</span><span>Dùng <code>Google Form → Tạo Google Form</code> — chọn file <code>.tex</code>, khai báo thời gian và điểm từng phần, nhấn tạo form.</span></li>
+        <li><span class="sn">7</span><span>Chia sẻ liên kết hoặc mã QR cho học sinh làm bài trực tuyến trên Google Forms.</span></li>
+        <li><span class="sn">8</span><span>Dùng <code>Google Form → Chấm bài</code> — tải phản hồi, chấm tự động (TN, Đúng-Sai, TL ngắn) và chấm tự luận bằng Gemini AI.</span></li>
+        <li><span class="sn">9</span><span>Gửi phiếu điểm HTML kèm lời giải cho từng học sinh qua Email hoặc Zalo trực tiếp từ tab Chấm bài.</span></li>
       </ol>
     </article>
 
@@ -485,31 +522,49 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
       <div style="margin-top:14px">
         <details>
           <summary>Tôi có cần tự tạo Google Cloud Project và cấu hình OAuth không?</summary>
-          <p>Không. MyTeX đã tích hợp sẵn thông tin xác thực OAuth — bạn chỉ cần bấm <code>Đăng nhập</code> trong tab Tổng quan và đăng nhập bằng tài khoản Google của mình. Không cần tạo project, không cần Client ID hay Secret.</p>
+          <p>Không. MyTeX đã tích hợp sẵn thông tin xác thực OAuth — bạn chỉ cần bấm <code>Đăng nhập</code> trong tab Tổng quan (hoặc trong sidebar) và đăng nhập bằng tài khoản Google của mình. Không cần tạo project, không cần Client ID hay Secret.</p>
         </details>
         <details>
-          <summary>AI không chạy hoặc báo chưa sẵn sàng</summary>
-          <p>Hãy kiểm tra lại cấu hình Gemini ở tab Tổng quan. Trường hợp phổ biến nhất là chưa nhập API key, key hết hạn hoặc tên model không đúng. Nhấn <code>Kiểm tra</code> để xác nhận.</p>
+          <summary>Lấy Gemini API Key ở đâu? Có mất phí không?</summary>
+          <p>Gemini API Key miễn phí với hạn mức sử dụng hàng ngày đủ cho mục đích giảng dạy thông thường. Truy cập <a href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/api-key</a>, đăng nhập bằng Google Account và tạo key mới. Sau đó nhập key vào phần Thiết lập Gemini trong tab Tổng quan.</p>
+        </details>
+        <details>
+          <summary>Gmail yêu cầu mật khẩu gì để gửi email?</summary>
+          <p>Gmail không cho phép dùng mật khẩu tài khoản thông thường qua SMTP — bạn phải tạo <strong>Mật khẩu ứng dụng (App Password)</strong>. Các bước:</p>
+          <ol>
+            <li>Bật Xác minh 2 bước cho tài khoản Gmail tại <code>myaccount.google.com → Bảo mật</code>.</li>
+            <li>Truy cập <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>.</li>
+            <li>Tạo App Password mới (tên tùy đặt, ví dụ: "MyTeX"), Google cấp một mật khẩu 16 ký tự.</li>
+            <li>Nhập mật khẩu 16 ký tự này vào trường <code>Mật khẩu ứng dụng</code> trong Thiết lập Email của MyTeX.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>Làm sao để tạo Zalo Bot và lấy Bot Token?</summary>
+          <p>Xem hướng dẫn chi tiết tại <a href="https://bot.zapps.me/docs/create-bot" target="_blank" rel="noopener">bot.zapps.me/docs/create-bot</a>. Tóm tắt quy trình: đăng ký tài khoản Zalo Mini App, tạo bot mới, lấy Bot Token từ trang quản lý và nhập vào phần Thiết lập Zalo trong MyTeX. File <code>user_data.csv</code> cần chứa danh sách học sinh kèm Zalo ID để ghép khi gửi tin nhắn.</p>
+        </details>
+        <details>
+          <summary>AI không chạy hoặc báo "Chưa sẵn sàng"</summary>
+          <p>Kiểm tra lại cấu hình Gemini ở tab Tổng quan — thẻ Gemini phải hiển thị <code>✓ Đặt</code>. Các nguyên nhân phổ biến: chưa nhập API key, key hết hạn, tên model không đúng, hoặc hết hạn mức miễn phí. Nhấn <code>Kiểm tra</code> trong hộp thoại Thiết lập Gemini để xác nhận.</p>
         </details>
         <details>
           <summary>Tạo đề thi báo thiếu câu</summary>
-          <p>Ngân hàng hiện chưa đủ câu để đáp ứng ma trận. Quay lại tab <code>Xử lý TeX</code> để bổ sung, sau đó nhấn làm mới ở tab Tạo đề thi và kiểm tra lại.</p>
+          <p>Ngân hàng hiện chưa đủ câu để đáp ứng ma trận ở một hoặc nhiều chủ đề. Quay lại tab <code>Xử lý TeX</code> để bổ sung thêm câu hỏi cho chủ đề bị thiếu, sau đó quay lại tab Tạo đề thi và kiểm tra lại bảng khả năng đáp ứng.</p>
         </details>
         <details>
           <summary>Google Form không tạo được</summary>
-          <p>Kiểm tra: (1) đã đăng nhập tài khoản Google trong tab Tổng quan chưa, (2) kết nối Internet ổn định, (3) file <code>.tex</code> được chọn đúng và có dữ liệu hợp lệ. Nếu vẫn lỗi, thử đăng xuất và đăng nhập lại Google.</p>
+          <p>Kiểm tra theo thứ tự: (1) đã đăng nhập tài khoản Google trong tab Tổng quan chưa — thẻ Google phải báo <code>✓ Đặt</code>, (2) kết nối Internet ổn định, (3) file <code>.tex</code> được chọn đúng và có dữ liệu hợp lệ, (4) điểm từng phần đã nhập (tổng phải lớn hơn 0). Nếu vẫn lỗi, thử đăng xuất và đăng nhập lại Google.</p>
         </details>
         <details>
           <summary>Phần tự luận không chấm được hoặc điểm là 0</summary>
-          <p>Nguyên nhân thường gặp: (1) Gemini chưa sẵn sàng — kiểm tra API key, (2) bạn chưa nhập điểm cho phần tự luận khi tạo form — điểm phần IV phải lớn hơn 0, (3) câu trả lời của học sinh quá ngắn hoặc không liên quan.</p>
+          <p>Các nguyên nhân thường gặp: (1) Gemini chưa sẵn sàng — kiểm tra thẻ Gemini ở Tổng quan, (2) chưa nhập điểm cho Phần IV khi tạo form — điểm Phần IV phải lớn hơn 0, (3) câu trả lời của học sinh quá ngắn hoặc không liên quan đến câu hỏi.</p>
         </details>
         <details>
           <summary>Gửi email thất bại</summary>
-          <p>Kiểm tra cài đặt SMTP: đúng địa chỉ server, đúng cổng, đúng mật khẩu ứng dụng. Nếu dùng Gmail, phải dùng <em>App Password</em> (mật khẩu ứng dụng) thay vì mật khẩu tài khoản chính. Đảm bảo đã bật tính năng Xác minh 2 bước trên tài khoản Gmail trước khi tạo App Password.</p>
+          <p>Kiểm tra cài đặt SMTP: đúng địa chỉ server (<code>smtp.gmail.com</code>), đúng cổng (<code>587</code>), và đúng mật khẩu ứng dụng. Nếu dùng Gmail, phải dùng <em>App Password</em> (mật khẩu 16 ký tự) — <strong>không phải mật khẩu tài khoản chính</strong>. Tạo tại <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a>. Đảm bảo đã bật Xác minh 2 bước trước khi tạo App Password.</p>
         </details>
         <details>
           <summary>Phiếu kết quả HTML trông như thế nào?</summary>
-          <p>Phiếu kết quả HTML bao gồm: tên học sinh, điểm từng phần (Trắc nghiệm, Đúng/Sai, Trả lời ngắn, Tự luận), bảng đáp án chi tiết so sánh câu trả lời của học sinh với đáp án đúng, nhận xét của AI cho phần tự luận và logo/tên đơn vị theo cài đặt Phiếu chấm.</p>
+          <p>Phiếu kết quả HTML gồm: tên học sinh và tên đơn vị (theo cài đặt Phiếu chấm), điểm từng phần (TN, Đúng-Sai, TL ngắn, Tự luận), bảng đáp án chi tiết so sánh câu trả lời của học sinh với đáp án đúng, và nhận xét của Gemini AI cho phần tự luận. Mức chi tiết có thể điều chỉnh trong tab Chấm bài trước khi gửi.</p>
         </details>
         <details>
           <summary>Dữ liệu học sinh được lưu ở đâu?</summary>
@@ -540,11 +595,36 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
           <span class="sn" style="font-size:.65rem">fb</span>
           <span>Facebook: <a class="js-facebook" href="#" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600"></a></span>
         </li>
-        <li>
-          <span class="sn" style="font-size:.65rem">gh</span>
-          <span>GitHub: <a href="https://github.com/mytexvn" target="_blank" rel="noopener" style="color:var(--teal2);font-weight:600">github.com/mytexvn</a></span>
-        </li>
       </ul>
+
+      <div class="sub-grid" style="margin-top:18px">
+        <div class="sub-card">
+          <h3>Tài liệu tham khảo ngoài</h3>
+          <ul class="steps-list">
+            <li>
+              <span class="sn" style="font-size:.6rem">AI</span>
+              <span><strong>Gemini API Key:</strong> <a class="ext-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">ai.google.dev/gemini-api/docs/api-key</a></span>
+            </li>
+            <li>
+              <span class="sn" style="font-size:.6rem">📧</span>
+              <span><strong>Mật khẩu ứng dụng Gmail:</strong> <a class="ext-link" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a></span>
+            </li>
+            <li>
+              <span class="sn" style="font-size:.6rem">💬</span>
+              <span><strong>Tạo Zalo Bot:</strong> <a class="ext-link" href="https://bot.zapps.me/docs/create-bot" target="_blank" rel="noopener">bot.zapps.me/docs/create-bot</a></span>
+            </li>
+          </ul>
+        </div>
+        <div class="sub-card">
+          <h3>Nội dung hỗ trợ</h3>
+          <ul class="steps-list">
+            <li><span class="sn" style="font-size:.65rem">✓</span><span>Hướng dẫn cài đặt và cấu hình lần đầu</span></li>
+            <li><span class="sn" style="font-size:.65rem">✓</span><span>Xử lý lỗi trong quá trình sử dụng</span></li>
+            <li><span class="sn" style="font-size:.65rem">✓</span><span>Góp ý tính năng mới hoặc cải tiến</span></li>
+            <li><span class="sn" style="font-size:.65rem">✓</span><span>Hỗ trợ triển khai cho trường / cụm trường</span></li>
+          </ul>
+        </div>
+      </div>
     </article>
 
   </div><!-- end guide-content -->
@@ -574,11 +654,10 @@ details ul,details ol{padding-left:18px;display:grid;gap:4px}
     <div class="footer-col"><h4>Liên hệ</h4>
       <a class="js-email" href="#">—</a>
       <a class="js-facebook" href="#" target="_blank" rel="noopener">—</a>
-      <a href="https://github.com/mytexvn" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span> · Giấy phép GPL-3.0</p>
+    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span></p>
     <span class="footer-badge">Windows · macOS · Linux</span>
   </div>
 </div></footer>
