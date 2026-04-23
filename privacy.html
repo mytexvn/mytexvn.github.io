@@ -103,20 +103,54 @@ li{color:var(--text2);line-height:1.75}
 @media(max-width:760px){.header-inner{height:auto;padding:10px 0;align-items:flex-start}.site-nav{flex-wrap:wrap;justify-content:flex-end}.footer-inner{grid-template-columns:1fr 1fr;gap:22px}}
 @media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.services-grid{grid-template-columns:1fr}.sec-card{padding:20px 18px}.page-hero{padding:38px 0 26px}}
 @media(max-width:480px){.footer-inner{grid-template-columns:1fr}.wrap{width:min(100% - 28px,1160px)}}
+
+/* SYNCED HEADER/FOOTER FROM index.html */
+.site-header{position:sticky;top:0;z-index:100;background:#1a2d3d;border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.2)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:58px}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0;text-decoration:none}
+.brand-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand-icon img{width:24px;height:24px;object-fit:contain}
+.brand-text .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;letter-spacing:-.02em;display:block}
+.brand-text .tagline{font-size:.72rem;color:rgba(255,255,255,.42);font-weight:500;display:block;margin-top:1px}
+.site-nav{display:flex;align-items:center;gap:1px}
+.site-nav a{padding:7px 13px;border-radius:8px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.58);transition:color .18s,background .18s;white-space:nowrap}
+.site-nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.site-nav a.active{color:#2bb5a0;background:rgba(43,181,160,.14)}
+.nav-dl{padding:8px 18px!important;background:#2bb5a0!important;color:#1a2d3d!important;border-radius:9px!important;font-weight:700!important;font-size:.88rem!important;margin-left:8px;display:inline-flex!important;align-items:center;gap:6px;transition:background .18s,transform .15s!important}
+.nav-dl:hover{background:#239e8c!important;transform:translateY(-1px)}
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:52px 0 36px;background:#1a2d3d}
+.footer-inner{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:44px}
+.footer-brand .brand{margin-bottom:14px}
+.footer-brand>p{font-size:.87rem;max-width:30ch;color:rgba(255,255,255,.38);line-height:1.65}
+.footer-col h4{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.28);margin-bottom:14px}
+.footer-col a{display:block;font-size:.9rem;color:rgba(255,255,255,.52);font-weight:500;padding:3px 0;transition:color .18s}
+.footer-col a:hover{color:#2bb5a0}
+.footer-bottom{margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:.83rem;color:rgba(255,255,255,.28)}
+.footer-bottom a{color:rgba(255,255,255,.48);font-weight:600;transition:color .18s}
+.footer-bottom a:hover{color:#2bb5a0}
+.footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:#2bb5a0}
+.footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#2bb5a0}
+@media(max-width:960px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
+/* END SYNCED HEADER/FOOTER */
 </style>
 </head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
-  <a class="brand" href="index.html" aria-label="MyTeX home">
+  <a class="brand" href="index.html">
     <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
   </a>
-  <nav class="site-nav" aria-label="Điều hướng chính">
-    <a href="index.html">Giới thiệu</a>
+  <nav class="site-nav">
+    <a href="index.html" class="active">Giới thiệu</a>
     <a href="index.html#modules">Phân hệ</a>
     <a href="user-guide.html">Hướng dẫn</a>
-    <a href="privacy.html" class="active" aria-current="page">Bảo mật</a>
-    <a class="nav-dl" href="index.html#download"><svg viewBox="0 0 16 16" fill="none" width="14" height="14" aria-hidden="true"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tải về</a>
+    <a href="privacy.html">Bảo mật</a>
+    <a class="nav-dl" href="#download">
+      <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Tải về
+    </a>
   </nav>
 </div></header>
 
@@ -138,7 +172,7 @@ li{color:var(--text2);line-height:1.75}
     <article class="sec-card">
       <h2><span class="num">1</span>Phạm vi áp dụng</h2>
       <p>Chính sách này áp dụng cho website <strong>mytex.app</strong> và ứng dụng desktop <strong>MyTeX</strong>.</p>
-      <p>Website MyTeX cung cấp thông tin, hướng dẫn sử dụng, chính sách bảo mật và liên kết tải về. Ứng dụng desktop MyTeX hỗ trợ xử lý TeX, tạo đề, dùng AI, tạo Google Form, đọc phản hồi, chấm bài và gửi kết quả cho người dùng.</p>
+      <p>Website MyTeX cung cấp thông tin, hướng dẫn sử dụng, chính sách bảo mật và liên kết tải về. Ứng dụng desktop MyTeX hỗ trợ xử lý TeX, tạo đề, dùng AI, tạo Google Form, mở Đấu trường trong mạng LAN, đọc phản hồi, chấm bài và gửi kết quả cho người dùng.</p>
     </article>
 
     <article class="sec-card">
@@ -148,7 +182,7 @@ li{color:var(--text2);line-height:1.75}
         <li>Cấu hình ứng dụng, bao gồm cấu hình Gemini, Google, Email và Zalo nếu người dùng tự thiết lập.</li>
         <li>Trạng thái giao diện, tùy chọn người dùng và trạng thái phiên làm việc.</li>
         <li>File đề, file TeX, kết quả sinh đề, phiếu chấm HTML, dữ liệu phản hồi và metadata chấm bài.</li>
-        <li>Ảnh đầu vào, nội dung câu hỏi, bài làm học sinh hoặc dữ liệu tạm trong các tab AI nếu người dùng sử dụng các tính năng này.</li>
+        <li>Ảnh đầu vào, nội dung câu hỏi, bài làm học sinh, đáp án Đấu trường hoặc dữ liệu tạm trong các tab AI nếu người dùng sử dụng các tính năng này.</li>
         <li>Token xác thực hoặc dữ liệu phiên làm việc cần thiết để duy trì tích hợp Google, nếu người dùng đăng nhập và cấp quyền.</li>
       </ul>
       <p>MyTeX không yêu cầu người dùng nhập mật khẩu Google trực tiếp trong ứng dụng.</p>
@@ -160,11 +194,15 @@ li{color:var(--text2);line-height:1.75}
       <div class="services-grid">
         <div class="service-tile">
           <h3>Gemini</h3>
-          <p>Khi người dùng sử dụng các tính năng AI như <code>Soạn đề AI</code>, <code>Soạn thảo AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận, nội dung nhập, ảnh câu hỏi, bài làm và tiêu chí chấm có thể được gửi tới Gemini để xử lý yêu cầu.</p>
+          <p>Khi người dùng sử dụng các tính năng AI như <code>Soạn đề AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận, nội dung nhập, ảnh câu hỏi, bài làm và tiêu chí chấm có thể được gửi tới Gemini để xử lý yêu cầu.</p>
         </div>
         <div class="service-tile">
           <h3>Google</h3>
           <p>Khi người dùng sử dụng tab <code>Google Form</code> hoặc các chức năng Google liên quan, MyTeX có thể làm việc với Google Forms, Google Drive hoặc các Google API cần thiết để tạo form, quản lý form, đọc phản hồi và đồng bộ dữ liệu bài kiểm tra.</p>
+        </div>
+        <div class="service-tile">
+          <h3>Đấu trường</h3>
+          <p>Khi người dùng mở <code>Đấu trường</code>, MyTeX chạy máy chủ nội bộ trên máy tính giáo viên để học sinh trong cùng mạng LAN/hotspot truy cập, xem câu hỏi và gửi đáp án. Dữ liệu phiên đấu trường được xử lý trong mạng nội bộ của người dùng.</p>
         </div>
         <div class="service-tile">
           <h3>Email</h3>
@@ -259,13 +297,13 @@ li{color:var(--text2);line-height:1.75}
 <footer class="site-footer"><div class="wrap">
   <div class="footer-inner">
     <div class="footer-brand">
-      <a class="brand" href="index.html" aria-label="MyTeX home">
+      <a class="brand" href="index.html">
         <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
       </a>
-      <p>Bộ công cụ desktop cho TeX, đề thi, AI và Google Form.</p>
+      <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>
-    <div class="footer-col"><h4>Ứng dụng</h4>
+    <div class="footer-col"><h4>Sản phẩm</h4>
       <a href="index.html">Giới thiệu</a>
       <a href="index.html#modules">Phân hệ</a>
       <a href="index.html#download">Tải về</a>
@@ -275,12 +313,13 @@ li{color:var(--text2);line-height:1.75}
       <a href="privacy.html">Chính sách bảo mật</a>
     </div>
     <div class="footer-col"><h4>Liên hệ</h4>
-      <a class="js-email" href="mailto:nghai.math@gmail.com">nghai.math@gmail.com</a>
-      <a class="js-facebook" href="https://www.facebook.com/hoanghai.math" target="_blank" rel="noopener">Facebook</a>
+      <a class="js-email" href="#">—</a>
+      <a class="js-facebook" href="#" target="_blank" rel="noopener">—</a>
+      <a href="https://www.youtube.com/watch?v=F-5TN2JQ-nQ" target="_blank" rel="noopener">YouTube</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© <span class="js-year">2026</span> MyTeX · <span class="js-author">Nguyễn Hoàng Hải</span> · <a class="js-email" href="mailto:nghai.math@gmail.com">nghai.math@gmail.com</a></p>
+    <p>© <span class="js-year"></span> MyTeX · <span class="js-author"></span></p>
     <span class="footer-badge">Windows · macOS · Linux</span>
   </div>
 </div></footer>

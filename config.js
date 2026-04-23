@@ -17,7 +17,7 @@
 // ║  config.js — Chỉnh tại đây để đồng bộ toàn website    ║
 // ╚═══════════════════════════════════════════════════════╝
 const SITE = {
-  app:    { name: 'MyTeX', tagline: 'Desktop suite · TeX · AI · Google Form' },
+  app:    { name: 'MyTeX', tagline: 'Desktop suite · TeX · AI · Google Form · Đấu trường' },
   author: { name: 'Nguyễn Hoàng Hải', email: 'nghai.math@gmail.com',
             facebook: 'https://www.facebook.com/nhhai.math',
             github:   'https://github.com/mytexvn' },
