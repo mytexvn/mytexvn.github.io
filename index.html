@@ -18,8 +18,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MyTeX — Nền tảng desktop: TeX · Đề thi · AI · Google Form · Đấu trường</title>
-<meta name="description" content="MyTeX là ứng dụng desktop giúp giáo viên chuẩn hóa dữ liệu TeX, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận, dùng Gemini AI, tạo Google Form và mở đấu trường trả lời trực tiếp qua điện thoại.">
+<title>MyTeX — TeX · Word · Đề thi · AI · Google Form · Đấu trường</title>
+<meta name="description" content="MyTeX là ứng dụng desktop giúp giáo viên chuẩn hóa dữ liệu TeX, sinh đề theo ma trận, chuyển TeX sang Word, dùng Gemini AI, tạo Google Form và mở đấu trường trả lời trực tiếp qua điện thoại.">
 <link rel="icon" href="assets/iconMyTeX.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,7 +169,7 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="index.html">
     <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
     <a href="index.html" class="active">Giới thiệu</a>
@@ -190,8 +190,8 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
   <div>
     <div class="hero-eyebrow">MyTeX Desktop Suite</div>
     <h1>Một ứng dụng —<br><em>trọn bộ quy trình ra đề</em></h1>
-    <p class="hero-desc">Từ chuẩn hóa nguồn <code>.tex</code>, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận đến phát hành bài kiểm tra trực tuyến và chấm điểm tự động — MyTeX gộp tất cả vào một giao diện duy nhất.</p>
-    <p class="hero-sub">Hỗ trợ Gemini AI · Google Forms · Đấu trường LAN · Email · Zalo · Windows · macOS · Linux</p>
+    <p class="hero-desc">Từ chuẩn hóa nguồn <code>.tex</code>, xây dựng ngân hàng câu hỏi, sinh đề theo ma trận, chuyển TeX sang Word đến phát hành bài kiểm tra trực tuyến và chấm điểm tự động — MyTeX gộp tất cả vào một giao diện duy nhất.</p>
+    <p class="hero-sub">TeX to DoC · Gemini AI · Google Forms · Đấu trường LAN · Email · Zalo · Windows · macOS · Linux</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#download">
         <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -209,6 +209,7 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
       <div class="slide-item"><img src="assets/screenshots/tong-quan.png" alt="Tổng quan"><div class="slide-caption">Tổng quan — bảng điều phối trung tâm và cấu hình tích hợp</div></div>
       <div class="slide-item"><img src="assets/screenshots/xu-ly-tex.png" alt="Xử lý TeX"><div class="slide-caption">Xử lý TeX — chuẩn hóa nguồn đề và xây dựng ngân hàng câu hỏi</div></div>
       <div class="slide-item"><img src="assets/screenshots/tao-de-thi.png" alt="Tạo đề thi"><div class="slide-caption">Tạo đề thi — áp ma trận và xuất nhiều mã đề cùng lúc</div></div>
+      <div class="slide-item"><img src="assets/screenshots/tex-to-doc.png" alt="TeX to DoC"><div class="slide-caption">TeX to DoC — chuyển tài liệu TeX sang Word và giữ hình TikZ đúng vị trí</div></div>
       <div class="slide-item"><img src="assets/screenshots/dau-truong.png" alt="Đấu trường"><div class="slide-caption">Đấu trường — phát câu hỏi trực tiếp và thu đáp án qua điện thoại</div></div>
       <div class="slide-item"><img src="assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><div class="slide-caption">Soạn đề AI — chuyển ảnh thành mã LaTeX hoặc sinh câu hỏi mới</div></div>
       <div class="slide-item"><img src="assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><div class="slide-caption">Trợ lý AI — hỗ trợ thao tác và giải đáp trong phạm vi MyTeX</div></div>
@@ -223,7 +224,7 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 <section class="stats-section"><div class="wrap"><div class="stats-grid">
   <div class="stat-card">
     <span class="stat-value">7</span>
-    <p class="stat-label">màn hình làm việc chính, dữ liệu liên thông xuyên suốt</p>
+    <p class="stat-label">phân hệ chuyên môn ngoài Tổng quan, dữ liệu liên thông xuyên suốt</p>
   </div>
   <div class="stat-card">
     <span class="stat-value">4</span>
@@ -245,14 +246,14 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
   <div class="section-head">
     <span class="pill">Năng lực cốt lõi</span>
     <h2>Từ nguồn TeX đến kết quả học sinh — không cần rời khỏi ứng dụng</h2>
-    <p>MyTeX được tổ chức theo 7 màn hình làm việc rõ vai trò. Người dùng mới có thể bắt đầu từng bước, trong khi dữ liệu vẫn được quản lý thống nhất từ đầu đến cuối.</p>
+    <p>MyTeX được tổ chức theo Tổng quan và 7 phân hệ chuyên môn rõ vai trò. Người dùng mới có thể bắt đầu từng bước, trong khi dữ liệu vẫn được quản lý thống nhất từ đầu đến cuối.</p>
   </div>
   <div class="modules-grid">
     <article class="mod-card">
       <span class="mod-badge g">Tổng quan</span>
       <h3>Bảng điều phối trung tâm</h3>
-      <p>Kiểm tra trạng thái tất cả tích hợp, cấu hình Gemini, Google, Email, Zalo và giao diện — tất cả trước khi bắt đầu pipeline thật.</p>
-      <ul><li>Theo dõi sẵn sàng từng dịch vụ</li><li>Đăng nhập / đổi tài khoản Google</li><li>Tùy chỉnh theme và font chữ</li></ul>
+      <p>Kiểm tra trạng thái đăng nhập MyTeX, Gemini, Google, Email, Zalo và giao diện — tất cả trước khi bắt đầu pipeline thật.</p>
+      <ul><li>Theo dõi sẵn sàng từng dịch vụ</li><li>Đăng nhập / đổi tài khoản MyTeX</li><li>Tùy chỉnh theme và font chữ</li></ul>
     </article>
     <article class="mod-card">
       <span class="mod-badge o">Xử lý TeX</span>
@@ -267,10 +268,10 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
       <ul><li>Nạp ma trận từ Excel</li><li>Cảnh báo nếu ngân hàng thiếu câu</li><li>Biên dịch PDF trực tiếp</li></ul>
     </article>
     <article class="mod-card">
-      <span class="mod-badge o">Soạn đề AI</span>
-      <h3>Biên soạn và chuyển đổi bằng Gemini</h3>
-      <p>Chuyển ảnh bài tập thành mã LaTeX, sinh câu hỏi mới theo chủ đề và mức độ mong muốn, hoặc bổ sung nội dung vào ngân hàng hiện có.</p>
-      <ul><li>Image-to-TeX từ ảnh chụp</li><li>Sinh câu hỏi theo chủ đề / số lượng</li><li>Xuất file .tex để dùng tiếp trong pipeline</li></ul>
+      <span class="mod-badge o">TeX to DoC</span>
+      <h3>Chuyển TeX sang Word</h3>
+      <p>Xuất tài liệu <code>.tex</code> sang <code>.docx</code>, render <code>tikzpicture</code> và bảng phức tạp thành ảnh rồi chèn lại đúng vị trí trong Word.</p>
+      <ul><li>Xuất file Word từ nguồn TeX</li><li>Render TikZ bằng standalone</li><li>Giữ bố cục hình/bảng khi chèn vào .docx</li></ul>
     </article>
     <article class="mod-card">
       <span class="mod-badge g">Google Form</span>
@@ -285,10 +286,16 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
       <ul><li>Trắc nghiệm, Đúng/Sai, trả lời ngắn</li><li>Mã QR và liên kết học sinh</li><li>Thống kê và bảng điểm tức thời</li></ul>
     </article>
     <article class="mod-card">
+      <span class="mod-badge o">Soạn đề AI</span>
+      <h3>Biên soạn và chuyển đổi bằng Gemini</h3>
+      <p>Chuyển ảnh bài tập thành mã LaTeX, sinh câu hỏi mới theo chủ đề và mức độ mong muốn, hoặc bổ sung nội dung vào ngân hàng hiện có.</p>
+      <ul><li>Image-to-TeX từ ảnh chụp</li><li>Sinh câu hỏi theo chủ đề / số lượng</li><li>Xuất file .tex để dùng tiếp trong pipeline</li></ul>
+    </article>
+    <article class="mod-card">
       <span class="mod-badge g">Trợ lý AI</span>
       <h3>Hỏi đáp thao tác MyTeX</h3>
       <p>Trợ lý nội bộ dùng Gemini để hỗ trợ lỗi, quy trình và thao tác trong phạm vi MyTeX, có thể nhận thêm ảnh màn hình làm ngữ cảnh.</p>
-      <ul><li>Hỏi đáp bằng văn bản</li><li>Phân tích ảnh chụp lỗi</li><li>Dựa trên tài liệu hướng dẫn mới nhất</li></ul>
+      <ul><li>Hỏi đáp bằng văn bản</li><li>Phân tích ảnh chụp lỗi</li><li>Nạp toàn bộ tài liệu HTML trong docs</li></ul>
     </article>
   </div>
 </div></section>
@@ -367,8 +374,8 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
     <p>Lộ trình ngắn giúp người dùng mới làm quen nhanh mà không bỏ sót bước nào:</p>
     <ul class="tip-list">
       <li>Tải đúng bản phát hành theo hệ điều hành và giải nén vào thư mục cố định.</li>
-      <li>Đọc <a href="user-guide.html">hướng dẫn sử dụng</a> — đặc biệt phần cấu hình Gemini và Google.</li>
-      <li>Vào tab <code>Tổng quan</code>, thiết lập Gemini AI rồi đăng nhập tài khoản Google.</li>
+      <li>Đọc <a href="user-guide.html">hướng dẫn sử dụng</a> — đặc biệt phần đăng nhập MyTeX, Gemini và Google Form.</li>
+      <li>Vào tab <code>Tổng quan</code>, đăng nhập MyTeX rồi thiết lập Gemini AI nếu dùng các tính năng AI.</li>
       <li>Thử tạo 1 đề nhỏ và 1 Google Form để xác nhận toàn bộ pipeline hoạt động.</li>
       <li>Dùng <code>Trợ lý AI</code> ngay trong app khi cần hỏi về thao tác cụ thể.</li>
     </ul>
@@ -383,7 +390,7 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
     <div class="footer-brand">
       <a class="brand" href="index.html">
         <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>

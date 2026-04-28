@@ -2,10 +2,9 @@
 <!--
   Tên file: login.html
 
-  Mô tả: Trang thông báo xác thực Google OAuth thành công — hiển thị
-          sau khi người dùng hoàn tất đăng nhập Google trong ứng dụng
-          MyTeX. Trang được mở trên trình duyệt và tự động đóng sau
-          khi xác nhận.
+  Mô tả: Trang đăng nhập MyTeX qua Firebase Auth / Google provider.
+          Ứng dụng desktop phục vụ trang này cục bộ rồi nhận lại token
+          qua callback localhost sau khi người dùng cấp quyền.
 
   Dự án: MyTeX
   Tác giả: Nguyễn Hoàng Hải
@@ -116,14 +115,14 @@
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="index.html">
     <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
     <a href="index.html" class="active">Giới thiệu</a>
     <a href="index.html#modules">Phân hệ</a>
     <a href="user-guide.html">Hướng dẫn</a>
     <a href="privacy.html">Bảo mật</a>
-    <a class="nav-dl" href="#download">
+    <a class="nav-dl" href="index.html#download">
       <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Tải về
     </a>
@@ -148,7 +147,7 @@
     <div class="footer-brand">
       <a class="brand" href="index.html">
         <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>
@@ -174,11 +173,121 @@
 </div></footer>
 
 <script src="config.js"></script>
+<script type="module">
+    const params = new URLSearchParams(window.location.search);
+    const callbackUrl = params.get("callback");
+
+    if (callbackUrl) {
+        const firebaseConfig = {
+            apiKey: "AIzaSyCZ_uiObOiXWue6iyoTBJcLSUmYhucwdTc",
+            authDomain: "mytex-6fa9c.firebaseapp.com",
+            projectId: "mytex-6fa9c",
+            storageBucket: "mytex-6fa9c.firebasestorage.app",
+            messagingSenderId: "695082674240",
+            appId: "1:695082674240:web:fce5e885478cfbf45a97a5",
+            measurementId: "G-86M9QB8NC7"
+        };
+        const scopes = [
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.appdata",
+            "https://www.googleapis.com/auth/forms.body",
+            "https://www.googleapis.com/auth/forms.responses.readonly"
+        ];
+
+        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
+        const {
+            getAuth,
+            signInWithPopup,
+            GoogleAuthProvider
+        } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js");
+
+        const card = document.querySelector(".auth-card");
+        const title = card?.querySelector("h1");
+        const message = card?.querySelector("p");
+        const badge = card?.querySelector(".auth-badge");
+
+        function setState(heading, text, badgeText) {
+            if (title) title.textContent = heading;
+            if (message) message.textContent = text;
+            if (badge) badge.textContent = badgeText;
+        }
+
+        async function postResult(payload) {
+            const response = await fetch(callbackUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+        }
+
+        setState(
+            "Đăng nhập MyTeX",
+            "Bấm nút bên dưới để đăng nhập MyTeX và cấp quyền Drive/Forms.",
+            "MyTeX"
+        );
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "Đăng nhập bằng Google";
+        button.style.cssText = "margin-top:24px;width:100%;min-height:44px;border:0;border-radius:10px;background:#2bb5a0;color:#1a2d3d;font-weight:800;cursor:pointer";
+        card?.appendChild(button);
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        scopes.forEach((scope) => provider.addScope(scope));
+
+        button.addEventListener("click", async () => {
+            button.disabled = true;
+            button.textContent = "Đang đăng nhập...";
+            setState("Đang xác thực", "Vui lòng hoàn tất đăng nhập trong cửa sổ Google.", "Đang xử lý");
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const firebaseIdToken = await result.user.getIdToken(true);
+                await postResult({
+                    ok: true,
+                    googleAccessToken: credential && credential.accessToken,
+                    firebaseIdToken,
+                    firebaseRefreshToken: result.user.refreshToken,
+                    uid: result.user.uid,
+                    email: result.user.email || "",
+                    displayName: result.user.displayName || "",
+                    photoURL: result.user.photoURL || "",
+                    providerId: "google.com",
+                    scopes
+                });
+                button.remove();
+                setState("Xác thực thành công", "Bạn có thể đóng cửa sổ này và quay lại ứng dụng MyTeX.", "Đã kết nối");
+            } catch (error) {
+                const messageText = error && error.message ? error.message : String(error);
+                try {
+                    const errorPage = await fetch(`login-error.html?message=${encodeURIComponent(messageText)}`);
+                    document.open();
+                    document.write(await errorPage.text());
+                    document.close();
+                } catch (_) {
+                    setState("Xác thực thất bại", `Đăng nhập MyTeX không thành công. Chi tiết: ${messageText}`, "Chưa kết nối");
+                }
+                await postResult({
+                    ok: false,
+                    code: error && error.code,
+                    message: messageText
+                }).catch(() => undefined);
+            }
+        });
+    }
+</script>
 <script>
     window.onload = function() {
-        setTimeout(function() {
-            window.location.href = "mytex://auth-complete";
-        }, 300);
+        if (!new URLSearchParams(window.location.search).get("callback")) {
+            setTimeout(function() {
+                window.location.href = "mytex://auth-complete";
+            }, 300);
+        }
     };
 </script>
 

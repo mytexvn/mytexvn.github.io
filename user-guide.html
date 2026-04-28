@@ -14,7 +14,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hướng dẫn sử dụng — MyTeX</title>
-<meta name="description" content="Hướng dẫn sử dụng MyTeX: Tổng quan, Xử lý TeX, Tạo đề thi, Google Form, Đấu trường, Soạn đề AI và Trợ lý AI.">
+<meta name="description" content="Hướng dẫn sử dụng MyTeX: Tổng quan, Xử lý TeX, Tạo đề thi, TeX to DoC, Google Form, Đấu trường, Soạn đề AI và Trợ lý AI.">
 <link rel="icon" href="assets/iconMyTeX.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,14 +114,14 @@ footer p{color:rgba(255,255,255,.58)}
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="index.html">
     <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
-    <a href="index.html" class="active">Giới thiệu</a>
+    <a href="index.html">Giới thiệu</a>
     <a href="index.html#modules">Phân hệ</a>
-    <a href="user-guide.html">Hướng dẫn</a>
+    <a href="user-guide.html" class="active">Hướng dẫn</a>
     <a href="privacy.html">Bảo mật</a>
-    <a class="nav-dl" href="#download">
+    <a class="nav-dl" href="index.html#download">
       <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Tải về
     </a>
@@ -133,7 +133,7 @@ footer p{color:rgba(255,255,255,.58)}
   <div>
     <span class="pill">User Guide</span>
     <h1>Hướng dẫn sử dụng MyTeX</h1>
-    <p class="lead">Tài liệu này mô tả đúng cấu trúc hiện tại của MyTeX: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Google Form</code>, <code>Đấu trường</code>, <code>Soạn đề AI</code> và <code>Trợ lý AI</code>. Trợ lý AI trong ứng dụng cũng dùng tài liệu này làm nguồn tham khảo thao tác.</p>
+    <p class="lead">Tài liệu này mô tả đúng cấu trúc hiện tại của MyTeX: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>TeX to DoC</code>, <code>Google Form</code>, <code>Đấu trường</code>, <code>Soạn đề AI</code> và <code>Trợ lý AI</code>. Trợ lý AI trong ứng dụng nạp toàn bộ tài liệu HTML trong <code>docs</code> làm nguồn tham khảo thao tác.</p>
     <div class="btn-row">
       <a class="btn primary" href="#workflow">Quy trình khuyến nghị</a>
       <a class="btn" href="#arena">Đấu trường</a>
@@ -150,11 +150,12 @@ footer p{color:rgba(255,255,255,.58)}
     <a href="#overview"><span class="num">2</span>Tổng quan</a>
     <a href="#tex"><span class="num">3</span>Xử lý TeX</a>
     <a href="#exam"><span class="num">4</span>Tạo đề</a>
-    <a href="#google"><span class="num">5</span>Google Form</a>
-    <a href="#arena"><span class="num">6</span>Đấu trường</a>
-    <a href="#ai"><span class="num">7</span>Nhóm AI</a>
-    <a href="#workflow"><span class="num">8</span>Quy trình</a>
-    <a href="#faq"><span class="num">9</span>FAQ</a>
+    <a href="#texdoc"><span class="num">5</span>TeX to DoC</a>
+    <a href="#google"><span class="num">6</span>Google Form</a>
+    <a href="#arena"><span class="num">7</span>Đấu trường</a>
+    <a href="#ai"><span class="num">8</span>Nhóm AI</a>
+    <a href="#workflow"><span class="num">9</span>Quy trình</a>
+    <a href="#faq"><span class="num">10</span>FAQ</a>
   </aside>
 
   <div class="content">
@@ -163,10 +164,11 @@ footer p{color:rgba(255,255,255,.58)}
       <h2>Chuẩn bị trước khi dùng</h2>
       <p>Sau khi tải đúng bản phát hành, mở MyTeX và vào <code>Tổng quan</code> để kiểm tra các tích hợp. Với bản đóng gói, người dùng phổ thông không cần cài Python.</p>
       <ul class="steps">
-        <li><span class="num">1</span><span><strong>Gemini:</strong> cần cho <code>Soạn đề AI</code>, <code>Trợ lý AI</code> và chấm tự luận.</span></li>
-        <li><span class="num">2</span><span><strong>Google:</strong> cần cho tạo Google Form, đọc phản hồi và đồng bộ dữ liệu đề.</span></li>
-        <li><span class="num">3</span><span><strong>Email/Zalo:</strong> chỉ cần khi muốn gửi phiếu kết quả cho học sinh.</span></li>
-        <li><span class="num">4</span><span><strong>Phiếu chấm:</strong> nhập tên đơn vị hiển thị trên phiếu kết quả.</span></li>
+        <li><span class="num">1</span><span><strong>Đăng nhập MyTeX:</strong> dùng Google provider qua Firebase Auth, bắt buộc trước khi vào phiên làm việc chính.</span></li>
+        <li><span class="num">2</span><span><strong>Gemini:</strong> cần cho <code>Soạn đề AI</code>, <code>Trợ lý AI</code> và chấm tự luận.</span></li>
+        <li><span class="num">3</span><span><strong>Google Form:</strong> sau khi đăng nhập, MyTeX dùng quyền Drive/Form để tạo form, đọc phản hồi và đồng bộ dữ liệu đề.</span></li>
+        <li><span class="num">4</span><span><strong>Email/Zalo:</strong> chỉ cần khi muốn gửi phiếu kết quả cho học sinh.</span></li>
+        <li><span class="num">5</span><span><strong>Phiếu chấm:</strong> nhập tên đơn vị hiển thị trên phiếu kết quả.</span></li>
       </ul>
       <div class="note">Nên thử trọn quy trình bằng một đề nhỏ trước khi dùng cho bài kiểm tra chính thức.</div>
     </article>
@@ -179,8 +181,8 @@ footer p{color:rgba(255,255,255,.58)}
         <div>
           <p><code>Tổng quan</code> giúp kiểm tra nhanh MyTeX đã sẵn sàng hay chưa. Từ đây có thể mở cài đặt Google, Email, Zalo, Gemini, Phiếu chấm và Giao diện.</p>
           <ul class="steps">
-            <li><span class="num">1</span><span>Mở nhanh <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>Google Form</code>, <code>Đấu trường</code>, <code>Soạn đề AI</code>, <code>Trợ lý AI</code>.</span></li>
-            <li><span class="num">2</span><span>Theo dõi trạng thái tài khoản Google ở thanh bên.</span></li>
+            <li><span class="num">1</span><span>Mở nhanh <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>TeX to DoC</code>, <code>Google Form</code>, <code>Đấu trường</code>, <code>Soạn đề AI</code>, <code>Trợ lý AI</code>.</span></li>
+            <li><span class="num">2</span><span>Theo dõi trạng thái đăng nhập MyTeX/Google ở thanh bên.</span></li>
             <li><span class="num">3</span><span>Đổi giao diện, font chữ và bảng màu nếu cần.</span></li>
           </ul>
         </div>
@@ -193,9 +195,9 @@ footer p{color:rgba(255,255,255,.58)}
       <div class="grid">
         <figure><img src="assets/screenshots/xu-ly-tex.png" alt="Tab Xử lý TeX"><figcaption>Lọc nguồn, kiểm tra ID và đưa câu hỏi vào ngân hàng.</figcaption></figure>
         <div>
-          <p>Phân hệ này dùng để xử lý file `.tex` thô trước khi đưa vào ngân hàng hoặc dùng cho các bước sau.</p>
+          <p>Phân hệ này dùng để xử lý file <code>.tex</code> thô trước khi đưa vào ngân hàng hoặc dùng cho các bước sau.</p>
           <ul class="steps">
-            <li><span class="num">1</span><span>Chọn file nguồn `.tex`.</span></li>
+            <li><span class="num">1</span><span>Chọn file nguồn <code>.tex</code>.</span></li>
             <li><span class="num">2</span><span>Lọc theo loại câu, ID, dạng hoặc nội dung.</span></li>
             <li><span class="num">3</span><span>Kiểm tra câu hợp lệ, xuất thử hoặc bổ sung vào ngân hàng.</span></li>
           </ul>
@@ -213,21 +215,39 @@ footer p{color:rgba(255,255,255,.58)}
           <ul class="steps">
             <li><span class="num">1</span><span>Nạp ngân hàng và ma trận.</span></li>
             <li><span class="num">2</span><span>Kiểm tra đáp ứng theo từng khối ma trận.</span></li>
-            <li><span class="num">3</span><span>Thiết lập số mã đề và sinh file `.tex`/PDF.</span></li>
+            <li><span class="num">3</span><span>Thiết lập số mã đề và sinh file <code>.tex</code>/PDF.</span></li>
           </ul>
         </div>
       </div>
     </article>
 
+    <article id="texdoc" class="card">
+      <span class="pill">5. TeX to DoC</span>
+      <h2>Chuyển TeX sang Word</h2>
+      <div class="grid">
+        <figure><img src="assets/screenshots/tex-to-doc.png" alt="TeX to DoC"><figcaption>Xuất tài liệu <code>.tex</code> sang <code>.docx</code> và render TikZ thành ảnh.</figcaption></figure>
+        <div>
+          <p><code>TeX to DoC</code> phù hợp khi cần chuyển tài liệu TeX của MyTeX sang Word để biên tập hoặc chia sẻ. Phân hệ tự trích xuất <code>tikzpicture</code>, render qua LaTeX standalone và chèn ảnh lại đúng vị trí trong file <code>.docx</code>.</p>
+          <ul class="steps">
+            <li><span class="num">1</span><span>Chọn file nguồn <code>.tex</code>.</span></li>
+            <li><span class="num">2</span><span>Chọn nơi lưu file <code>.docx</code>.</span></li>
+            <li><span class="num">3</span><span>Giữ thư mục trung gian nếu muốn kiểm tra ảnh TikZ/bảng sau khi render.</span></li>
+            <li><span class="num">4</span><span>Bấm <code>Chuyển sang .docx</code> và mở file đầu ra để rà soát bố cục.</span></li>
+          </ul>
+          <div class="note warn">Máy cần có LaTeX hoạt động nếu file chứa TikZ hoặc nội dung cần render bằng <code>pdflatex</code>.</div>
+        </div>
+      </div>
+    </article>
+
     <article id="google" class="card">
-      <span class="pill">5. Google Form</span>
+      <span class="pill">6. Google Form</span>
       <h2>Tạo form, chấm và gửi kết quả</h2>
       <div class="subgrid">
         <div class="sub">
           <h3>Tạo Google Form</h3>
-          <figure><img src="assets/screenshots/google-form.png" alt="Tạo Google Form"><figcaption>Nạp đề `.tex`, khai báo điểm và tạo form.</figcaption></figure>
+          <figure><img src="assets/screenshots/google-form.png" alt="Tạo Google Form"><figcaption>Nạp đề <code>.tex</code>, khai báo điểm và tạo form.</figcaption></figure>
           <ul class="steps">
-            <li><span class="num">1</span><span>Chọn file đề `.tex`.</span></li>
+            <li><span class="num">1</span><span>Chọn file đề <code>.tex</code>.</span></li>
             <li><span class="num">2</span><span>Kiểm tra thống kê câu hỏi và nhập điểm từng phần.</span></li>
             <li><span class="num">3</span><span>Tạo form, mã QR và liên kết học sinh.</span></li>
           </ul>
@@ -245,14 +265,14 @@ footer p{color:rgba(255,255,255,.58)}
     </article>
 
     <article id="arena" class="card">
-      <span class="pill">6. Đấu trường</span>
+      <span class="pill">7. Đấu trường</span>
       <h2>Thi trực tiếp bằng điện thoại</h2>
       <div class="grid">
         <figure><img src="assets/screenshots/dau-truong.png" alt="Đấu trường MyTeX"><figcaption>Màn hình Đấu trường với mã QR, thống kê và bảng điểm.</figcaption></figure>
         <div>
           <p><code>Đấu trường</code> mở máy chủ nội bộ trên máy giáo viên. Học sinh cùng mạng LAN/hotspot quét mã QR, xem ảnh câu hỏi và gửi đáp án bằng điện thoại.</p>
           <ul class="steps">
-            <li><span class="num">1</span><span>Nạp đề `.tex`; hệ thống đọc 3 loại câu: trắc nghiệm, đúng/sai, trả lời ngắn.</span></li>
+            <li><span class="num">1</span><span>Nạp đề <code>.tex</code>; hệ thống đọc 3 loại câu: trắc nghiệm, đúng/sai, trả lời ngắn.</span></li>
             <li><span class="num">2</span><span>Thiết lập thời gian riêng cho từng loại câu và bật/tắt tự chuyển khi hết giờ.</span></li>
             <li><span class="num">3</span><span>Mở máy chủ, cho học sinh vào bằng QR hoặc liên kết.</span></li>
             <li><span class="num">4</span><span>Dùng <code>Bắt đầu/Mở lại</code>, <code>Khóa</code>, <code>Câu tiếp</code> để điều khiển phiên thi.</span></li>
@@ -263,7 +283,7 @@ footer p{color:rgba(255,255,255,.58)}
     </article>
 
     <article id="ai" class="card">
-      <span class="pill">7. Nhóm AI</span>
+      <span class="pill">8. Nhóm AI</span>
       <h2>Soạn đề AI và Trợ lý AI</h2>
       <div class="subgrid">
         <div class="sub">
@@ -272,7 +292,7 @@ footer p{color:rgba(255,255,255,.58)}
           <ul class="steps">
             <li><span class="num">1</span><span>Chọn chế độ ảnh sang TeX, sáng tác đề mới hoặc sinh theo chủ đề.</span></li>
             <li><span class="num">2</span><span>Thêm ảnh hoặc dán ảnh bằng <code>Ctrl+V</code>.</span></li>
-            <li><span class="num">3</span><span>Chạy AI và lưu file `.tex` để dùng tiếp.</span></li>
+            <li><span class="num">3</span><span>Chạy AI và lưu file <code>.tex</code> để dùng tiếp.</span></li>
           </ul>
         </div>
         <div class="sub">
@@ -281,32 +301,34 @@ footer p{color:rgba(255,255,255,.58)}
           <ul class="steps">
             <li><span class="num">1</span><span>Hỏi lỗi hoặc thao tác bằng tiếng Việt.</span></li>
             <li><span class="num">2</span><span>Đính kèm ảnh màn hình nếu muốn trợ lý đọc tình huống cụ thể.</span></li>
-            <li><span class="num">3</span><span>Trợ lý chỉ trả lời trong phạm vi MyTeX và quy trình liên quan.</span></li>
+            <li><span class="num">3</span><span>Trợ lý chỉ trả lời trong phạm vi MyTeX và dùng toàn bộ tài liệu HTML trong <code>docs</code> làm nguồn nội bộ.</span></li>
           </ul>
         </div>
       </div>
     </article>
 
     <article id="workflow" class="card">
-      <span class="pill">8. Quy trình khuyến nghị</span>
+      <span class="pill">9. Quy trình khuyến nghị</span>
       <h2>Đi theo thứ tự ổn định nhất</h2>
       <ul class="steps">
-        <li><span class="num">1</span><span>Cấu hình Gemini và Google tại <code>Tổng quan</code>.</span></li>
+        <li><span class="num">1</span><span>Đăng nhập MyTeX, sau đó cấu hình Gemini/Email/Zalo nếu cần tại <code>Tổng quan</code>.</span></li>
         <li><span class="num">2</span><span>Dùng <code>Xử lý TeX</code> để chuẩn hóa nguồn và ngân hàng.</span></li>
         <li><span class="num">3</span><span>Dùng <code>Tạo đề thi</code> để áp ma trận và xuất đề.</span></li>
-        <li><span class="num">4</span><span>Nếu cần nội dung mới, dùng <code>Soạn đề AI</code>.</span></li>
-        <li><span class="num">5</span><span>Chọn một trong hai hướng triển khai: <code>Google Form</code> cho bài làm trực tuyến lưu phản hồi, hoặc <code>Đấu trường</code> cho phiên hỏi đáp trực tiếp trong lớp.</span></li>
-        <li><span class="num">6</span><span>Chấm, xem kết quả và gửi phiếu nếu dùng Google Form.</span></li>
+        <li><span class="num">4</span><span>Nếu cần file Word, dùng <code>TeX to DoC</code> để xuất <code>.docx</code> và kiểm tra hình/bảng.</span></li>
+        <li><span class="num">5</span><span>Nếu cần nội dung mới, dùng <code>Soạn đề AI</code>.</span></li>
+        <li><span class="num">6</span><span>Chọn một trong hai hướng triển khai: <code>Google Form</code> cho bài làm trực tuyến lưu phản hồi, hoặc <code>Đấu trường</code> cho phiên hỏi đáp trực tiếp trong lớp.</span></li>
+        <li><span class="num">7</span><span>Chấm, xem kết quả và gửi phiếu nếu dùng Google Form.</span></li>
       </ul>
     </article>
 
     <article id="faq" class="card">
-      <span class="pill">9. FAQ</span>
+      <span class="pill">10. FAQ</span>
       <h2>Xử lý sự cố thường gặp</h2>
       <div class="subgrid">
         <div class="sub"><h3>Gemini chưa sẵn sàng</h3><p>Vào <code>Tổng quan -> Gemini</code>, nhập API key, kiểm tra tên mô hình và bấm kiểm tra kết nối.</p></div>
-        <div class="sub"><h3>Google Form không tạo được</h3><p>Kiểm tra đăng nhập Google, kết nối Internet và quyền cấp cho MyTeX.</p></div>
-        <div class="sub"><h3>Đấu trường không vào được từ điện thoại</h3><p>Kiểm tra máy tính và điện thoại cùng mạng, tường lửa, cổng đang dùng và thử mở đường dẫn `/ping` trên điện thoại.</p></div>
+        <div class="sub"><h3>Chưa vào được app</h3><p>MyTeX hiện yêu cầu đăng nhập MyTeX trước khi dùng. Hãy hoàn tất cửa sổ đăng nhập trên trình duyệt rồi quay lại ứng dụng.</p></div>
+        <div class="sub"><h3>Google Form không tạo được</h3><p>Kiểm tra phiên đăng nhập MyTeX/Google, kết nối Internet và quyền cấp cho MyTeX.</p></div>
+        <div class="sub"><h3>Đấu trường không vào được từ điện thoại</h3><p>Kiểm tra máy tính và điện thoại cùng mạng, tường lửa, cổng đang dùng và thử mở đường dẫn <code>/ping</code> trên điện thoại.</p></div>
         <div class="sub"><h3>Tạo đề báo thiếu câu</h3><p>Ngân hàng chưa đáp ứng ma trận. Bổ sung câu ở <code>Xử lý TeX</code> hoặc điều chỉnh ma trận.</p></div>
       </div>
     </article>
@@ -319,7 +341,7 @@ footer p{color:rgba(255,255,255,.58)}
     <div class="footer-brand">
       <a class="brand" href="index.html">
         <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>

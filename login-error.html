@@ -2,9 +2,9 @@
 <!--
   Tên file: login-error.html
 
-  Mô tả: Trang thông báo xác thực Google OAuth thất bại — hiển thị khi
-          người dùng từ chối cấp quyền hoặc có lỗi trong quá trình đăng
-          nhập. Hướng dẫn người dùng quay lại ứng dụng và thử lại.
+  Mô tả: Trang thông báo đăng nhập MyTeX thất bại — hiển thị khi người
+          dùng từ chối cấp quyền Google provider hoặc có lỗi trong quá
+          trình xác thực Firebase Auth.
 
   Dự án: MyTeX
   Tác giả: Nguyễn Hoàng Hải
@@ -116,14 +116,14 @@
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="index.html">
     <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
     <a href="index.html" class="active">Giới thiệu</a>
     <a href="index.html#modules">Phân hệ</a>
     <a href="user-guide.html">Hướng dẫn</a>
     <a href="privacy.html">Bảo mật</a>
-    <a class="nav-dl" href="#download">
+    <a class="nav-dl" href="index.html#download">
       <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1v9M5 7l3 3 3-3M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Tải về
     </a>
@@ -139,7 +139,7 @@
             </svg>
         </div>
         <h1>Xác thực thất bại</h1>
-        <p>Đăng nhập Google không thành công. Vui lòng quay lại ứng dụng MyTeX và thử lại.</p>
+        <p>Đăng nhập MyTeX không thành công. Vui lòng quay lại ứng dụng MyTeX và thử lại.</p>
         <span class="auth-badge">Chưa kết nối</span>
     </div>
 </main>
@@ -149,7 +149,7 @@
     <div class="footer-brand">
       <a class="brand" href="index.html">
         <div class="brand-icon"><img class="js-icon" src="assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>
@@ -175,6 +175,15 @@
 </div></footer>
 
 <script src="config.js"></script>
+<script>
+    const message = new URLSearchParams(window.location.search).get("message");
+    if (message) {
+        const p = document.querySelector(".auth-card p");
+        if (p) {
+            p.textContent = `Đăng nhập MyTeX không thành công. Chi tiết: ${message}`;
+        }
+    }
+</script>
 
 </body>
 </html>
