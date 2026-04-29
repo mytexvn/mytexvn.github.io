@@ -176,8 +176,17 @@
 <script type="module">
     const params = new URLSearchParams(window.location.search);
     const callbackUrl = params.get("callback");
+    const publicSiteBase = "https://mytexvn.github.io";
 
     if (callbackUrl) {
+        document.querySelectorAll("a[href]").forEach((link) => {
+            const href = link.getAttribute("href") || "";
+            if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) {
+                return;
+            }
+            link.href = `${publicSiteBase}/${href.replace(/^\.?\//, "")}`;
+        });
+
         const firebaseConfig = {
             apiKey: "AIzaSyCZ_uiObOiXWue6iyoTBJcLSUmYhucwdTc",
             authDomain: "mytex-6fa9c.firebaseapp.com",
@@ -261,22 +270,19 @@
                     scopes
                 });
                 button.remove();
-                setState("Xác thực thành công", "Bạn có thể đóng cửa sổ này và quay lại ứng dụng MyTeX.", "Đã kết nối");
+                setState("Xác thực thành công", "MyTeX đã sẵn sàng. Cửa sổ này sẽ tự đóng hoặc chuyển về website MyTeX.", "Đã kết nối");
+                setTimeout(() => {
+                    window.close();
+                    window.location.replace(`${publicSiteBase}/login.html?desktopAuth=success`);
+                }, 600);
             } catch (error) {
                 const messageText = error && error.message ? error.message : String(error);
-                try {
-                    const errorPage = await fetch(`login-error.html?message=${encodeURIComponent(messageText)}`);
-                    document.open();
-                    document.write(await errorPage.text());
-                    document.close();
-                } catch (_) {
-                    setState("Xác thực thất bại", `Đăng nhập MyTeX không thành công. Chi tiết: ${messageText}`, "Chưa kết nối");
-                }
                 await postResult({
                     ok: false,
                     code: error && error.code,
                     message: messageText
                 }).catch(() => undefined);
+                window.location.replace(`${publicSiteBase}/login-error.html?message=${encodeURIComponent(messageText)}`);
             }
         });
     }
