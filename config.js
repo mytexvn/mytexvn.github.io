@@ -34,9 +34,9 @@ const SITE = {
 
 document.addEventListener('DOMContentLoaded', function () {
   // Icons
-  document.querySelectorAll('.js-icon').forEach(function (el) { el.src = 'assets/iconMyTeX.png'; });
+  document.querySelectorAll('.js-icon').forEach(function (el) { el.src = '/assets/iconMyTeX.png'; });
   var fav = document.querySelector('link[rel="icon"]');
-  if (fav) fav.href = 'assets/iconMyTeX.png';
+  if (fav) fav.href = '/assets/iconMyTeX.png';
 
   // Author / contact
   document.querySelectorAll('.js-author').forEach(function (el) { el.textContent = SITE.author.name; });
