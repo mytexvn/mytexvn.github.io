@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Tên file: privacy.html
+  Tên file: privacy/index.html
 
   Mô tả: Trang Chính sách bảo mật của MyTeX — trình bày rõ ràng các
           thông tin được thu thập, mục đích sử dụng, cách bảo vệ dữ
@@ -11,7 +11,7 @@
   Tác giả: Nguyễn Hoàng Hải
   Hỗ trợ lập trình: Claude, ChatGPT, Gemini
   Ngày tạo: 15/04/2026
-  Cập nhật: 20/04/2026
+  Cập nhật: 30/04/2026
 
   Bản quyền: 2026 MyTeX · Nguyễn Hoàng Hải · nghai.math@gmail.com
 -->
@@ -160,7 +160,7 @@ li{color:var(--text2);line-height:1.75}
   <h1>Chính sách bảo mật của MyTeX</h1>
   <p>Chính sách này giải thích MyTeX thu thập hoặc xử lý những dữ liệu nào, dữ liệu được dùng cho mục đích gì, khi nào dữ liệu có thể được gửi tới dịch vụ bên thứ ba, và cách người dùng kiểm soát dữ liệu của mình.</p>
   <div class="meta-row">
-    <span class="meta-badge">Cập nhật lần cuối: <span id="privacy-date">20/04/2026</span></span>
+    <span class="meta-badge">Cập nhật lần cuối: <span id="privacy-date">30/04/2026</span></span>
     <span class="meta-badge">Liên hệ: <a class="js-email inline-link" href="mailto:nghai.math@gmail.com">nghai.math@gmail.com</a></span>
   </div>
 </div></section>
@@ -182,7 +182,7 @@ li{color:var(--text2);line-height:1.75}
         <li>Cấu hình ứng dụng, bao gồm cấu hình Gemini, Google, Email và Zalo nếu người dùng tự thiết lập.</li>
         <li>Trạng thái giao diện, tùy chọn người dùng và trạng thái phiên làm việc.</li>
         <li>File đề, file TeX, kết quả sinh đề, phiếu chấm HTML, dữ liệu phản hồi và metadata chấm bài.</li>
-        <li>Ảnh đầu vào, nội dung câu hỏi, bài làm học sinh, đáp án Đấu trường hoặc dữ liệu tạm trong các tab AI nếu người dùng sử dụng các tính năng này.</li>
+        <li>Ảnh, PDF, tệp TeX mẫu, nội dung câu hỏi, bài làm học sinh, đáp án Đấu trường hoặc dữ liệu tạm trong các tab AI nếu người dùng sử dụng các tính năng này.</li>
         <li>Token xác thực hoặc dữ liệu phiên làm việc cần thiết để duy trì tích hợp Google, nếu người dùng đăng nhập và cấp quyền.</li>
       </ul>
       <p>MyTeX không yêu cầu người dùng nhập mật khẩu Google trực tiếp trong ứng dụng.</p>
@@ -194,7 +194,7 @@ li{color:var(--text2);line-height:1.75}
       <div class="services-grid">
         <div class="service-tile">
           <h3>Gemini</h3>
-          <p>Khi người dùng sử dụng các tính năng AI như <code>Soạn đề AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận, nội dung nhập, ảnh câu hỏi, bài làm và tiêu chí chấm có thể được gửi tới Gemini để xử lý yêu cầu.</p>
+          <p>Khi người dùng sử dụng các tính năng AI như <code>Soạn đề AI</code>, <code>Trợ lý AI</code> hoặc chấm tự luận, nội dung nhập, ảnh/PDF/TeX mẫu, bài làm và tiêu chí chấm có thể được gửi tới Gemini để xử lý yêu cầu.</p>
         </div>
         <div class="service-tile">
           <h3>Google</h3>
@@ -245,7 +245,8 @@ li{color:var(--text2);line-height:1.75}
 
     <article class="sec-card">
       <h2><span class="num">7</span>Dữ liệu liên quan đến Gemini và AI</h2>
-      <p>Khi người dùng sử dụng tính năng AI, MyTeX có thể gửi tới Gemini các dữ liệu cần thiết để xử lý yêu cầu, ví dụ: ảnh câu hỏi, phần chữ bổ sung, ảnh chụp lỗi, nội dung đề, lời giải, bài làm học sinh, tiêu chí chấm hoặc trích đoạn tài liệu hướng dẫn.</p>
+      <p>Khi người dùng sử dụng tính năng AI, MyTeX có thể gửi tới Gemini các dữ liệu cần thiết để xử lý yêu cầu, ví dụ: ảnh câu hỏi, trang PDF đã tách thành ảnh, tệp TeX mẫu, prompt tùy chỉnh, phần chữ bổ sung, ảnh chụp lỗi, nội dung đề, lời giải, bài làm học sinh, tiêu chí chấm hoặc trích đoạn tài liệu hướng dẫn.</p>
+      <p>Với Soạn đề AI, PDF được xử lý cục bộ thành ảnh trang trước khi gửi sang Gemini. Kết quả TeX sinh ra được lưu trên máy người dùng và có thể được sao chép vào clipboard hoặc dùng để biên dịch PDF/trình chiếu nếu người dùng chọn.</p>
       <p>Nếu người dùng không sử dụng các tính năng AI, MyTeX không chủ động gửi những dữ liệu này tới Gemini.</p>
       <p>Người dùng cần kiểm tra dữ liệu trước khi gửi vào tính năng AI và không nên đưa vào các thông tin nhạy cảm không cần thiết.</p>
     </article>

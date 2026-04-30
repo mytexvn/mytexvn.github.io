@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Tên file: login.html
+  Tên file: login/index.html
 
   Mô tả: Trang đăng nhập MyTeX qua Firebase Auth / Google provider.
           Ứng dụng desktop phục vụ trang này cục bộ rồi nhận lại token
@@ -17,7 +17,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Xác thực thành công | MyTeX</title>
+    <title>Đăng nhập MyTeX | MyTeX</title>
     <link rel="icon" href="/assets/iconMyTeX.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -137,7 +137,7 @@
             </svg>
         </div>
         <h1>Xác thực thành công</h1>
-        <p>Bạn có thể đóng cửa sổ này và quay lại ứng dụng MyTeX.</p>
+        <p>Ứng dụng MyTeX sẽ tự nhận phiên đăng nhập. Bạn có thể đóng cửa sổ này nếu app đã chuyển sang màn hình chính.</p>
         <span class="auth-badge">Đã kết nối</span>
     </div>
 </main>
@@ -176,7 +176,7 @@
 <script type="module">
     const params = new URLSearchParams(window.location.search);
     const callbackUrl = params.get("callback");
-    const publicSiteBase = "https://mytexvn.github.io";
+    const publicSiteBase = "https://mytex.app";
 
     if (callbackUrl) {
         document.querySelectorAll("a[href]").forEach((link) => {

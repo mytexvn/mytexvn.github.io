@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Tên file: versions.html
+  Tên file: versions/index.html
 
   Mô tả: Trang lịch sử phiên bản MyTeX — liệt kê tất cả các bản phát hành
           theo thứ tự mới nhất trước, kèm ngày phát hành và danh sách thay
@@ -15,10 +15,10 @@
   Bản quyền: 2026 MyTeX · Nguyễn Hoàng Hải · nghai.math@gmail.com
 
   ── Lưu ý cho developer ──────────────────────────────────────────────────────
-  KHÔNG chỉnh tay file này. Dùng lệnh:
+  Release thường lệ nên dùng lệnh:
       python scripts/release.py vX.Y.Z
-  Script sẽ tự động thêm phần tử <article> mới vào đầu #changelog,
-  commit, tạo tag git và push lên GitHub.
+  Khi phát hành thủ công, vẫn phải thêm <article> mới vào đầu #changelog,
+  bỏ badge "Moi nhat" khỏi bản cũ, commit, tạo tag git và push lên GitHub.
   ─────────────────────────────────────────────────────────────────────────────
 -->
 <html lang="vi">
@@ -162,11 +162,30 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
     <div class="timeline" id="changelog">
 
       <!-- [INSERT_NEW_VERSION_HERE] -->
+      <article id="v2026.1.20" data-version="2026.1.20" data-date="2026-04-30" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag">
+            <span class="vtag">v2026.1.20</span>
+            <span class="latest-badge">Moi nhat</span>
+          </div>
+          <div class="version-date">30/04/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Soan de AI nhan them tep <code>PDF</code>, tu tach trang thanh anh truoc khi gui Gemini.</li>
+            <li>Bo sung muc sang tac <code>De hon</code> va <code>Khac...</code> de nhap prompt bien doi rieng.</li>
+            <li>Sau khi sinh de AI co the mo tep, bien dich PDF hoac mo trinh chieu bang day toan man hinh.</li>
+            <li>Khoi phuc nut <code>Xem day du</code> cua Dau truong va lam ro trang thai hien/an loi giai.</li>
+            <li>Lam sach repo: bo qua du lieu ngan hang, ma tran va export runtime trong <code>filter_data</code>.</li>
+            <li>Cap nhat README, tai lieu build, chinh sach bao mat va huong dan su dung theo tinh nang hien tai.</li>
+          </ul>
+        </div>
+      </article>
+
       <article id="v2026.1.19" data-version="2026.1.19" data-date="2026-04-30" class="version-entry">
         <div class="version-meta">
           <div class="version-tag">
             <span class="vtag">v2026.1.19</span>
-            <span class="latest-badge">Moi nhat</span>
           </div>
           <div class="version-date">30/04/2026</div>
         </div>

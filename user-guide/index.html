@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Tên file: user-guide.html
+  Tên file: user-guide/index.html
 
   Mô tả: Hướng dẫn sử dụng MyTeX theo cấu trúc ứng dụng hiện tại.
           File này cũng được Trợ lý AI dùng làm nguồn tri thức thao tác.
@@ -14,7 +14,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hướng dẫn sử dụng — MyTeX</title>
-<meta name="description" content="Hướng dẫn sử dụng MyTeX: Tổng quan, Xử lý TeX, Tạo đề thi, TeX to DoC, Google Form, Đấu trường, Soạn đề AI và Trợ lý AI.">
+<meta name="description" content="Hướng dẫn sử dụng MyTeX: Tổng quan, Xử lý TeX, Tạo đề thi, TeX to DoC, Google Form, Đấu trường, Soạn đề AI ảnh/PDF/TeX và Trợ lý AI.">
 <link rel="icon" href="/assets/iconMyTeX.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,7 +133,7 @@ footer p{color:rgba(255,255,255,.58)}
   <div>
     <span class="pill">User Guide</span>
     <h1>Hướng dẫn sử dụng MyTeX</h1>
-    <p class="lead">Tài liệu này mô tả đúng cấu trúc hiện tại của MyTeX: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>TeX to DoC</code>, <code>Google Form</code>, <code>Đấu trường</code>, <code>Soạn đề AI</code> và <code>Trợ lý AI</code>. Trợ lý AI trong ứng dụng nạp toàn bộ tài liệu HTML trong <code>docs</code> làm nguồn tham khảo thao tác.</p>
+    <p class="lead">Tài liệu này mô tả đúng cấu trúc hiện tại của MyTeX: <code>Tổng quan</code>, <code>Xử lý TeX</code>, <code>Tạo đề thi</code>, <code>TeX to DoC</code>, <code>Google Form</code>, <code>Đấu trường</code>, <code>Soạn đề AI</code> và <code>Trợ lý AI</code>. Bản hiện tại bổ sung đầu vào ảnh/PDF/TeX cho Soạn đề AI, prompt biến đổi tùy chỉnh, biên dịch PDF và trình chiếu bảng dạy sau khi sinh đề.</p>
     <div class="btn-row">
       <a class="btn primary" href="#workflow">Quy trình khuyến nghị</a>
       <a class="btn" href="#arena">Đấu trường</a>
@@ -277,7 +277,8 @@ footer p{color:rgba(255,255,255,.58)}
             <li><span class="num">2</span><span>Thiết lập thời gian riêng cho từng loại câu và bật/tắt tự chuyển khi hết giờ.</span></li>
             <li><span class="num">3</span><span>Mở máy chủ, cho học sinh vào bằng QR hoặc liên kết.</span></li>
             <li><span class="num">4</span><span>Dùng <code>Bắt đầu/Mở lại</code>, <code>Khóa</code>, <code>Câu tiếp</code> để điều khiển phiên thi.</span></li>
-            <li><span class="num">5</span><span>Mở <code>Xem đầy đủ</code> khi cần trình chiếu; dùng bút, tẩy, màu, kiểu nét, hoàn tác hoặc xóa bảng để đánh dấu trực tiếp trên câu hỏi.</span></li>
+            <li><span class="num">5</span><span>Mở <code>Xem đầy đủ</code> khi cần trình chiếu; dùng bút, đường thẳng, đường cong, tẩy, màu, kiểu nét, hoàn tác hoặc xóa bảng để đánh dấu trực tiếp trên câu hỏi.</span></li>
+            <li><span class="num">6</span><span>Bật <code>Hiện lời giải</code> khi muốn chuyển màn giáo viên sang trang lời giải; nút sẽ đổi trạng thái để tránh nhầm lẫn khi đang giảng.</span></li>
           </ul>
           <div class="note warn">Nếu điện thoại không vào được, kiểm tra máy tính và điện thoại cùng mạng, tường lửa Windows và địa chỉ IP hiển thị trên liên kết học sinh.</div>
         </div>
@@ -290,11 +291,13 @@ footer p{color:rgba(255,255,255,.58)}
       <div class="subgrid">
         <div class="sub">
           <h3>Soạn đề AI</h3>
-          <figure><img src="/assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Chuyển ảnh sang TeX hoặc sinh câu hỏi bằng Gemini.</figcaption></figure>
+          <figure><img src="/assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Nhận ảnh/PDF/TeX, sinh đề bằng Gemini và chọn hành động đầu ra.</figcaption></figure>
           <ul class="steps">
-            <li><span class="num">1</span><span>Chọn chế độ ảnh sang TeX, sáng tác đề mới hoặc sinh theo chủ đề.</span></li>
-            <li><span class="num">2</span><span>Thêm ảnh hoặc dán ảnh bằng <code>Ctrl+V</code>.</span></li>
-            <li><span class="num">3</span><span>Chạy AI và lưu file <code>.tex</code> để dùng tiếp.</span></li>
+            <li><span class="num">1</span><span>Chọn chế độ <code>Ảnh/PDF sang TeX</code>, <code>Sáng tác đề mới</code> hoặc <code>Sinh theo chủ đề</code>.</span></li>
+            <li><span class="num">2</span><span>Thêm ảnh, PDF hoặc tệp <code>.tex</code>; chế độ chuyển đổi chỉ nhận ảnh/PDF, hai chế độ sinh đề nhận cả TeX mẫu.</span></li>
+            <li><span class="num">3</span><span>Ở chế độ sáng tác, chọn mức <code>Chỉ đổi số</code>, <code>Dễ hơn</code>, <code>Khó hơn</code>, <code>Nâng cao</code> hoặc <code>Khác...</code> để nhập prompt riêng.</span></li>
+            <li><span class="num">4</span><span>Chạy AI. Kết quả được lưu thành <code>.tex</code> và sao chép vào clipboard.</span></li>
+            <li><span class="num">5</span><span>Sau khi xong, chọn <code>Mở tệp</code>, <code>Biên dịch PDF</code> hoặc <code>Trình chiếu</code>. Trình chiếu tạo ảnh từng câu và mở bảng dạy toàn màn hình có bút, tẩy, màu, undo và lời giải.</span></li>
           </ul>
         </div>
         <div class="sub">
@@ -317,7 +320,7 @@ footer p{color:rgba(255,255,255,.58)}
         <li><span class="num">2</span><span>Dùng <code>Xử lý TeX</code> để chuẩn hóa nguồn và ngân hàng.</span></li>
         <li><span class="num">3</span><span>Dùng <code>Tạo đề thi</code> để áp ma trận và xuất đề.</span></li>
         <li><span class="num">4</span><span>Nếu cần file Word, dùng <code>TeX to DoC</code> để xuất <code>.docx</code> và kiểm tra hình/bảng.</span></li>
-        <li><span class="num">5</span><span>Nếu cần nội dung mới, dùng <code>Soạn đề AI</code>.</span></li>
+        <li><span class="num">5</span><span>Nếu cần nội dung mới, dùng <code>Soạn đề AI</code> với ảnh/PDF/TeX mẫu; sau khi sinh có thể mở tệp, biên dịch PDF hoặc trình chiếu ngay.</span></li>
         <li><span class="num">6</span><span>Chọn một trong hai hướng triển khai: <code>Google Form</code> cho bài làm trực tuyến lưu phản hồi, hoặc <code>Đấu trường</code> cho phiên hỏi đáp trực tiếp trong lớp.</span></li>
         <li><span class="num">7</span><span>Chấm, xem kết quả và gửi phiếu nếu dùng Google Form.</span></li>
       </ul>
@@ -332,6 +335,8 @@ footer p{color:rgba(255,255,255,.58)}
         <div class="sub"><h3>Google Form không tạo được</h3><p>Kiểm tra phiên đăng nhập MyTeX/Google, kết nối Internet và quyền cấp cho MyTeX.</p></div>
         <div class="sub"><h3>Đấu trường không vào được từ điện thoại</h3><p>Kiểm tra máy tính và điện thoại cùng mạng, tường lửa, cổng đang dùng và thử mở đường dẫn <code>/ping</code> trên điện thoại.</p></div>
         <div class="sub"><h3>Tạo đề báo thiếu câu</h3><p>Ngân hàng chưa đáp ứng ma trận. Bổ sung câu ở <code>Xử lý TeX</code> hoặc điều chỉnh ma trận.</p></div>
+        <div class="sub"><h3>PDF trong Soạn đề AI không đọc được</h3><p>Kiểm tra file PDF có mở được không. MyTeX sẽ tách PDF thành ảnh trước khi gửi Gemini; file scan mờ hoặc quá dài nên chia nhỏ trước khi chạy.</p></div>
+        <div class="sub"><h3>Trình chiếu AI không tạo ảnh</h3><p>Kiểm tra <code>pdflatex</code> trong Tổng quan và thử biên dịch PDF trước. Trình chiếu dùng cùng mẫu Google Form để render từng câu thành ảnh.</p></div>
       </div>
     </article>
   </div>
