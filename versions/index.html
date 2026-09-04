@@ -4,7 +4,7 @@
 
   Mô tả: Trang lịch sử phiên bản MyTeX — liệt kê tất cả các bản phát hành
           theo thứ tự mới nhất trước, kèm ngày phát hành và danh sách thay
-          đổi. Mỗi phiên bản được đánh dấu bằng thẻ <article id="vX.Y.Z">
+          đổi. Bản mới dùng thẻ <article id="vYYYY.MM.DD.x">; giữ nguyên tag cũ.
           để ứng dụng có thể tự động đọc và hiển thị khi thông báo cập nhật.
 
   Dự án: MyTeX
@@ -16,7 +16,7 @@
 
   ── Lưu ý cho developer ──────────────────────────────────────────────────────
   Release thường lệ nên dùng lệnh:
-      python scripts/release.py vX.Y.Z
+      python scripts/release.py --auto
   Khi phát hành thủ công, vẫn phải thêm <article> mới vào đầu #changelog,
   bỏ badge "Moi nhat" khỏi bản cũ, commit, tạo tag git và push lên GitHub.
   ─────────────────────────────────────────────────────────────────────────────
@@ -26,7 +26,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Lịch sử phiên bản — MyTeX</title>
-<meta name="description" content="Lịch sử các phiên bản phát hành của MyTeX — ứng dụng desktop TeX · Đề thi · AI · Google Form · Đấu trường.">
+<meta name="description" content="Lịch sử các phiên bản phát hành của MyTeX — ứng dụng desktop TeX · Đề thi · AI · Đề thi trực tuyến · Đấu trường.">
 <link rel="icon" href="/assets/iconMyTeX.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,11 +144,28 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
     <div class="timeline" id="changelog">
 
       <!-- [INSERT_NEW_VERSION_HERE] -->
+      <article id="v2026.09.04.1" data-version="2026.09.04.1" data-date="2026-09-04" class="version-entry">
+        <div class="version-meta">
+          <div class="version-tag">
+            <span class="vtag">v2026.09.04.1</span>
+            <span class="latest-badge">Mới nhất</span>
+          </div>
+          <div class="version-date">04/09/2026</div>
+        </div>
+        <div class="version-body">
+          <ul class="notes-list">
+            <li>Đổi tên bản phát hành sang vYYYY.MM.DD.x, theo ngày Việt Nam; x bắt đầu từ 1 và tăng trong ngày. Giữ khả năng nhận diện các bản cũ.</li>
+            <li>Giảm quyền Google: bỏ quyền Forms và Drive appdata không sử dụng; kiểm tra quyền thực nhận và yêu cầu đăng nhập lại đối với phiên cũ.</li>
+            <li>Chuẩn hóa build native Windows x64, macOS Intel/Apple Silicon và Linux x64; kiểm tra khởi động bản đóng gói, kèm SHA-256 và manifest phiên bản/commit.</li>
+            <li>Đồng bộ website từ repo nguồn; tự công bố bản tải về sau khi cả bốn nền tảng vượt kiểm tra. Bộ cập nhật đọc ghi chú từ website công khai.</li>
+            <li>Tăng an toàn giải nén cập nhật và tách dữ liệu cá nhân khỏi bản đóng gói. Gói chưa ký số; cần cài LaTeX riêng và sao lưu trước khi cập nhật.</li>
+          </ul>
+        </div>
+      </article>
       <article id="v2026.1.24" data-version="2026.1.24" data-date="2026-05-05" class="version-entry">
         <div class="version-meta">
           <div class="version-tag">
             <span class="vtag">v2026.1.24</span>
-            <span class="latest-badge">Moi nhat</span>
           </div>
           <div class="version-date">05/05/2026</div>
         </div>
