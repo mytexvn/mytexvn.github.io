@@ -20,7 +20,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Chính sách bảo mật — MyTeX</title>
-<meta name="description" content="Chính sách bảo mật và quyền riêng tư áp dụng cho website và ứng dụng MyTeX, bao gồm cách MyTeX sử dụng đăng nhập Firebase/Google, Gemini, Email và Zalo.">
+<meta name="description" content="Chính sách bảo mật và quyền riêng tư áp dụng cho website và ứng dụng MyTeX, bao gồm đăng nhập Google OAuth, Drive, Apps Script, Gemini, Email và Zalo.">
 <link rel="icon" href="/assets/iconMyTeX.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,7 @@ li{color:var(--text2);line-height:1.75}
         </div>
         <div class="service-tile">
           <h3>Google</h3>
-          <p>Khi người dùng sử dụng tab <code>Google Form</code> hoặc các chức năng Google liên quan, MyTeX có thể làm việc với Google Forms, Google Drive hoặc các Google API cần thiết để tạo form, quản lý form, đọc phản hồi và đồng bộ dữ liệu bài kiểm tra.</p>
+          <p>MyTeX dùng Google OAuth để đăng nhập và Google Drive để lưu đề, ảnh và danh mục đề của ứng dụng. Bài thi trực tuyến dùng phiếu HTML và Apps Script Web App do giáo viên triển khai, lưu bài làm vào Google Sheets. Ứng dụng desktop không gọi Google Forms API.</p>
         </div>
         <div class="service-tile">
           <h3>Đấu trường</h3>
@@ -220,12 +220,13 @@ li{color:var(--text2);line-height:1.75}
       <p>Khi người dùng đăng nhập MyTeX qua Google provider và cấp quyền, MyTeX chỉ sử dụng các quyền Google cần thiết cho các chức năng mà người dùng chủ động kích hoạt.</p>
       <p>Tùy theo quyền được người dùng cấp và tính năng được sử dụng, MyTeX có thể truy cập hoặc xử lý các dữ liệu Google sau:</p>
       <ul>
-        <li>Thông tin tài khoản Google cơ bản cần cho đăng nhập và xác định tài khoản đang sử dụng.</li>
-        <li>Dữ liệu Google Forms do người dùng tạo, chọn hoặc quản lý trong quá trình sử dụng MyTeX.</li>
-        <li>Phản hồi Google Forms phục vụ việc chấm điểm, tổng hợp kết quả, tạo phiếu điểm và xuất dữ liệu liên quan đến bài kiểm tra.</li>
-        <li>Dữ liệu Google Drive liên quan đến việc tạo, lưu, tìm kiếm hoặc quản lý Google Forms nếu chức năng đó được người dùng sử dụng.</li>
+        <li><code>openid</code>, <code>email</code>, <code>profile</code>: xác định tài khoản, địa chỉ email, tên và ảnh đại diện; chọn không gian dữ liệu riêng.</li>
+        <li><code>drive.file</code>: đọc, tạo, sửa, xóa các tệp dùng với MyTeX mà ứng dụng tạo hoặc người dùng cấp quyền riêng, như đề thi, ảnh và catalog. Không cấp quyền truy cập toàn bộ Drive.</li>
+        <li>Không yêu cầu quyền Google Forms, phản hồi Forms, <code>drive.appdata</code>, Gmail, Calendar hoặc quyền toàn bộ Drive trong luồng đăng nhập desktop.</li>
+        <li>Apps Script có màn hình cấp quyền riêng khi giáo viên triển khai: dùng Sheets để lưu bài làm và MailApp để gửi thư nếu bật tính năng này. Các quyền của Apps Script không được thêm vào phiên đăng nhập MyTeX desktop.</li>
       </ul>
-      <p>Dữ liệu Google chỉ được sử dụng để cung cấp các chức năng trực tiếp trong MyTeX mà người dùng đã yêu cầu, ví dụ tạo Google Form, đọc phản hồi, đồng bộ dữ liệu và hỗ trợ chấm bài.</p>
+      <p>Dữ liệu Google chỉ được sử dụng cho các chức năng người dùng yêu cầu như đồng bộ đề thi, nhận bài làm HTML qua Apps Script và hỗ trợ chấm bài. Phiên đăng nhập cũ phải được cấp lại quyền tối thiểu; ứng dụng không cộng dồn quyền đã cấp trước đây.</p>
+      <p>Nếu màn hình Google vẫn hiển thị quyền Biểu mẫu cũ, hãy mở <a href="https://myaccount.google.com/connections">Kết nối tài khoản Google</a>, chọn MyTeX, xóa kết nối rồi đăng nhập lại. Thu hồi kết nối có thể làm các phiên MyTeX trên thiết bị khác cần đăng nhập lại; không xóa các tệp Drive.</p>
     </article>
 
     <article class="sec-card">

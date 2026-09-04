@@ -164,9 +164,9 @@ footer p{color:rgba(255,255,255,.58)}
       <h2>Chuẩn bị trước khi dùng</h2>
       <p>Sau khi tải đúng bản phát hành, mở MyTeX và vào <code>Tổng quan</code> để kiểm tra các tích hợp. Với bản đóng gói, người dùng phổ thông không cần cài Python.</p>
       <ul class="steps">
-        <li><span class="num">1</span><span><strong>Đăng nhập MyTeX:</strong> dùng Google provider qua Firebase Auth, bắt buộc trước khi vào phiên làm việc chính.</span></li>
+        <li><span class="num">1</span><span><strong>Đăng nhập MyTeX:</strong> dùng Google OAuth Desktop + PKCE, với thông tin đăng nhập cơ bản và quyền <code>drive.file</code>.</span></li>
         <li><span class="num">2</span><span><strong>Gemini:</strong> cần cho <code>Soạn đề AI</code>, <code>Trợ lý AI</code> và chấm tự luận.</span></li>
-        <li><span class="num">3</span><span><strong>Google Form:</strong> sau khi đăng nhập, MyTeX dùng quyền Drive/Form để tạo form, đọc phản hồi và đồng bộ dữ liệu đề.</span></li>
+        <li><span class="num">3</span><span><strong>Tạo đề trực tuyến:</strong> tạo phiếu HTML, lưu đề/ảnh/catalog trên Drive và nhận bài qua Apps Script + Google Sheets; không dùng Google Forms. Apps Script được giáo viên triển khai và cấp quyền riêng.</span></li>
         <li><span class="num">4</span><span><strong>Email/Zalo:</strong> chỉ cần khi muốn gửi phiếu kết quả cho học sinh.</span></li>
         <li><span class="num">5</span><span><strong>Phiếu chấm:</strong> nhập tên đơn vị hiển thị trên phiếu kết quả.</span></li>
       </ul>
@@ -330,9 +330,9 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">10. FAQ</span>
       <h2>Xử lý sự cố thường gặp</h2>
       <div class="subgrid">
-        <div class="sub"><h3>Gemini chưa sẵn sàng</h3><p>Vào <code>Tổng quan -> Gemini</code>, nhập API key, kiểm tra tên mô hình và bấm kiểm tra kết nối.</p></div>
+        <div class="sub"><h3>Gemini chưa sẵn sàng</h3><p>Vào <code>Tổng quan -> Gemini</code> và nhập API key. MyTeX sẽ tự dò các mô hình có thể tạo nội dung và mặc định chọn bản Flash mới nhất; hãy chọn mô hình khác nếu cần rồi bấm <code>Lưu</code>.</p></div>
         <div class="sub"><h3>Chưa vào được app</h3><p>MyTeX hiện yêu cầu đăng nhập MyTeX trước khi dùng. Hãy hoàn tất cửa sổ đăng nhập trên trình duyệt rồi quay lại ứng dụng.</p></div>
-        <div class="sub"><h3>Google Form không tạo được</h3><p>Kiểm tra phiên đăng nhập MyTeX/Google, kết nối Internet và quyền cấp cho MyTeX.</p></div>
+        <div class="sub"><h3>Đề trực tuyến không tạo được</h3><p>Kiểm tra phiên đăng nhập Google, kết nối Internet và cấu hình Apps Script. Nếu còn quyền Biểu mẫu từ phiên cũ, xóa kết nối MyTeX tại myaccount.google.com/connections rồi đăng nhập lại để cấp quyền tối thiểu.</p></div>
         <div class="sub"><h3>Đấu trường không vào được từ điện thoại</h3><p>Kiểm tra máy tính và điện thoại cùng mạng, tường lửa, cổng đang dùng và thử mở đường dẫn <code>/ping</code> trên điện thoại.</p></div>
         <div class="sub"><h3>Tạo đề báo thiếu câu</h3><p>Ngân hàng chưa đáp ứng ma trận. Bổ sung câu ở <code>Xử lý TeX</code> hoặc điều chỉnh ma trận.</p></div>
         <div class="sub"><h3>PDF trong Soạn đề AI không đọc được</h3><p>Kiểm tra file PDF có mở được không. MyTeX sẽ tách PDF thành ảnh trước khi gửi Gemini; file scan mờ hoặc quá dài nên chia nhỏ trước khi chạy.</p></div>

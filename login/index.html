@@ -2,7 +2,7 @@
 <!--
   Tên file: login/index.html
 
-  Mô tả: Trang đăng nhập MyTeX qua Firebase Auth / Google provider.
+  Mô tả: Trang đăng nhập MyTeX qua Google OAuth Desktop + PKCE.
           Ứng dụng desktop phục vụ trang này cục bộ rồi nhận lại token
           qua callback localhost sau khi người dùng cấp quyền.
 
@@ -173,126 +173,19 @@
 </div></footer>
 
 <script src="/config.js"></script>
-<script type="module">
-    const params = new URLSearchParams(window.location.search);
-    const callbackUrl = params.get("callback");
-    const publicSiteBase = "https://mytex.app";
-
-    if (callbackUrl) {
-        document.querySelectorAll("a[href]").forEach((link) => {
-            const href = link.getAttribute("href") || "";
-            if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) {
-                return;
-            }
-            link.href = `${publicSiteBase}/${href.replace(/^\.?\//, "")}`;
-        });
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCZ_uiObOiXWue6iyoTBJcLSUmYhucwdTc",
-            authDomain: "mytex-6fa9c.firebaseapp.com",
-            projectId: "mytex-6fa9c",
-            storageBucket: "mytex-6fa9c.firebasestorage.app",
-            messagingSenderId: "695082674240",
-            appId: "1:695082674240:web:fce5e885478cfbf45a97a5",
-            measurementId: "G-86M9QB8NC7"
-        };
-        const scopes = [
-            "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/drive.appdata",
-            "https://www.googleapis.com/auth/forms.body",
-            "https://www.googleapis.com/auth/forms.responses.readonly"
-        ];
-
-        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
-        const {
-            getAuth,
-            signInWithPopup,
-            GoogleAuthProvider
-        } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js");
-
-        const card = document.querySelector(".auth-card");
-        const title = card?.querySelector("h1");
-        const message = card?.querySelector("p");
-        const badge = card?.querySelector(".auth-badge");
-
-        function setState(heading, text, badgeText) {
-            if (title) title.textContent = heading;
-            if (message) message.textContent = text;
-            if (badge) badge.textContent = badgeText;
-        }
-
-        async function postResult(payload) {
-            const response = await fetch(callbackUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-            if (!response.ok) {
-                throw new Error(await response.text());
-            }
-        }
-
-        setState(
-            "Đăng nhập MyTeX",
-            "Bấm nút bên dưới để đăng nhập MyTeX và cấp quyền Drive/Forms.",
-            "MyTeX"
-        );
-
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = "Đăng nhập bằng Google";
-        button.style.cssText = "margin-top:24px;width:100%;min-height:44px;border:0;border-radius:10px;background:#2bb5a0;color:#1a2d3d;font-weight:800;cursor:pointer";
-        card?.appendChild(button);
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-        scopes.forEach((scope) => provider.addScope(scope));
-
-        button.addEventListener("click", async () => {
-            button.disabled = true;
-            button.textContent = "Đang đăng nhập...";
-            setState("Đang xác thực", "Vui lòng hoàn tất đăng nhập trong cửa sổ Google.", "Đang xử lý");
-            try {
-                const result = await signInWithPopup(auth, provider);
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const firebaseIdToken = await result.user.getIdToken(true);
-                await postResult({
-                    ok: true,
-                    googleAccessToken: credential && credential.accessToken,
-                    firebaseIdToken,
-                    firebaseRefreshToken: result.user.refreshToken,
-                    uid: result.user.uid,
-                    email: result.user.email || "",
-                    displayName: result.user.displayName || "",
-                    photoURL: result.user.photoURL || "",
-                    providerId: "google.com",
-                    scopes
-                });
-                button.remove();
-                setState("Xác thực thành công", "MyTeX đã sẵn sàng. Cửa sổ này sẽ tự đóng hoặc chuyển về website MyTeX.", "Đã kết nối");
-                setTimeout(() => {
-                    window.close();
-                    window.location.replace(`${publicSiteBase}/login/?desktopAuth=success`);
-                }, 600);
-            } catch (error) {
-                const messageText = error && error.message ? error.message : String(error);
-                await postResult({
-                    ok: false,
-                    code: error && error.code,
-                    message: messageText
-                }).catch(() => undefined);
-                window.location.replace(`${publicSiteBase}/login-error/?message=${encodeURIComponent(messageText)}`);
-            }
-        });
-    }
-</script>
 <script>
+    // Trang này được phục vụ bởi MyTeX desktop sau khi OAuth Code Flow (PKCE)
+    // hoàn tất ở phía Python. Toàn bộ logic OAuth đã chạy trong main_MyTeX/core/
+    // firebase_auth.py — trang HTML chỉ hiển thị thông báo "Xác thực thành công"
+    // và tự đóng / chuyển sang website MyTeX để người dùng quay lại app.
     window.onload = function() {
-        if (!new URLSearchParams(window.location.search).get("callback")) {
+        var qs = new URLSearchParams(window.location.search);
+        // /callback?code=... → đã đăng nhập xong, tự đóng (hoặc chuyển sang public site)
+        if (qs.get("code") || qs.get("error") || qs.get("desktopAuth")) {
             setTimeout(function() {
-                window.location.href = "mytex://auth-complete";
-            }, 300);
+                try { window.close(); } catch (_e) {}
+                window.location.replace("https://mytex.app/login/?desktopAuth=success");
+            }, 1200);
         }
     };
 </script>
