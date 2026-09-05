@@ -264,9 +264,11 @@ footer p{color:rgba(255,255,255,.58)}
             <li><span class="num">2</span><span>Thiết lập thời gian riêng cho từng loại câu và bật/tắt tự chuyển khi hết giờ.</span></li>
             <li><span class="num">3</span><span>Mở máy chủ, cho học sinh vào bằng QR hoặc liên kết.</span></li>
             <li><span class="num">4</span><span>Dùng <code>Bắt đầu/Mở lại</code>, <code>Khóa</code>, <code>Câu tiếp</code> để điều khiển phiên thi.</span></li>
-            <li><span class="num">5</span><span>Mở <code>Xem đầy đủ</code> khi cần trình chiếu; dùng bút, đường thẳng, đường cong, tẩy, màu, kiểu nét, hoàn tác hoặc xóa bảng để đánh dấu trực tiếp trên câu hỏi.</span></li>
+            <li><span class="num">5</span><span>Mở <code>Xem đầy đủ</code> khi cần trình chiếu. Câu hỏi nằm trên mặt bảng viết (bảng trắng, bảng xanh, bảng đen hoặc giấy ô ly, có lưới tùy chọn), phần bảng còn lại để giảng bài. Thanh công cụ vẽ và điều hướng được gộp thành một hàng gọn; dùng mũi tên cuộn ở hai bên khi cửa sổ hẹp. Thanh này có màu bút, dạ quang, nhóm hình, cỡ nét, kiểu nét, độ đậm, tẩy, hoàn tác/làm lại, gõ chữ, laser và lưu ảnh bảng.</span></li>
             <li><span class="num">6</span><span>Bật <code>Hiện lời giải</code> khi muốn chuyển màn giáo viên sang trang lời giải; nút sẽ đổi trạng thái để tránh nhầm lẫn khi đang giảng.</span></li>
+            <li><span class="num">7</span><span>Trong trình chiếu bài giảng và Đấu trường, dùng <code>←</code> / <code>↑</code> để về trang trước, <code>→</code> / <code>↓</code> để sang trang tiếp, kể cả khi bảng vẽ hoặc khung cuộn đang được chọn. Khi đang nhập chữ, chỉnh số hoặc chọn trong menu, phím mũi tên vẫn điều khiển ô đang dùng.</span></li>
           </ul>
+          <div class="note">Trong trình chiếu bài giảng và Đấu trường, mở nút kiểu bút cạnh các ô màu để chọn nét mặc định (chuột), bàn tay cầm viết, bút máy, bút lông hoặc phấn. Có thể chọn riêng hình con trỏ: chuột, bàn tay cầm viết, ngòi bút hoặc dấu cộng. Giữ chuột phải và kéo để chọn vùng; nhấn <code>Delete</code> để xóa phần ghi chú trong vùng, <code>Esc</code> để bỏ chọn và <code>Ctrl+Z</code> để khôi phục. Ảnh câu hỏi và nền bảng được giữ nguyên. Nút chọn vùng (<code>V</code>) cũng cho phép kéo bằng chuột trái. Dán ảnh bằng <code>Ctrl+V</code>, nhấn <code>Enter</code> để đặt ảnh lên bảng.</div>
           <div class="note warn">Nếu điện thoại không vào được, kiểm tra máy tính và điện thoại cùng mạng, tường lửa Windows và địa chỉ IP hiển thị trên liên kết học sinh.</div>
         </div>
       </div>
@@ -279,11 +281,12 @@ footer p{color:rgba(255,255,255,.58)}
         <figure><img src="/assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Nhận văn bản, ảnh, PDF, TeX/TXT/Markdown và chọn hành động đầu ra.</figcaption></figure>
         <div>
           <ul class="steps">
-            <li><span class="num">1</span><span>Chọn <code>Chuyển sang LaTeX</code>, <code>Sáng tác đề mới</code> hoặc <code>Sinh theo chủ đề</code>.</span></li>
-            <li><span class="num">2</span><span>Nhập yêu cầu trực tiếp hoặc thêm/dán văn bản, ảnh, PDF, <code>.tex</code>, <code>.txt</code> hay <code>.md</code>. PDF được tách thành ảnh trước khi gửi Gemini.</span></li>
-            <li><span class="num">3</span><span>Với sáng tác, chọn <code>Chỉ đổi số, đổi tên</code>, <code>Dễ hơn</code>, <code>Khó hơn</code>, <code>Nâng cao</code> hoặc yêu cầu riêng. Với sinh theo chủ đề, đặt số câu cho từng phần.</span></li>
-            <li><span class="num">4</span><span>Kiểm tra tùy chọn rồi mới bấm <code>Bắt đầu xử lý</code>. Kết quả được lưu thành <code>.tex</code> và có thể tự sao chép vào bảng tạm.</span></li>
-            <li><span class="num">5</span><span>Dùng <code>Sao chép LaTeX</code>, <code>Mở tệp</code>, <code>Biên dịch PDF</code>, <code>Trình chiếu</code> hoặc <code>Tạo đề ONLINE</code>. Luôn đọc lại nội dung, số liệu và đáp án do AI tạo.</span></li>
+            <li><span class="num">1</span><span>Chọn <code>Chuyển sang LaTeX</code>, <code>Sáng tác đề mới</code> hoặc <code>Sinh theo chủ đề</code>. Ví dụ trong ô soạn và dòng nhắc đổi theo chế độ đang chọn.</span></li>
+            <li><span class="num">2</span><span>Nhập yêu cầu trực tiếp hoặc thêm/dán văn bản, ảnh, PDF, <code>.tex</code>, <code>.txt</code> hay <code>.md</code>. Nhấn <code>Enter</code> để gửi, <code>Shift+Enter</code> để xuống dòng. PDF được tách thành ảnh trước khi gửi Gemini, tối đa 30 trang mỗi tệp.</span></li>
+            <li><span class="num">3</span><span>Với sáng tác, chọn <code>Chỉ đổi số, đổi tên</code>, <code>Dễ hơn</code>, <code>Khó hơn</code>, <code>Nâng cao</code> hoặc yêu cầu riêng. Với sinh theo chủ đề, đặt số câu cho từng phần; nếu mô tả đã ghi rõ (ví dụ “8 câu trắc nghiệm, 2 câu đúng sai”) thì MyTeX điền sẵn để kiểm tra lại.</span></li>
+            <li><span class="num">4</span><span>Ở bước xác nhận có thể đổi lại chế độ ngay tại chỗ. Bảng tùy chọn cho biết khối lượng dữ liệu sắp gửi và số lượt gọi Gemini; nút <code>Bắt đầu xử lý</code> chỉ mở khi các tùy chọn đã hợp lệ. Kết quả được lưu thành <code>.tex</code> và có thể tự sao chép vào bảng tạm.</span></li>
+            <li><span class="num">5</span><span>Trong lúc chạy có thể bấm <code>Dừng xử lý</code>; nếu lỗi hoặc dừng giữa chừng, dùng <code>Thử lại</code> hay <code>Đưa về ô soạn</code> để giữ nguyên nội dung đã nhập.</span></li>
+            <li><span class="num">6</span><span>Dùng <code>Sao chép LaTeX</code>, <code>Lưu thành...</code>, <code>Mở tệp</code>, <code>Biên dịch PDF</code>, <code>Trình chiếu</code> hoặc <code>Tạo đề ONLINE</code>. Luôn đọc lại nội dung, số liệu và đáp án do AI tạo.</span></li>
           </ul>
         </div>
       </div>
