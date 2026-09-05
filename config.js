@@ -3,7 +3,7 @@
  *
  * Mô tả: File cấu hình tập trung cho toàn bộ website MyTeX — định nghĩa
  *         thông tin ứng dụng, tác giả, liên kết video, URL tải xuống cho
- *         4 nền tảng và thông tin phiên bản. Chỉnh sửa tại đây để đồng
+ *         4 nền tảng và metadata chính sách. Chỉnh sửa tại đây để đồng
  *         bộ nội dung tự động trên tất cả các trang.
  *
  * Dự án: MyTeX
@@ -17,7 +17,7 @@
 // ║  config.js — Chỉnh tại đây để đồng bộ toàn website    ║
 // ╚═══════════════════════════════════════════════════════╝
 const SITE = {
-  app:    { name: 'MyTeX', tagline: 'Desktop suite · TeX · Word · AI · Google Form · Đấu trường' },
+  app:    { name: 'MyTeX', tagline: 'Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường' },
   author: { name: 'Nguyễn Hoàng Hải', email: 'nghai.math@gmail.com',
             facebook: 'https://www.facebook.com/nhhai.math',
             github:   'https://github.com/mytexvn' },
@@ -28,7 +28,7 @@ const SITE = {
             macos_arm64: 'https://github.com/mytexvn/mytexvn.github.io/releases/latest/download/mytex-macos-arm64.tar.gz',
             macos_intel: 'https://github.com/mytexvn/mytexvn.github.io/releases/latest/download/mytex-macos-intel.tar.gz',
             linux:       'https://github.com/mytexvn/mytexvn.github.io/releases/latest/download/mytex-linux-x64.tar.gz' },
-  privacy: { updated: '28/04/2026' },
+  privacy: { updated: '05/09/2026' },
   year: '2026',
 };
 

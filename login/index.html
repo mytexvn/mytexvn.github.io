@@ -2,9 +2,9 @@
 <!--
   Tên file: login/index.html
 
-  Mô tả: Trang đăng nhập MyTeX qua Google OAuth Desktop + PKCE.
-          Ứng dụng desktop phục vụ trang này cục bộ rồi nhận lại token
-          qua callback localhost sau khi người dùng cấp quyền.
+  Mô tả: Trang kết quả đăng nhập MyTeX qua Google OAuth 2.0 + PKCE.
+          HTTP server cục bộ của ứng dụng trả trang này sau khi callback
+          localhost đã được kiểm tra và đổi mã thành công.
 
   Dự án: MyTeX
   Tác giả: Nguyễn Hoàng Hải
@@ -17,11 +17,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Đăng nhập MyTeX | MyTeX</title>
+    <title>Kết quả đăng nhập | MyTeX</title>
     <link rel="icon" href="/assets/iconMyTeX.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0}
         :root{
@@ -106,7 +106,7 @@
 .footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:#2bb5a0}
 .footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#2bb5a0}
 @media(max-width:960px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
-@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
+@media(max-width:640px){.site-header .site-nav,.site-header .brand-text .tagline{display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
 /* END SYNCED HEADER/FOOTER */
 </style>
 </head>
@@ -115,7 +115,7 @@
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="/">
     <div class="brand-icon"><img class="js-icon" src="/assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
     <a href="/" class="active">Giới thiệu</a>
@@ -136,9 +136,9 @@
                 <path d="M20 6L9 17l-5-5"/>
             </svg>
         </div>
-        <h1>Xác thực thành công</h1>
-        <p>Ứng dụng MyTeX sẽ tự nhận phiên đăng nhập. Bạn có thể đóng cửa sổ này nếu app đã chuyển sang màn hình chính.</p>
-        <span class="auth-badge">Đã kết nối</span>
+        <h1>Quay lại ứng dụng MyTeX</h1>
+        <p>Hãy bắt đầu đăng nhập từ ứng dụng desktop. Trang này chỉ hiển thị kết quả của callback cục bộ.</p>
+        <span class="auth-badge">Trang hỗ trợ</span>
     </div>
 </main>
 
@@ -147,7 +147,7 @@
     <div class="footer-brand">
       <a class="brand" href="/">
         <div class="brand-icon"><img class="js-icon" src="/assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>
@@ -174,20 +174,27 @@
 
 <script src="/config.js"></script>
 <script>
-    // Trang này được phục vụ bởi MyTeX desktop sau khi OAuth Code Flow (PKCE)
-    // hoàn tất ở phía Python. Toàn bộ logic OAuth đã chạy trong main_MyTeX/core/
-    // firebase_auth.py — trang HTML chỉ hiển thị thông báo "Xác thực thành công"
-    // và tự đóng / chuyển sang website MyTeX để người dùng quay lại app.
-    window.onload = function() {
-        var qs = new URLSearchParams(window.location.search);
-        // /callback?code=... → đã đăng nhập xong, tự đóng (hoặc chuyển sang public site)
-        if (qs.get("code") || qs.get("error") || qs.get("desktopAuth")) {
+    // OAuth đã được ứng dụng xử lý trước khi trang callback cục bộ được trả về.
+    // Truy cập trực tiếp bản public không được xem là bằng chứng đăng nhập thành công.
+    window.addEventListener('load', function() {
+        const qs = new URLSearchParams(window.location.search);
+        const isLocal = window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1';
+        const isSuccessfulCallback = (isLocal && qs.has('code')) ||
+            qs.get('desktopAuth') === 'success';
+        if (!isSuccessfulCallback) return;
+
+        document.querySelector('.auth-card h1').textContent = 'Xác thực thành công';
+        document.querySelector('.auth-card p').textContent =
+            'MyTeX đã nhận phiên đăng nhập. Bạn có thể đóng trang này và quay lại ứng dụng.';
+        document.querySelector('.auth-badge').textContent = 'Đã kết nối';
+
+        if (isLocal) {
             setTimeout(function() {
                 try { window.close(); } catch (_e) {}
-                window.location.replace("https://mytex.app/login/?desktopAuth=success");
             }, 1200);
         }
-    };
+    });
 </script>
 
 </body>

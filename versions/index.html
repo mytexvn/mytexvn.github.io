@@ -2,23 +2,28 @@
 <!--
   Tên file: versions/index.html
 
-  Mô tả: Trang lịch sử phiên bản MyTeX — liệt kê tất cả các bản phát hành
-          theo thứ tự mới nhất trước, kèm ngày phát hành và danh sách thay
-          đổi. Bản mới dùng thẻ <article id="vYYYY.MM.DD.x">; giữ nguyên tag cũ.
-          để ứng dụng có thể tự động đọc và hiển thị khi thông báo cập nhật.
+  Mô tả: Trang lịch sử phiên bản MyTeX — liệt kê bản phát hành mới nhất trước,
+          kèm ngày và danh sách thay đổi. Bản mới dùng thẻ
+          <article id="vYYYY.MM.DD.x">; giữ nguyên tag cũ để bộ cập nhật có thể
+          đọc và hiển thị ghi chú tương ứng.
 
   Dự án: MyTeX
   Tác giả: Nguyễn Hoàng Hải
-  Hỗ trợ lập trình: Claude, ChatGPT, Gemini
+  Phân phối công khai: https://github.com/mytexvn/mytexvn.github.io/releases
   Ngày tạo: 20/04/2026
 
   Bản quyền: 2026 MyTeX · Nguyễn Hoàng Hải · nghai.math@gmail.com
 
   ── Lưu ý cho developer ──────────────────────────────────────────────────────
-  Release thường lệ nên dùng lệnh:
-      python scripts/release.py --auto
-  Khi phát hành thủ công, vẫn phải thêm <article> mới vào đầu #changelog,
-  bỏ badge "Moi nhat" khỏi bản cũ, commit, tạo tag git và push lên GitHub.
+  Tên bản mới có dạng vYYYY.MM.DD.x theo ngày Việt Nam; x bắt đầu từ 1 và
+  tăng cho mỗi lần phát hành trong cùng ngày. Release thường lệ dùng:
+      python scripts/release.py --auto "Thay đổi 1" "Thay đổi 2"
+  Script đối chiếu version.txt/README/changelog, tạo commit + tag và push
+  nguyên tử. Tag kích hoạt CI build Windows x64, macOS Intel/Apple Silicon và
+  Linux x64; chỉ khi đủ bốn gói, checksum và manifest thì workflow mới công bố
+  sang https://github.com/mytexvn/mytexvn.github.io/releases.
+  Không sửa/ghi đè một release công khai hoặc tái sử dụng tag. Workflow
+  resume-release chỉ dùng để tiếp tục bước công bố từ một build tag đã đạt.
   ─────────────────────────────────────────────────────────────────────────────
 -->
 <html lang="vi">
@@ -72,6 +77,7 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
 .notes-list li{display:flex;gap:10px;font-size:.93rem;color:var(--text2);line-height:1.6}
 .notes-list li::before{content:'→';color:var(--teal2);font-weight:700;flex-shrink:0;margin-top:1px}
 .notes-list li strong{color:var(--text);font-weight:600}
+.notes-list a,.release-link{color:var(--teal2);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:640px){
   .version-entry{grid-template-columns:1fr;gap:12px}
   .version-meta{padding-top:0}
@@ -106,7 +112,7 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
 .footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:var(--teal)}
 .footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
 @media(max-width:960px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
-@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
+@media(max-width:640px){.site-header .site-nav,.site-header .brand-text .tagline{display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
 </style>
 </head>
 <body>
@@ -115,10 +121,10 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="/">
     <div class="brand-icon"><img class="js-icon" src="/assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
-    <a href="/" class="active">Giới thiệu</a>
+    <a href="/">Giới thiệu</a>
     <a href="/#modules">Phân hệ</a>
     <a href="/user-guide/">Hướng dẫn</a>
     <a href="/privacy/">Bảo mật</a>
@@ -134,7 +140,7 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
   <div class="wrap">
     <div class="pill">Changelog</div>
     <h1>Lịch sử phiên bản</h1>
-    <p>Tất cả các bản phát hành của MyTeX — mới nhất hiển thị trước. Ứng dụng tự động đọc trang này để thông báo khi có phiên bản mới.</p>
+    <p>Tất cả các bản phát hành của MyTeX — mới nhất hiển thị trước. Ứng dụng đọc trang này để hiển thị ghi chú cập nhật; các gói công khai nằm tại <a class="release-link" href="https://github.com/mytexvn/mytexvn.github.io/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>. Thuật ngữ “Google Form” trong các ghi chú cũ được giữ để phản ánh đúng lịch sử, không mô tả cơ chế phiếu HTML hiện tại.</p>
   </div>
 </section>
 
@@ -154,11 +160,13 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
         </div>
         <div class="version-body">
           <ul class="notes-list">
-            <li>Đổi tên bản phát hành sang vYYYY.MM.DD.x, theo ngày Việt Nam; x bắt đầu từ 1 và tăng trong ngày. Giữ khả năng nhận diện các bản cũ.</li>
-            <li>Giảm quyền Google: bỏ quyền Forms và Drive appdata không sử dụng; kiểm tra quyền thực nhận và yêu cầu đăng nhập lại đối với phiên cũ.</li>
+            <li>Đổi tên bản phát hành sang <code>vYYYY.MM.DD.x</code> theo ngày Việt Nam; <code>x</code> bắt đầu từ 1 và tăng trong ngày. Bộ cập nhật vẫn nhận diện các tag ba phần cũ.</li>
+            <li>Đề thi trực tuyến dùng phiếu HTML qua Apps Script, Google Sheets và Drive; ứng dụng desktop không còn tạo Google Form hoặc gọi Forms API.</li>
+            <li>Giảm quyền đăng nhập Google xuống thông tin định danh cơ bản và <code>drive.file</code>; bỏ Forms, <code>drive.appdata</code> và các quyền không dùng. Phiên cũ phải đăng nhập lại.</li>
             <li>Chuẩn hóa build native Windows x64, macOS Intel/Apple Silicon và Linux x64; kiểm tra khởi động bản đóng gói, kèm SHA-256 và manifest phiên bản/commit.</li>
             <li>Đồng bộ website từ repo nguồn; tự công bố bản tải về sau khi cả bốn nền tảng vượt kiểm tra. Bộ cập nhật đọc ghi chú từ website công khai.</li>
             <li>Tăng an toàn giải nén cập nhật và tách dữ liệu cá nhân khỏi bản đóng gói. Gói chưa ký số; cần cài LaTeX riêng và sao lưu trước khi cập nhật.</li>
+            <li><strong>Tải bản phát hành:</strong> <a href="https://github.com/mytexvn/mytexvn.github.io/releases/tag/v2026.09.04.1" target="_blank" rel="noopener">v2026.09.04.1 trên GitHub</a>.</li>
           </ul>
         </div>
       </article>
@@ -557,7 +565,7 @@ h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.15;letter
     <div class="footer-brand">
       <a class="brand" href="/">
         <div class="brand-icon"><img class="js-icon" src="/assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>

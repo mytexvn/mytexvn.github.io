@@ -3,8 +3,7 @@
   Tên file: login-error/index.html
 
   Mô tả: Trang thông báo đăng nhập MyTeX thất bại — hiển thị khi người
-          dùng từ chối cấp quyền Google provider hoặc có lỗi trong quá
-          trình xác thực Firebase Auth.
+          dùng từ chối luồng Google OAuth hoặc callback cục bộ gặp lỗi.
 
   Dự án: MyTeX
   Tác giả: Nguyễn Hoàng Hải
@@ -21,7 +20,7 @@
     <link rel="icon" href="/assets/iconMyTeX.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0}
         :root{
@@ -107,7 +106,7 @@
 .footer-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:rgba(43,181,160,.12);border:1px solid rgba(43,181,160,.22);font-size:.76rem;font-weight:700;color:#2bb5a0}
 .footer-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#2bb5a0}
 @media(max-width:960px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
-@media(max-width:640px){.site-nav a:not(.nav-dl){display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
+@media(max-width:640px){.site-header .site-nav,.site-header .brand-text .tagline{display:none}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{flex-direction:column;text-align:center}}
 /* END SYNCED HEADER/FOOTER */
 </style>
 </head>
@@ -116,7 +115,7 @@
 <header class="site-header"><div class="wrap header-inner">
   <a class="brand" href="/">
     <div class="brand-icon"><img class="js-icon" src="/assets/iconMyTeX.png" alt="MyTeX"></div>
-    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
+    <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường</span></div>
   </a>
   <nav class="site-nav">
     <a href="/" class="active">Giới thiệu</a>
@@ -139,7 +138,7 @@
             </svg>
         </div>
         <h1>Xác thực thất bại</h1>
-        <p>Đăng nhập MyTeX không thành công. Vui lòng quay lại ứng dụng MyTeX, kiểm tra kết nối Internet/quyền Google và thử lại.</p>
+        <p>Đăng nhập MyTeX không thành công. Hãy quay lại ứng dụng, kiểm tra kết nối Internet và thử đăng nhập Google lại.</p>
         <span class="auth-badge">Chưa kết nối</span>
     </div>
 </main>
@@ -149,7 +148,7 @@
     <div class="footer-brand">
       <a class="brand" href="/">
         <div class="brand-icon"><img class="js-icon" src="/assets/iconMyTeX.png" alt="MyTeX"></div>
-        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Google Form · Đấu trường</span></div>
+        <div class="brand-text"><span class="name">MyTeX</span><span class="tagline">Desktop suite · TeX · Word · AI · Đề thi trực tuyến · Đấu trường</span></div>
       </a>
       <p>Nền tảng desktop chuẩn hóa toàn bộ quy trình ra đề, vận hành bài kiểm tra và phản hồi kết quả học sinh.</p>
     </div>
@@ -176,11 +175,13 @@
 
 <script src="/config.js"></script>
 <script>
-    const message = new URLSearchParams(window.location.search).get("message");
-    if (message) {
+    const params = new URLSearchParams(window.location.search);
+    const message = params.get('message') || params.get('error_description');
+    if (message && message.trim()) {
         const p = document.querySelector(".auth-card p");
         if (p) {
-            p.textContent = `Đăng nhập MyTeX không thành công. Chi tiết: ${message}`;
+            p.textContent = 'Đăng nhập MyTeX không thành công. Chi tiết: ' +
+                message.trim().slice(0, 300);
         }
     }
 </script>
