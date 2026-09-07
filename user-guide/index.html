@@ -49,8 +49,11 @@ h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;margin:14px 0 12px}
 .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 17px;border-radius:10px;background:#fff;border:1px solid var(--line);font-weight:800;color:var(--text)}
 .btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
-.hero-shot{padding:12px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 50px rgba(18,32,51,.13)}
-.hero-shot img{border-radius:12px;border:1px solid var(--line)}
+.hero-video{padding:12px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 50px rgba(18,32,51,.13);display:grid;gap:10px}
+.video-ratio{position:relative;aspect-ratio:560/314;overflow:hidden;border-radius:12px;background:var(--navy)}
+.video-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-caption{font-size:.86rem;color:var(--muted);padding:0 3px 2px}
+.video-caption a{color:var(--teal);font-weight:800}
 .layout{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start;padding-bottom:58px}
 .toc{position:sticky;top:76px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 6px 28px rgba(18,32,51,.08)}
 .toc h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:9px}
@@ -60,10 +63,7 @@ h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;margin:14px 0 12px}
 .content{display:grid;gap:15px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 28px;box-shadow:0 6px 28px rgba(18,32,51,.08);scroll-margin-top:80px}
 .card h2{font-size:1.35rem;margin:8px 0 10px}
-.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;margin-top:16px;align-items:start}
-figure{padding:13px;background:var(--soft);border:1px solid var(--line);border-radius:14px}
-figure img{border-radius:10px;border:1px solid var(--line);width:100%}
-figcaption{margin-top:8px;color:var(--muted);font-size:.86rem}
+.grid{display:block;margin-top:16px}
 .steps{display:grid;gap:8px;margin-top:10px;list-style:none;padding:0}
 .steps li{display:flex;gap:9px;align-items:flex-start}
 .steps strong{color:var(--text)}
@@ -140,7 +140,12 @@ footer p{color:rgba(255,255,255,.58)}
       <a class="btn" href="#faq">Xử lý lỗi</a>
     </div>
   </div>
-  <figure class="hero-shot"><img src="/assets/screenshots/tong-quan.png" alt="Tổng quan MyTeX"><figcaption>Màn hình Tổng quan của phiên bản hiện tại.</figcaption></figure>
+  <div class="hero-video">
+    <div class="video-ratio">
+      <iframe src="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1059138310154325%2F&amp;show_text=false&amp;width=560&amp;t=0" width="560" height="314" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy" title="Video hướng dẫn ứng dụng MyTeX"></iframe>
+    </div>
+    <p class="video-caption">Video giới thiệu và thao tác MyTeX · <a href="https://www.facebook.com/reel/1059138310154325/" target="_blank" rel="noopener">Xem trực tiếp trên Facebook</a></p>
+  </div>
 </div></section>
 
 <div class="wrap layout">
@@ -179,7 +184,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">2. Tổng quan</span>
       <h2>Trung tâm điều phối</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/tong-quan.png" alt="Tab Tổng quan"><figcaption>Trạng thái cấu hình và lối vào nhanh các phân hệ.</figcaption></figure>
         <div>
           <p><code>Tổng quan</code> giúp kiểm tra MyTeX đã sẵn sàng hay chưa. Từ đây có thể mở thiết lập Đề thi trực tuyến, Email, Zalo, Gemini, thông tin cá nhân và Giao diện.</p>
           <ul class="steps">
@@ -195,7 +199,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">3. Xử lý TeX</span>
       <h2>Chuẩn hóa nguồn và ngân hàng câu hỏi</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/xu-ly-tex.png" alt="Tab Xử lý TeX"><figcaption>Lọc nguồn, kiểm tra ID và đưa câu hỏi vào ngân hàng.</figcaption></figure>
         <div>
           <p>Phân hệ này dùng để xử lý file <code>.tex</code> thô trước khi đưa vào ngân hàng hoặc dùng cho các bước sau.</p>
           <ul class="steps">
@@ -211,7 +214,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">4. Tạo đề thi</span>
       <h2>Sinh đề theo ma trận</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/tao-de-thi.png" alt="Tab Tạo đề thi"><figcaption>Nạp ngân hàng, nạp ma trận và sinh nhiều mã đề.</figcaption></figure>
         <div>
           <p><code>Tạo đề thi</code> ghép ngân hàng câu hỏi với ma trận Excel, kiểm tra đủ/thiếu câu rồi xuất đề.</p>
           <ul class="steps">
@@ -230,7 +232,6 @@ footer p{color:rgba(255,255,255,.58)}
       <div class="subgrid">
         <div class="sub">
           <h3>Thiết lập Apps Script một lần</h3>
-          <figure><img src="/assets/screenshots/de-thi-truc-tuyen.png" alt="Tạo đề thi trực tuyến"><figcaption>Nạp một hoặc nhiều tệp <code>.tex</code> rồi cấu hình phiếu HTML.</figcaption></figure>
           <ul class="steps">
             <li><span class="num">1</span><span>Vào <code>Tổng quan → Đề thi trực tuyến</code>, nhập ID thư mục Drive nếu đã có, secret và email giáo viên tùy chọn; bấm <code>Sao chép template .gs</code>. MyTeX có thể tạo thư mục gốc khi chưa có ID.</span></li>
             <li><span class="num">2</span><span>Tạo dự án tại Apps Script, thay toàn bộ <code>Code.gs</code> bằng template, chạy hàm <code>setup</code> và duyệt các quyền riêng của script.</span></li>
@@ -240,7 +241,6 @@ footer p{color:rgba(255,255,255,.58)}
         </div>
         <div class="sub">
           <h3>Tạo, nhận bài và chấm</h3>
-          <figure><img src="/assets/screenshots/cham-bai-truc-tuyen.png" alt="Chấm bài trực tuyến"><figcaption>Các tab Tạo đề trực tuyến, Chấm bài, Thống kê và Đồng bộ.</figcaption></figure>
           <ul class="steps">
             <li><span class="num">1</span><span>Chọn một hoặc nhiều tệp <code>.tex</code>; đặt mã bài thi, tiêu đề, giờ mở/đóng, thời lượng, mã phòng và điểm từng phần.</span></li>
             <li><span class="num">2</span><span>Chọn dữ liệu dạng ảnh hoặc HTML + MathJax, giao diện toàn đề hoặc từng câu, gửi kết quả, và chế độ giám sát nếu cần; sau đó tạo liên kết/QR cho học sinh.</span></li>
@@ -256,7 +256,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">6. Đấu trường</span>
       <h2>Thi trực tiếp bằng điện thoại</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/dau-truong.png" alt="Đấu trường MyTeX"><figcaption>Màn hình Đấu trường với mã QR, thống kê và bảng điểm.</figcaption></figure>
         <div>
           <p><code>Đấu trường</code> mở máy chủ nội bộ trên máy giáo viên. Học sinh cùng mạng LAN/hotspot quét mã QR, xem ảnh câu hỏi và gửi đáp án bằng điện thoại.</p>
           <ul class="steps">
@@ -278,7 +277,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">7. Soạn đề AI</span>
       <h2>Chuyển đổi và sáng tác bằng Gemini</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><figcaption>Nhận văn bản, ảnh, PDF, TeX/TXT/Markdown và chọn hành động đầu ra.</figcaption></figure>
         <div>
           <ul class="steps">
             <li><span class="num">1</span><span>Chọn <code>Chuyển sang LaTeX</code>, <code>Sáng tác đề mới</code> hoặc <code>Sinh theo chủ đề</code>. Ví dụ trong ô soạn và dòng nhắc đổi theo chế độ đang chọn.</span></li>
@@ -297,7 +295,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">8. TeX to docx</span>
       <h2>Chuyển TeX sang Word</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/tex-to-doc.png" alt="TeX to docx"><figcaption>Xuất tài liệu <code>.tex</code> sang <code>.docx</code> và render TikZ/bảng thành ảnh.</figcaption></figure>
         <div>
           <p><code>TeX to docx</code> tự trích xuất <code>tikzpicture</code>, render bằng LaTeX standalone và chèn ảnh lại đúng vị trí. Sau khi xuất, cần mở Word để rà soát bố cục và những cấu trúc TeX phức tạp.</p>
           <ul class="steps">
@@ -315,7 +312,6 @@ footer p{color:rgba(255,255,255,.58)}
       <span class="pill">9. Trợ lý AI</span>
       <h2>Hỏi đáp thao tác MyTeX</h2>
       <div class="grid">
-        <figure><img src="/assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><figcaption>Trợ lý Gemini dùng tài liệu HTML của MyTeX làm nguồn nội bộ.</figcaption></figure>
         <div>
           <ul class="steps">
             <li><span class="num">1</span><span>Cấu hình Gemini tại <code>Tổng quan</code>, rồi mô tả thao tác hoặc lỗi bằng tiếng Việt.</span></li>

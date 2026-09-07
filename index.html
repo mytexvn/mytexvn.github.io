@@ -88,19 +88,13 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 .hero-desc{font-size:1.02rem;max-width:50ch;margin-bottom:10px;color:var(--text2)}
 .hero-sub{font-size:.9rem;color:var(--muted);margin-bottom:30px;max-width:48ch}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-/* SLIDESHOW */
-.hero-slideshow{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);background:var(--surface);border:1px solid var(--border);position:relative}
-.slides-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
-.slide-item{min-width:100%;position:relative}
-.slide-item img{width:100%;display:block}
-.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(26,45,61,.72));color:#fff;font-size:.86rem;font-weight:600;display:flex;align-items:center;gap:7px}
-.slide-caption::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
-.slideshow-dots{display:flex;justify-content:center;gap:6px;padding:9px 0 5px;background:var(--surface)}
-.slideshow-dots button{width:6px;height:6px;border-radius:50%;border:none;background:var(--border2);cursor:pointer;padding:0;transition:background .2s,transform .2s}
-.slideshow-dots button.active{background:var(--teal);transform:scale(1.4)}
-.slideshow-nav{position:absolute;top:calc(50% - 14px);transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 10px;pointer-events:none;z-index:2}
-.slideshow-nav button{pointer-events:all;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.85);color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .18s}
-.slideshow-nav button:hover{background:#fff}
+/* VIDEO GIỚI THIỆU */
+.hero-video{border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-md);background:var(--surface);border:1px solid var(--border);display:grid;gap:10px}
+.video-ratio{position:relative;aspect-ratio:560/314;overflow:hidden;border-radius:12px;background:var(--navy)}
+.video-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-caption{font-size:.86rem;color:var(--text2);padding:0 3px 2px}
+.video-caption a{color:var(--teal2);font-weight:700}
+.video-caption a:hover{text-decoration:underline}
 /* STATS */
 .stats-section{padding:0 0 56px}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -200,23 +194,11 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
       <a class="btn btn-secondary" href="/user-guide/">Đọc hướng dẫn</a>
     </div>
   </div>
-  <div class="hero-slideshow" id="heroSlideshow">
-    <div class="slideshow-nav">
-      <button onclick="slideshowMove(-1)" aria-label="Trước">&#8249;</button>
-      <button onclick="slideshowMove(1)" aria-label="Sau">&#8250;</button>
+  <div class="hero-video">
+    <div class="video-ratio">
+      <iframe src="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1059138310154325%2F&amp;show_text=false&amp;width=560&amp;t=0" width="560" height="314" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy" title="Video giới thiệu ứng dụng MyTeX"></iframe>
     </div>
-    <div class="slides-track" id="slidesTrack">
-      <div class="slide-item"><img src="/assets/screenshots/tong-quan.png" alt="Tổng quan"><div class="slide-caption">Tổng quan — bảng điều phối trung tâm và cấu hình tích hợp</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/xu-ly-tex.png" alt="Xử lý TeX"><div class="slide-caption">Xử lý TeX — chuẩn hóa nguồn đề và xây dựng ngân hàng câu hỏi</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/tao-de-thi.png" alt="Tạo đề thi"><div class="slide-caption">Tạo đề thi — áp ma trận và xuất nhiều mã đề cùng lúc</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/de-thi-truc-tuyen.png" alt="Đề thi trực tuyến"><div class="slide-caption">Đề thi trực tuyến — tạo phiếu HTML và nhận bài qua Apps Script</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/cham-bai-truc-tuyen.png" alt="Chấm bài trực tuyến"><div class="slide-caption">Chấm bài trực tuyến — tổng hợp phản hồi và gửi kết quả cho học sinh</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/dau-truong.png" alt="Đấu trường"><div class="slide-caption">Đấu trường — phát câu hỏi, thu đáp án, mở full view và bật lời giải khi giảng</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/soan-de-ai.png" alt="Soạn đề AI"><div class="slide-caption">Soạn đề AI — nhận ảnh/PDF/TeX, sinh đề mới, biên dịch PDF hoặc mở trình chiếu</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/tex-to-doc.png" alt="TeX to docx"><div class="slide-caption">TeX to docx — chuyển TeX sang Word với công thức MathType hoặc Word Equation</div></div>
-      <div class="slide-item"><img src="/assets/screenshots/tro-ly-ai.png" alt="Trợ lý AI"><div class="slide-caption">Trợ lý AI — hỗ trợ thao tác và giải đáp trong phạm vi MyTeX</div></div>
-    </div>
-    <div class="slideshow-dots" id="slideshowDots"></div>
+    <p class="video-caption">Video giới thiệu ứng dụng MyTeX · <a href="https://www.facebook.com/reel/1059138310154325/" target="_blank" rel="noopener">Xem trực tiếp trên Facebook</a></p>
   </div>
 </div></div></section>
 
@@ -417,32 +399,6 @@ code{font-size:.85em;padding:2px 8px;border-radius:6px;background:var(--surface2
 </div></footer>
 
 <script src="/config.js"></script>
-<script>
-(function () {
-  var track = document.getElementById('slidesTrack');
-  var dots  = document.getElementById('slideshowDots');
-  if (!track) return;
-  var items = track.querySelectorAll('.slide-item'), n = items.length, cur = 0, timer;
-  items.forEach(function (_, i) {
-    var b = document.createElement('button');
-    if (i === 0) b.classList.add('active');
-    b.setAttribute('aria-label', 'Ảnh ' + (i + 1));
-    b.onclick = function () { goTo(i); reset(); };
-    dots.appendChild(b);
-  });
-  function goTo(i) {
-    cur = (i + n) % n;
-    track.style.transform = 'translateX(-' + cur * 100 + '%)';
-    dots.querySelectorAll('button').forEach(function (b, j) { b.classList.toggle('active', j === cur); });
-  }
-  function reset() { clearInterval(timer); timer = setInterval(function () { goTo(cur + 1); }, 3600); }
-  window.slideshowMove = function (d) { goTo(cur + d); reset(); };
-  var box = document.getElementById('heroSlideshow');
-  box.addEventListener('mouseenter', function () { clearInterval(timer); });
-  box.addEventListener('mouseleave', reset);
-  reset();
-})();
-</script>
 
 </body>
 </html>
