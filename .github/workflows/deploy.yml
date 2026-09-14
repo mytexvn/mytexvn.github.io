@@ -1,0 +1,68 @@
+name: Deploy MyTeX website
+
+on:
+  repository_dispatch:
+    types: [deploy-website]
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Source main, release tag, or commit SHA
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: mytex-public-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      SOURCE_REF: ${{ github.event.client_payload.source_sha || inputs.source_ref || 'main' }}
+    steps:
+      - name: Validate source ref
+        shell: bash
+        run: |
+          if [[ "$SOURCE_REF" != main && ! "$SOURCE_REF" =~ ^v[0-9]{4}\.[0-9]{2}\.[0-9]{2}\.[1-9][0-9]*$ && ! "$SOURCE_REF" =~ ^[0-9a-f]{40}$ ]]; then
+            echo '::error::Expected main, a vYYYY.MM.DD.x tag, or a full source SHA'
+            exit 1
+          fi
+      - name: Checkout public source documentation
+        uses: actions/checkout@v4
+        with:
+          repository: mytexvn/source
+          ref: ${{ env.SOURCE_REF }}
+          path: source
+          persist-credentials: false
+      - name: Verify website source
+        run: |
+          cd source
+          python scripts/verify_repository.py
+          python scripts/verify_documentation.py
+          test "$(cat docs/CNAME)" = 'mytex.app'
+          test -s docs/index.html
+          test -s docs/versions/index.html
+          test -z "$(find docs -type l -print -quit)"
+      - name: Prepare Pages artifact
+        run: |
+          mkdir public
+          cp -a source/docs/. public/
+          touch public/.nojekyll
+      - uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
